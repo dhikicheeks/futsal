@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>General Dashboard &mdash; Stisla</title>
+    <title>Damar Futsal</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -32,10 +32,10 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                            <div class="d-sm-none d-lg-inline-block">Hi,Admin Damar</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-title">Logged in 5 min ago</div>
+                            {{-- <div class="dropdown-title">Logged in 5 min ago</div>
                             <a href="features-profile.html" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a>
@@ -44,7 +44,7 @@
                             </a>
                             <a href="features-settings.html" class="dropdown-item has-icon">
                                 <i class="fas fa-cog"></i> Settings
-                            </a>
+                            </a> --}}
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -56,78 +56,38 @@
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">Stisla</a>
+                        <a href="index.html">Damar Futsal</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">St</a>
+                        <a href="index.html">DF</a>
                     </div>
                     <ul class="sidebar-menu">
-                        <li class="menu-header">Dashboard</li>
+                        <li class="menu-header">Antrian Verifikasi</li>
                         <li class="nav-item dropdown active">
                             <a href="#" class="nav-link has-dropdown"><i
-                                    class="fas fa-fire"></i><span>Dashboard</span></a>
+                                    class="fas fa-address-book"></i><span>Verifikasi</span></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a class="nav-link" href="index-0.html">General Dashboard</a></li>
-                                <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
+                                <li><a class="nav-link" href="index.html">Verifikasi DP</a></li>
+                                <li><a class="nav-link" href="index.html">Verifikasi Pelunasan</a></li>
+                                <li><a class="nav-link" href="index.html">Verifikasi Member Baru</a></li>
                             </ul>
                         </li>
-                        <li class="menu-header">Starter</li>
+                        <li class="menu-header">INVENTORY</li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Layout</span></a>
+                                    class="fas fa-archive"></i> <span>Inventory</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                                <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                                <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                                <li><a class="nav-link" href="layout-default.html">Tambahkan Inventory</a></li>
+                                <li><a class="nav-link" href="layout-transparent.html">Lihat Inventory</a></li>
                             </ul>
                         </li>
-                        <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank
-                                    Page</span></a></li>
+                        <li class="menu-header">KEUANGAN</li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i>
-                                <span>Bootstrap</span></a>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                    class="fas fa-book"></i> <span>Laporan Keuangan</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="bootstrap-alert.html">Alert</a></li>
-                                <li><a class="nav-link" href="bootstrap-badge.html">Badge</a></li>
-                                <li><a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-header">Stisla</li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
-                                <span>Components</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="components-article.html">Article</a></li>
-                                <li><a class="nav-link beep beep-sidebar" href="components-avatar.html">Avatar</a></li>
-                                <li><a class="nav-link" href="components-chat-box.html">Chat Box</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
-                                <span>Forms</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="forms-advanced-form.html">Advanced Form</a></li>
-                                <li><a class="nav-link" href="forms-editor.html">Editor</a></li>
-                                <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i> <span>Google
-                                    Maps</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="gmaps-advanced-route.html">Advanced Route</a></li>
-                                <li><a href="gmaps-draggable-marker.html">Draggable Marker</a></li>
-                                <li><a href="gmaps-geocoding.html">Geocoding</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i>
-                                <span>Modules</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="modules-calendar.html">Calendar</a></li>
-                                <li><a class="nav-link" href="modules-chartjs.html">ChartJS</a></li>
-                                <li><a class="nav-link" href="modules-datatables.html">DataTables</a></li>
-                                <li><a class="nav-link" href="modules-flag.html">Flag</a></li>
+                                <li><a class="nav-link" href="layout-default.html">Laporan Keuangan Futsal</a></li>
+                                <li><a class="nav-link" href="layout-transparent.html">Laporan Keuangan Snack</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -144,10 +104,7 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2021
-                </div>
-                <div class="footer-right">
-                    2.3.0
+                    Damar Futsal Wonogiri Copyright &copy; 2021
                 </div>
             </footer>
         </div>
