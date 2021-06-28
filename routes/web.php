@@ -21,7 +21,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// ? Navbar
+// ? NAVBAR
 Route::get('/pesan', function () {
     return view('pesan');
+});
+
+//? RESI
+Route::get('/resi/dp', function () {
+    return view('resi-dp');
 });
