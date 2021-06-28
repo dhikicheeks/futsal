@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,7 +26,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -40,9 +40,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="#">Booking</a></li>
-                        <li><a class="nav-link" href="#">Daftar Member</a></li>
-                        <li><a class="nav-link" href="#">Turnamen</a></li>
+                        <li><a class="nav-link" href="{{url("/pesan")}}">Pesan Lapangan</a></li>
+                        <li><a class="nav-link" href="{{url("/daftar/member")}}">Daftar Member</a></li>
+                        <li><a class="nav-link" href="{{url("/turnamen")}}">Turnamen</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -88,11 +88,9 @@
             @yield('content')
         </main>
 
-        <footer>
-            <div class="container">
-                <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <footer class="bg-dark">
+                <div class="text-center p-4 ", style="color: aliceblue">
                     © 2021 Copyright Damar Futsal Wonogiri
-                </div>
             </div>
         </footer>
     </div>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','Damar Futsal Wonogiri')
 @section('content')
 
 <div class="container">
@@ -14,15 +15,15 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://customdesain.net/landing_page/img/2021/juni/banner%20mommycuz%20idul%20adha%201.jpg"
+                <img src="{{asset('assets/img/slider/slider-1.jpg')}}"
                     class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://customdesain.net/landing_page/img/2021/juni/banner%20mommycuz%20idul%20adha%201.jpg"
+                <img src="{{asset('assets/img/slider/slider-2.jpg')}}"
                     class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://customdesain.net/landing_page/img/2021/juni/banner%20mommycuz%20idul%20adha%201.jpg"
+                <img src="{{asset('assets/img/slider/slider-3.jpg')}}"
                     class="d-block w-100" alt="...">
             </div>
         </div>
