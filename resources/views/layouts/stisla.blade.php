@@ -67,27 +67,17 @@
                         <a href="index.html">DF</a>
                     </div>
 
-                    <!-- LOGIN OWNER dan ADMIN -->
-                    @if(Auth::user()->role_id == 100 ||
-                    Auth::user()->role_id == 90)
+
+                    <!-- LOGIN OWNER -->
+                    @if(Auth::user()->role_id == 100
+                    )
                     <ul class="sidebar-menu">
-                        <li class="menu-header">Antrian Verifikasi</li>
                         <li class="nav-item dropdown
                                 @if(Route::currentRouteName() == 'home' ||
                                     Route::currentRouteName() == 'verifikasi_pelunasan' ||
                                     Route::currentRouteName() == 'verifikasi_member_baru')
                                     active
                                 @endif">
-                            <a href="#" class="nav-link has-dropdown"><i
-                                    class="fas fa-address-book"></i><span>Verifikasi</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
-                                        href="{{url('home')}}">Verifikasi DP</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_pelunasan')?'nav-active':'' }}"
-                                        href="{{url('verifikasi_pelunasan')}}">Verifikasi Pelunasan</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_member_baru')?'nav-active':'' }}"
-                                        href="{{url('verifikasi_member_baru')}}">Verifikasi Member Baru</a></li>
-                            </ul>
                         </li>
                         <li class="menu-header">INVENTORY</li>
                         <li class="nav-item dropdown
@@ -96,7 +86,8 @@
                                     active
                                 @endif">
                             <a href=" #" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-archive"></i> <span>Inventory</span></a>
+                                    class="fas fa-archive"></i>
+                                <span>Inventory</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'tambah_inventory')?'nav-active':'' }}"
                                         href="{{url('tambah_inventory')}}">Tambahkan Inventory</a></li>
@@ -117,6 +108,31 @@
                                         href="{{url('laporan_keuangan_futsal')}}">Laporan Keuangan Futsal</a></li>
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_snack')?'nav-active':'' }}"
                                         href="{{url('laporan_keuangan_snack')}}">Laporan Keuangan Snack</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    @endif
+
+                    <!-- LOGIN ADMIN -->
+                    @if(
+                    Auth::user()->role_id == 90)
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Antrian Verifikasi</li>
+                        <li class="nav-item dropdown
+                                @if(Route::currentRouteName() == 'home' ||
+                                    Route::currentRouteName() == 'verifikasi_pelunasan' ||
+                                    Route::currentRouteName() == 'verifikasi_member_baru')
+                                    active
+                                @endif">
+                            <a href="#" class="nav-link has-dropdown"><i
+                                    class="fas fa-address-book"></i><span>Verifikasi</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
+                                        href="{{url('home')}}">Verifikasi DP</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_pelunasan')?'nav-active':'' }}"
+                                        href="{{url('verifikasi_pelunasan')}}">Verifikasi Pelunasan</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_member_baru')?'nav-active':'' }}"
+                                        href="{{url('verifikasi_member_baru')}}">Verifikasi Member Baru</a></li>
                             </ul>
                         </li>
                     </ul>

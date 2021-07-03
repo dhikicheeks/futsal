@@ -57,9 +57,9 @@
                                         </table>
                                     </div>
                                     <div class="alert alert-danger">
-                                        <strong>Perhatian !</strong> Screenshoot resi ini sebagai bukti pembayaran dan untuk melakuan validasi admin
+                                        <strong>Perhatian !</strong> Screenshoot resi ini sebagai bukti pembayaran dan
+                                        untuk melakuan validasi admin
                                     </div>
                                 </div>
 </body>
-
 </html>

@@ -1,8 +1,8 @@
 @extends('layouts.stisla')
 
 @section('title','Damar Futsal Wonogiri')
-<!-- LOGIN OWNER dan ADMIN -->
-@if(Auth::user()->role_id == 100 ||
+<!--  ADMIN -->
+@if(
 Auth::user()->role_id == 90)
 @section('section-header','Verifikasi Dp')
 @section('content')
@@ -11,6 +11,18 @@ ISI Untuk Login Owner dan Admin
 
 @endsection
 @endif
+
+
+<!-- LOGIN OWNER -->
+@if(Auth::user()->role_id == 100 )
+@section('section-header','Inventory')
+@section('content')
+
+ISI Untuk Login Owner
+
+@endsection
+@endif
+
 
 
 <!-- LOGIN Member -->
