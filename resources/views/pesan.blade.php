@@ -4,7 +4,7 @@
 
 <div class="container">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
         Pesan Sekarang
     </button>
 
@@ -50,101 +50,103 @@
                                     Paket 3 (1 jam + 2 Air Mineral 1,5L + Rompi)
                                 </label>
                             </div>
-                        <div class="form-group">
-                            <label for="paket">Paket 2 Jam</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paket" id="paket1" value="option1"
-                                    checked>
-                                <label class="form-check-label" for="paket1">
-                                    Paket 1 (2 jam)
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paket" id="paket2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Paket 2 (2 jam + 2 Air Mineral 1,5L)
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paket" id="paket2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Paket 3 (2 jam + 2 Air Mineral 1,5L + Rompi)
-                                </label>
+                            <div class="form-group">
+                                <label for="paket">Paket 2 Jam</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paket" id="paket1"
+                                        value="option1" checked>
+                                    <label class="form-check-label" for="paket1">
+                                        Paket 1 (2 jam)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paket" id="paket2"
+                                        value="option2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Paket 2 (2 jam + 2 Air Mineral 1,5L)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paket" id="paket2"
+                                        value="option2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Paket 3 (2 jam + 2 Air Mineral 1,5L + Rompi)
+                                    </label>
+                                </div>
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Pesan</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Pesan</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<h1 class="text-center">Jadwal Futsal Hari ini</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col" class="text-center">Jam</th>
-            <th scope="col" class="text-center">Nama Tim</th>
+    <h1 class="text-center">Jadwal Futsal Hari ini</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Jam</th>
+                <th scope="col" class="text-center">Nama Tim</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
-        <tr>
-            <td class="text-center">08.00 - 10.00</td>
-            <td class="text-center">Rock FC</td>
-        </tr>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
+            <tr>
+                <td class="text-center">08.00 - 10.00</td>
+                <td class="text-center">Rock FC</td>
+            </tr>
 
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </div>
 
 

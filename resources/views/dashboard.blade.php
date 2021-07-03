@@ -15,16 +15,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('assets/img/slider/slider-1.jpg')}}"
-                    class="d-block w-100" alt="...">
+                <img src="{{asset('assets/img/slider/slider-1.jpg')}}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('assets/img/slider/slider-2.jpg')}}"
-                    class="d-block w-100" alt="...">
+                <img src="{{asset('assets/img/slider/slider-2.jpg')}}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('assets/img/slider/slider-3.jpg')}}"
-                    class="d-block w-100" alt="...">
+                <img src="{{asset('assets/img/slider/slider-3.jpg')}}" class="d-block w-100" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -53,7 +50,6 @@
             <tr>
                 <th scope="col" class="text-center">Jam</th>
                 <th scope="col" class="text-center">Nama Tim</th>
-
             </tr>
         </thead>
         <tbody>
@@ -110,6 +106,5 @@
         </tbody>
     </table>
 </div>
-
 
 @endsection

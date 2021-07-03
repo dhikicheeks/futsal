@@ -21,8 +21,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+     
+    public function home()
     {
-        return view('layouts.stisla');
+        return view('home.home');
+    }
+     
+    public function turnamen()
+    {
+        return view('home.home');
     }
 }

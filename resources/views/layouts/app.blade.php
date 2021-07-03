@@ -41,7 +41,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="{{url("/pesan")}}">Pesan Lapangan</a></li>
-                        <li><a class="nav-link" href="{{url("/daftar/member")}}">Daftar Member</a></li>
+                        <li><a class="nav-link" href="{{url("/upload_bukti_dp")}}">Upload Bukti Dp</a></li>
                         <li><a class="nav-link" href="{{url("/turnamen")}}">Turnamen</a></li>
                     </ul>
 
@@ -89,8 +89,8 @@
         </main>
 
         <footer class="bg-dark">
-                <div class="text-center p-4 ", style="color: aliceblue">
-                    © 2021 Copyright Damar Futsal Wonogiri
+            <div class="text-center p-4 " , style="color: aliceblue">
+                © 2021 Copyright Damar Futsal Wonogiri
             </div>
         </footer>
     </div>

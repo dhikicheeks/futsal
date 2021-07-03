@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 </head>
 
 <body>
@@ -45,10 +45,15 @@
                             <a href="features-settings.html" class="dropdown-item has-icon">
                                 <i class="fas fa-cog"></i> Settings
                             </a> --}}
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item has-icon text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Logout
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item has-icon text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                             </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </li>
                 </ul>
@@ -61,36 +66,86 @@
                     <div class="sidebar-brand sidebar-brand-sm">
                         <a href="index.html">DF</a>
                     </div>
+
+                    <!-- LOGIN OWNER dan ADMIN -->
+                    @if(Auth::user()->role_id == 100 ||
+                    Auth::user()->role_id == 90)
                     <ul class="sidebar-menu">
                         <li class="menu-header">Antrian Verifikasi</li>
-                        <li class="nav-item dropdown active">
+                        <li class="nav-item dropdown
+                                @if(Route::currentRouteName() == 'home' ||
+                                    Route::currentRouteName() == 'verifikasi_pelunasan' ||
+                                    Route::currentRouteName() == 'verifikasi_member_baru')
+                                    active
+                                @endif">
                             <a href="#" class="nav-link has-dropdown"><i
                                     class="fas fa-address-book"></i><span>Verifikasi</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="index.html">Verifikasi DP</a></li>
-                                <li><a class="nav-link" href="index.html">Verifikasi Pelunasan</a></li>
-                                <li><a class="nav-link" href="index.html">Verifikasi Member Baru</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
+                                        href="{{url('home')}}">Verifikasi DP</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_pelunasan')?'nav-active':'' }}"
+                                        href="{{url('verifikasi_pelunasan')}}">Verifikasi Pelunasan</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_member_baru')?'nav-active':'' }}"
+                                        href="{{url('verifikasi_member_baru')}}">Verifikasi Member Baru</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">INVENTORY</li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        <li class="nav-item dropdown
+                                @if(Route::currentRouteName() == 'tambah_inventory' ||
+                                    Route::currentRouteName() == 'lihat_inventory')
+                                    active
+                                @endif">
+                            <a href=" #" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-archive"></i> <span>Inventory</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="layout-default.html">Tambahkan Inventory</a></li>
-                                <li><a class="nav-link" href="layout-transparent.html">Lihat Inventory</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'tambah_inventory')?'nav-active':'' }}"
+                                        href="{{url('tambah_inventory')}}">Tambahkan Inventory</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'lihat_inventory')?'nav-active':'' }}"
+                                        href="{{url('lihat_inventory')}}">Lihat Inventory</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">KEUANGAN</li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-book"></i> <span>Laporan Keuangan</span></a>
+                        <li class="nav-item dropdown
+                                @if(Route::currentRouteName() == 'laporan_keuangan_futsal' ||
+                                    Route::currentRouteName() == 'laporan_keuangan_snack')
+                                    active
+                                @endif">
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-book"></i>
+                                <span>Laporan Keuangan</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="layout-default.html">Laporan Keuangan Futsal</a></li>
-                                <li><a class="nav-link" href="layout-transparent.html">Laporan Keuangan Snack</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_futsal')?'nav-active':'' }}"
+                                        href="{{url('laporan_keuangan_futsal')}}">Laporan Keuangan Futsal</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_snack')?'nav-active':'' }}"
+                                        href="{{url('laporan_keuangan_snack')}}">Laporan Keuangan Snack</a></li>
                             </ul>
                         </li>
                     </ul>
+                    @endif
+
+                    <!-- LOGIN MEMBER -->
+                    @if(Auth::user()->role_id == 1)
+                    <ul class="sidebar-menu">
+                        <li class="menu-header"></li>
+                        <li class="nav-item dropdown
+                            @if(Route::currentRouteName() == 'home' ||
+                                Route::currentRouteName() == 'verifikasi_pelunasan' ||
+                                Route::currentRouteName() == 'verifikasi_member_baru')
+                                active
+                            @endif">
+                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-address-book"></i><span>Mau Diisi
+                                    Apa?</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
+                                        href="{{url('home')}}">Gua Gatau</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_pelunasan')?'nav-active':'' }}"
+                                        href="{{url('verifikasi_pelunasan')}}">Bingung</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_member_baru')?'nav-active':'' }}"
+                                        href="{{url('verifikasi_member_baru')}}">Gasuka Gelay :D</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    @endif
                 </aside>
             </div>
 
@@ -98,8 +153,9 @@
             <div class="main-content">
                 <section class="section">
                     <div class="section-header">
-                        <h1>Dashboard</h1>
+                        <h1>@yield('section-header')</h1>
                     </div>
+                    @yield('content')
                 </section>
             </div>
             <footer class="main-footer">

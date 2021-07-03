@@ -13,20 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Welcome
 Route::get('/', function () {
     return view('dashboard');
 });
-
 Auth::routes();
+Route::get('/pesan', [App\Http\Controllers\InputController::class, 'pesan'])->name('pesan');
+Route::get('/resi_dp', [App\Http\Controllers\InputController::class, 'resi_dp'])->name('resi_dp');
+Route::get('/upload_bukti_dp', [App\Http\Controllers\InputController::class, 'upload_bukti_dp'])->name('upload_bukti_dp');
+Route::get('/turnamen', [App\Http\Controllers\HomeController::class, 'turnamen'])->name('turnamen');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// ? NAVBAR
-Route::get('/pesan', function () {
-    return view('pesan');
-});
-
-//? RESI
-Route::get('/resi/dp', function () {
-    return view('resi-dp');
-});
+//Home
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+Route::get('/verifikasi_pelunasan', [App\Http\Controllers\VerifikasiController::class, 'verifikasi_pelunasan'])->name('verifikasi_pelunasan');
+Route::get('/verifikasi_member_baru', [App\Http\Controllers\VerifikasiController::class, 'verifikasi_member_baru'])->name('verifikasi_member_baru');
+Route::get('/tambah_inventory', [App\Http\Controllers\InputController::class, 'tambah_inventory'])->name('tambah_inventory');
+Route::get('/lihat_inventory', [App\Http\Controllers\InputController::class, 'lihat_inventory'])->name('lihat_inventory');
+Route::get('/laporan_keuangan_futsal', [App\Http\Controllers\LaporanController::class, 'laporan_keuangan_futsal'])->name('laporan_keuangan_futsal');
+Route::get('/laporan_keuangan_snack', [App\Http\Controllers\LaporanController::class, 'laporan_keuangan_snack'])->name('laporan_keuangan_snack');
