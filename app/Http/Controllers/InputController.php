@@ -25,14 +25,4 @@ class InputController extends Controller
     {
         return view('turnamen');
     }
-    
-    public function tambah_inventory()
-    {
-        return view('home.inventory.tambah_inventory');
-    }
-
-    public function lihat_inventory()
-    {
-        return view('home.inventory.lihat_inventory');
-    }
 }

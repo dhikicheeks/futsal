@@ -3,8 +3,11 @@
 @section('content')
 
 <div class="container">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+  
+
+    <h1 class="text-center">Jadwal Futsal Hari ini</h1>
+      <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
         Pesan Sekarang
     </button>
 
@@ -84,8 +87,6 @@
             </div>
         </div>
     </div>
-
-    <h1 class="text-center">Jadwal Futsal Hari ini</h1>
     <table class="table table-striped">
         <thead>
             <tr>

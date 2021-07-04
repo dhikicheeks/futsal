@@ -41,7 +41,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="{{url("/pesan")}}">Pesan Lapangan</a></li>
-                        <li><a class="nav-link" href="{{url("/upload_bukti_dp")}}">Upload Bukti Dp</a></li>
+                        <li><a class="nav-link" href="{{url("/upload_bukti_dp")}}">Upload Bukti DP</a></li>
                         <li><a class="nav-link" href="{{url("/turnamen")}}">Turnamen</a></li>
                     </ul>
 

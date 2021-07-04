@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
@@ -81,7 +82,7 @@
                         </li>
                         <li class="menu-header">INVENTORY</li>
                         <li class="nav-item dropdown
-                                @if(Route::currentRouteName() == 'tambah_inventory' ||
+                                @if(
                                     Route::currentRouteName() == 'lihat_inventory')
                                     active
                                 @endif">
@@ -89,8 +90,7 @@
                                     class="fas fa-archive"></i>
                                 <span>Inventory</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'tambah_inventory')?'nav-active':'' }}"
-                                        href="{{url('tambah_inventory')}}">Tambahkan Inventory</a></li>
+
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'lihat_inventory')?'nav-active':'' }}"
                                         href="{{url('lihat_inventory')}}">Lihat Inventory</a></li>
                             </ul>
