@@ -31,5 +31,5 @@ Route::get('/laporan_keuangan_futsal', [App\Http\Controllers\LaporanController::
 Route::get('/laporan_keuangan_snack', [App\Http\Controllers\LaporanController::class, 'laporan_keuangan_snack'])->name('laporan_keuangan_snack');
 
 // INVENTORY
-Route::get('/lihat_inventory', [App\Http\Controllers\InventorysController::class, 'index']);
+// Route::get('/lihat_inventory', [App\Http\Controllers\InventorysController::class, 'index']);
 // Route::get('/tambah_inventory', [App\Http\Controllers\InventorysController::class, 'create']);

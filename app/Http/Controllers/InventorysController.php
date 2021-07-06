@@ -14,9 +14,7 @@ class InventorysController extends Controller
      */
     public function index()
     {
-        
-        $inventory = inventory::all();
-        return view('home.inventory.lihat_inventory',compact('inventory'));
+        return view('home.inventory.lihat_inventory');
     }
 
     /**

@@ -11,7 +11,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        
+
 
 
     <!-- Template CSS -->
@@ -34,7 +34,7 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi,Admin Damar</div>
+                            <div class="d-sm-none d-lg-inline-block">Hi, {{Auth::user()->name}}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             {{-- <div class="dropdown-title">Logged in 5 min ago</div>
@@ -63,10 +63,10 @@
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">Damar Futsal</a>
+                        <a href="{{url('/home')}}">Damar Futsal</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">DF</a>
+                        <a href="{{url('/home')}}">DF</a>
                     </div>
 
 
@@ -74,17 +74,10 @@
                     @if(Auth::user()->role_id == 100
                     )
                     <ul class="sidebar-menu">
-                        <li class="nav-item dropdown
-                                @if(Route::currentRouteName() == 'home' ||
-                                    Route::currentRouteName() == 'verifikasi_pelunasan' ||
-                                    Route::currentRouteName() == 'verifikasi_member_baru')
-                                    active
-                                @endif">
-                        </li>
                         <li class="menu-header">INVENTORY</li>
                         <li class="nav-item dropdown
                                 @if(
-                                    Route::currentRouteName() == 'lihat_inventory')
+                                    Route::currentRouteName() == 'home')
                                     active
                                 @endif">
                             <a href=" #" class="nav-link has-dropdown" data-toggle="dropdown"><i
@@ -92,8 +85,8 @@
                                 <span>Inventory</span></a>
                             <ul class="dropdown-menu">
 
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'lihat_inventory')?'nav-active':'' }}"
-                                        href="{{url('lihat_inventory')}}">Lihat Inventory</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
+                                        href="{{url('home')}}">Lihat Inventory</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">KEUANGAN</li>
