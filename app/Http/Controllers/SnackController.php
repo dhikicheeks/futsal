@@ -1,11 +1,13 @@
-<!-- <?php
+<?php
 
 namespace App\Http\Controllers;
 
-use App\Models\Inventory;
+use App\Models\Snack;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class InventorysController extends Controller
+
+class SnackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,11 @@ class InventorysController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        return view('home.inventory.lihat_inventory');
+         $snack = DB::table("snack")->get();
+        return view('home.snack.snack',['snack'=>$snack]);
+      
     }
 
     /**
@@ -24,7 +29,7 @@ class InventorysController extends Controller
      */
     public function create()
     {
-        return 'test';
+        //
     }
 
     /**
@@ -35,16 +40,32 @@ class InventorysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+         $request->validate([
+            'snack'=>'required',
+            'harga'=>'required | integer',
+            'stock'=>'required | integer',
+            
+        ]); 
+
+        DB::table('snack')->insert([
+            'nama_snack'=>$request->snack,
+            'harga'=>$request->harga,
+            'stock'=>$request->stock,
+
+        ]);
+        return redirect('stock_snack')->with('status', 'Snack Ditambahkan!');
+
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Inventory  $inventory
+     * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function show(Inventory $inventory)
+    public function show(Snack $snack)
     {
         //
     }
@@ -52,10 +73,10 @@ class InventorysController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Inventory  $inventory
+     * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inventory $inventory)
+    public function edit(Snack $snack)
     {
         //
     }
@@ -64,10 +85,10 @@ class InventorysController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Inventory  $inventory
+     * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inventory $inventory)
+    public function update(Request $request, Snack $snack)
     {
         //
     }
@@ -75,11 +96,11 @@ class InventorysController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inventory  $inventory
+     * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inventory $inventory)
+    public function destroy(Snack $snack)
     {
         //
     }
-} -->
+}

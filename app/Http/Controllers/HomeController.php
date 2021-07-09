@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Inventory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,11 +25,23 @@ class HomeController extends Controller
      
     public function home()
     {
-        return view('home.home');
+        $inventory = DB::table("inventory")->get();
+        return view('home.home',['inventory'=>$inventory]);
     }
      
-    public function turnamen()
+   public function store(Request $request)
     {
-        return view('home.home');
+
+        $request->validate([
+            'barang'=>'required',
+            'jumlah'=>'required | integer',
+        ]); 
+
+        DB::table('inventory')->insert([
+            'nama_barang' => $request->barang,
+            'jumlah' => $request->jumlah,
+        ]);
+        return redirect('/home')->with('status', 'Inventory Ditambahkan!');
+       
     }
 }
