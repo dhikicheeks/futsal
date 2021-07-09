@@ -82,4 +82,8 @@ class InventorysController extends Controller
     {
         //
     }
+<<<<<<< HEAD
 } -->
+=======
+}
+>>>>>>> 41f15bee31ea417ded5638ba5ea2a48cbbd104d9
