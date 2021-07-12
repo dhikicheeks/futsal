@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Damar Futsal</title>
+    <title>@yield('title')</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+
+    {{-- DATATABLE --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 
 
     <!-- Template CSS -->
@@ -212,6 +215,8 @@
         </div>
     </div>
 
+
+
     <!-- General JS Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -227,6 +232,88 @@
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    {{-- DATATABLE --}}
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+
+
+    {{-- SEARCH view Snack --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-makanan').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view Validasi DP --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-validasi-dp').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view Validasi Member --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-verifikasi-member').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view Validasi DP --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-verifikasi-dp').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view inventory --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-inventory').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view Validasi Turnamen --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-validasi-turnamen').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view Validasi Turnamen --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-keuangan-futsal').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view Validasi Turnamen --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-keuangan-snack').DataTable();
+        });
+
+    </script>
+
+    {{-- SEARCH view Validasi Turnamen --}}
+    <script>
+        $(document).ready(function () {
+            $('#search-keuangan-member').DataTable();
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#search-keuangan-turnamen').DataTable();
+        });
+
+    </script>
 </body>
 
 </html>

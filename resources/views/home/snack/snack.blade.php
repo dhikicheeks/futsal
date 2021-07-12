@@ -1,7 +1,7 @@
 @extends('layouts.stisla')
 
-@section('title','Damar Futsal Wonogiri')
-@section('section-header','Stock Makanan dan Minuman')
+@section('title','Stock Snack')
+@section('section-header','Stock Snack')
 @section('content')
 
 
@@ -15,10 +15,7 @@
     Tambah Snack Baru
 </button>
 
-<form class="form-inline mb-3 float-right">
-    <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
+
 
 <!-- Contoh Modal -->
 <div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true"
@@ -75,7 +72,7 @@
     </div>
 </div>
 
-<table class="table table-hover">
+<table class="table table-hover" id="search-makanan">
     <thead>
         <tr>
             <th scope="col">No</th>

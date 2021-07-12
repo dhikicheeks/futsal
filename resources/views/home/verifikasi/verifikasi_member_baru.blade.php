@@ -1,14 +1,11 @@
 @extends('layouts.stisla')
 
-@section('title','Damar Futsal Wonogiri')
+@section('title','Validasi Member Baru')
 @section('section-header','Verifikasi Member Baru')
 @section('content')
-<form class="form-inline mb-3">
-    <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
 
-<table class="table table-hover">
+
+<table class="table table-hover" id="search-verifikasi-member">
     <thead>
         <tr>
             <th scope="col">No</th>

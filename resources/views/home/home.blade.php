@@ -1,17 +1,15 @@
 @extends('layouts.stisla')
 
 
-@section('title','Damar Futsal Wonogiri')
+
 <!--  ADMIN -->
 @if(
 Auth::user()->role_id == 90)
+@section('title','Validasi DP')
 @section('section-header','Verifikasi Dp')
 @section('content')
-<form class="form-inline mb-3">
-    <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
-<table class="table table-hover">
+
+<table class="table table-hover" id="search-verifikasi-member">
     <thead>
         <tr>
             <th scope="col">No</th>
@@ -72,6 +70,7 @@ Auth::user()->role_id == 90)
 
 <!-- LOGIN OWNER -->
 @if(Auth::user()->role_id == 100 )
+@section('title','Inventory')
 @section('section-header','Inventory')
 @section('content')
 
@@ -87,10 +86,7 @@ Auth::user()->role_id == 90)
 </button>
 
 
-<form class="form-inline mb-3 float-right">
-    <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
+
 
 <!-- Contoh Modal -->
 <div class="modal fade" id="TambahInventory" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel"
@@ -138,10 +134,10 @@ Auth::user()->role_id == 90)
 </div>
 
 
-<table class="table table-hover">
+<table class="table table-hover" id="search-inventory">
     <thead>
         <tr>
-            <th scope="col">Nosss</th>
+            <th scope="col">No</th>
             <th scope="col">Nama Barang</th>
             <th scope="col">Jumlah</th>
             <th scope="col" class="text-center">Action</th>
@@ -216,6 +212,7 @@ Auth::user()->role_id == 90)
 
 <!-- LOGIN Member -->
 @if(Auth::user()->role_id == 1)
+@section('title','Validasi DP')
 @section('section-header','Apa Hayo??')
 
 @section('content')
