@@ -29,7 +29,7 @@ class HomeController extends Controller
         return view('home.home',['inventory'=>$inventory]);
     }
      
-   public function store(Request $request)
+   public function store_inventory(Request $request)
     {
 
         $request->validate([
@@ -43,5 +43,10 @@ class HomeController extends Controller
         ]);
         return redirect('/home')->with('status', 'Inventory Ditambahkan!');
        
+    }
+     public function destroy_inventory($id_inventory)
+    {
+        DB::table('inventory')->where('id_inventory',$id_inventory)->delete();
+         return redirect('/home')->with('status-delete', 'Snack Berhasil Di Hapus!');
     }
 }

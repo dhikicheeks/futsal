@@ -9,6 +9,11 @@
 <div class="alert alert-success">
     {{ session('status') }}
 </div>
+@elseif (session('status-delete'))
+<div class="alert alert-danger">
+    {{ session('status-delete') }}
+</div>
+
 @endif
 
 <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#modalSaya">
@@ -16,8 +21,7 @@
 </button>
 
 
-
-<!-- Contoh Modal -->
+<!-- Input Modal -->
 <div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true"
     data-backdrop="false">
     <div class="modal-dialog" role="document">
@@ -83,7 +87,7 @@
         </tr>
     </thead>
     <tbody>
-         @foreach($snack as $sn)
+        @foreach($snack as $sn)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
             <td>{{$sn->nama_snack}}</td>
@@ -91,21 +95,22 @@
             <td>{{$sn->stock}}</td>
 
             <td class="text-center">
-                <a href="" class="badge bg-warning text-dark"data-toggle="modal" data-target="#modalEdit" >Edit</a>
-                <a href="" class="badge bg-danger text-light">Delete</a>
+                <a href="/snack/edit/{{$sn->id_snack}}" class="badge bg-warning text-dark" data-toggle="modal"
+                    data-target="#modalEdit">Edit</a>
+                <a href="/snack/delete/{{$sn->id_snack}}" class="badge bg-danger text-light">Delete</a>
             </td>
         </tr>
-      @endforeach
+        @endforeach
     </tbody>
 </table>
 
 
-<!-- Contoh Modal -->
+<!-- Edit Modal -->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true"
     data-backdrop="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="/istock">
+            <form method="POST" action="/update_snack">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalEditLabel">Tambahkan Snack</h5>
@@ -114,11 +119,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="mb-3">
                         <label for="snack" class="form-label">Nama Snack</label>
                         <input type="text" class="form-control @error ('snack') is-invalid @enderror" id="snack"
-                            placeholder="Masukan snack snack" name="snack">
+                            placeholder="Masukan snack snack" name="snack" value="">
                         @error('snack')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -136,7 +140,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="stock" class="form-label">stock Barang</label>
+                        <label for="stock" class="form-label">Stock Barang</label>
                         <input type="text" class="form-control  @error ('stock') is-invalid @enderror" id="stock"
                             placeholder="Masukan stock" name="stock"> @error('stock')
                         <div class="invalid-feedback">

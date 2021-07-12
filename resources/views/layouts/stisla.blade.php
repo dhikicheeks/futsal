@@ -285,7 +285,7 @@
 
     </script>
 
-    {{-- SEARCH view Validasi Turnamen --}}
+    {{-- SEARCH view Keuangan Futsal --}}
     <script>
         $(document).ready(function () {
             $('#search-keuangan-futsal').DataTable();
@@ -293,7 +293,7 @@
 
     </script>
 
-    {{-- SEARCH view Validasi Turnamen --}}
+    {{-- SEARCH view Keuangan Snack --}}
     <script>
         $(document).ready(function () {
             $('#search-keuangan-snack').DataTable();
@@ -301,12 +301,14 @@
 
     </script>
 
-    {{-- SEARCH view Validasi Turnamen --}}
+    {{-- SEARCH view Keuangan Member --}}
     <script>
         $(document).ready(function () {
             $('#search-keuangan-member').DataTable();
         });
-
+        
+        
+        // SEARCH view Keuangan Turnamen
     </script>
     <script>
         $(document).ready(function () {

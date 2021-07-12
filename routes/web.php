@@ -25,7 +25,8 @@ Route::get('/turnamen', [App\Http\Controllers\HomeController::class, 'turnamen']
 
 //HOME
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
-Route::post('/inputinventory', [App\Http\Controllers\HomeController::class, 'store']);
+Route::post('/inputinventory', [App\Http\Controllers\HomeController::class, 'store_inventory'])->name('store_inventory');
+Route::get('/inventory/delete/{id_inventory}', [App\Http\Controllers\HomeController::class, 'destroy_inventory'])->name('destroy_inventory');
 
 // VERIFIKASI
 Route::get('/verifikasi_pelunasan', [App\Http\Controllers\VerifikasiController::class, 'verifikasi_pelunasan'])->name('verifikasi_pelunasan');
@@ -42,9 +43,7 @@ Route::get('/laporan_keuangan_turnamen', [App\Http\Controllers\LaporanController
 Route::get('/laporan_keuangan_member', [App\Http\Controllers\LaporanController::class, 'laporan_keuangan_member'])->name('laporan_keuangan_member');
 
 // SNACK
-Route::get('/stock_snack', [App\Http\Controllers\SnackController::class, 'index'])->name('stock_snack');
-Route::post('/inputstock', [App\Http\Controllers\SnackController::class, 'store']);
+Route::get('/stock_snack', [App\Http\Controllers\SnackController::class, 'index'])->name('index');
+Route::post('/inputstock', [App\Http\Controllers\SnackController::class, 'store_snack'])->name('store_snack');
+Route::get('/snack/delete/{id_snack}', [App\Http\Controllers\SnackController::class, 'destroy_snack'])->name('destroy_snack');
 
-// INVENTORY
-Route::get('/lihat_inventory', [App\Http\Controllers\InventorysController::class, 'index']);
-Route::get('/tambah_inventory', [App\Http\Controllers\InventorysController::class, 'create']);

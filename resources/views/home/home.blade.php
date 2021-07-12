@@ -79,13 +79,16 @@ Auth::user()->role_id == 90)
 <div class="alert alert-success">
     {{ session('status') }}
 </div>
+@elseif (session('status-delete'))
+<div class="alert alert-danger">
+    {{ session('status-delete') }}
+</div>
 @endif
+
 
 <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#TambahInventory">
     Tambah Inventory
 </button>
-
-
 
 
 <!-- Contoh Modal -->
@@ -151,7 +154,7 @@ Auth::user()->role_id == 90)
             <td>{{$inve->jumlah}}</td>
             <td class="text-center">
                 <a href="" class="badge bg-warning text-dark" data-toggle="modal" data-target="#ModalEdit">Edit</a>
-                <a href="" class="badge bg-danger text-light">Delete</a>
+                <a href="/inventory/delete/{{$inve->id_inventory}}" class="badge bg-danger text-light">Delete</a>
             </td>
         </tr>
         @endforeach

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Snack;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +38,7 @@ class SnackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store_snack(Request $request)
     {
         
          $request->validate([
@@ -62,10 +62,10 @@ class SnackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Snack  $snack
+     
      * @return \Illuminate\Http\Response
      */
-    public function show(Snack $snack)
+    public function show($snack)
     {
         //
     }
@@ -73,10 +73,10 @@ class SnackController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Snack  $snack
+    
      * @return \Illuminate\Http\Response
      */
-    public function edit(Snack $snack)
+    public function edit($id_snack)
     {
         //
     }
@@ -85,10 +85,10 @@ class SnackController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Snack  $snack
+     
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Snack $snack)
+    public function update(Request $request,  $id_snack)
     {
         //
     }
@@ -99,8 +99,10 @@ class SnackController extends Controller
      * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Snack $snack)
+    public function destroy_snack($id_snack)
     {
-        //
+        DB::table('snack')->where('id_snack',$id_snack)->delete();
+         return redirect('stock_snack')->with('status-delete', 'Snack Berhasil Di Hapus!');
+
     }
 }
