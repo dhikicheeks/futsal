@@ -15,4 +15,12 @@ class LaporanController extends Controller
     {
         return view('home.laporan.laporan_keuangan_snack');
     }
+    public function laporan_keuangan_turnamen()
+    {
+        return view('home.laporan.laporan_keuangan_turnamen');
+    }
+    public function laporan_keuangan_member()
+    {
+        return view('home.laporan.laporan_keuangan_member');
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.stisla')
 
 @section('title','Damar Futsal Wonogiri')
-@section('section-header','Laporan Keuangan Futsal')
+@section('section-header','Laporan Keuangan Member')
 @section('content')
 <form class="form-inline mb-3 float-right">
     <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">

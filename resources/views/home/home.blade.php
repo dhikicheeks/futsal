@@ -7,7 +7,10 @@
 Auth::user()->role_id == 90)
 @section('section-header','Verifikasi Dp')
 @section('content')
-
+<form class="form-inline mb-3">
+    <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -79,12 +82,12 @@ Auth::user()->role_id == 90)
 </div>
 @endif
 
-<button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#TambahInventory">
+<button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#TambahInventory">
     Tambah Inventory
 </button>
 
 
-<form class="form-inline">
+<form class="form-inline mb-3 float-right">
     <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
@@ -130,10 +133,6 @@ Auth::user()->role_id == 90)
 
                 </div>
             </form>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Oke</button>
-            </div>
         </div>
     </div>
 </div>
@@ -154,18 +153,17 @@ Auth::user()->role_id == 90)
             <th scope="row">{{$loop->iteration}}</th>
             <td>{{$inve->nama_barang}}</td>
             <td>{{$inve->jumlah}}</td>
-
             <td class="text-center">
                 <a href="" class="badge bg-warning text-dark" data-toggle="modal" data-target="#ModalEdit">Edit</a>
                 <a href="" class="badge bg-danger text-light">Delete</a>
             </td>
         </tr>
-        @endforeach;
+        @endforeach
     </tbody>
 </table>
 
 
-<!--  Modal Edit -->
+ {{-- Modal Edit --}}
 <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="ModalEditLabel" aria-hidden="true"
     data-backdrop="false">
     <div class="modal-dialog" role="document">
@@ -210,18 +208,6 @@ Auth::user()->role_id == 90)
     </div>
 </div>
 
-<tr>
-    <th scope="row"></th>
-    <td></td>
-    <td></td>
-
-    <td class="text-center">
-        <a href="" class="badge bg-warning text-dark">Edit</a>
-        <a href="" class="badge bg-danger text-light">Delete</a>
-    </td>
-</tr>
-</tbody>
-</table>
 
 @endsection
 @endif

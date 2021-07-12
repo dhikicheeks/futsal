@@ -92,16 +92,23 @@
                         <li class="menu-header">KEUANGAN</li>
                         <li class="nav-item dropdown
                                 @if(Route::currentRouteName() == 'laporan_keuangan_futsal' ||
-                                    Route::currentRouteName() == 'laporan_keuangan_snack')
+                                    Route::currentRouteName() == 'laporan_keuangan_snack' ||
+                                    Route::currentRouteName() == 'laporan_keuangan_turnamen' ||
+                                    Route::currentRouteName() == 'laporan_keuangan_member'
+                                    ) 
                                     active
                                 @endif">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-book"></i>
                                 <span>Laporan Keuangan</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_futsal')?'nav-active':'' }}"
-                                        href="{{url('laporan_keuangan_futsal')}}">Laporan Keuangan Futsal</a></li>
+                                        href="{{url('laporan_keuangan_futsal')}}">Keuangan Futsal</a></li>
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_snack')?'nav-active':'' }}"
-                                        href="{{url('laporan_keuangan_snack')}}">Laporan Keuangan Snack</a></li>
+                                        href="{{url('laporan_keuangan_snack')}}">Keuangan Snack</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_turnamen')?'nav-active':'' }}"
+                                        href="{{url('laporan_keuangan_turnamen')}}">Keuangan Turnamen</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_member')?'nav-active':'' }}"
+                                        href="{{url('laporan_keuangan_member')}}">Keuangan Member</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -144,17 +151,18 @@
                         </li>
                         <li class="menu-header">TURNAMEN</li>
                         <li class="nav-item dropdown
-                                @if(Route::currentRouteName() == 'stock_snack')
+                               @if(Route::currentRouteName() == 'validasi_turnamen' ||
+                                    Route::currentRouteName() == 'buat_jadwal_turnamens')
                                     active
                                 @endif">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-trophy"></i>
                                 <span>Turnamen</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'stock_snack')?'nav-active':'' }}"
-                                        href="{{url('stock_snack')}}">Buat Jadwal Turnamen</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'stock_snack')?'nav-active':'' }}"
-                                        href="{{url('stock_snack')}}">Validasi Turnamen</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'validasi_turnamen')?'nav-active':'' }}"
+                                        href="{{url('validasi_turnamen')}}">Validasi Turnamen</a></li>
+                                <li><a class="nav-link {{ (Route::currentRouteName() == 'buat_jadwal_turnamen')?'nav-active':'' }}"
+                                        href="{{url('buat_jadwal_turnamen')}}">Buat Jadwal Turnamen</a></li>
                             </ul>
                         </li>
                     </ul>
