@@ -142,7 +142,7 @@ Auth::user()->role_id == 90)
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">No</th>
+            <th scope="col">Nosss</th>
             <th scope="col">Nama Barang</th>
             <th scope="col">Jumlah</th>
             <th scope="col" class="text-center">Action</th>
