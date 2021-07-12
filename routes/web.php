@@ -35,8 +35,13 @@ Route::get('/laporan_keuangan_snack', [App\Http\Controllers\LaporanController::c
 
 Route::get('/stock_snack', [App\Http\Controllers\SnackController::class, 'index'])->name('stock_snack');
 Route::post('/inputstock', [App\Http\Controllers\SnackController::class, 'store']);
+<<<<<<< HEAD
 
 // INVENTORY
 // Route::get('/lihat_inventory', [App\Http\Controllers\InventorysController::class, 'index']);
 // Route::get('/tambah_inventory', [App\Http\Controllers\InventorysController::class, 'create']);
 
+=======
+Route::get('/lihat_inventory', [App\Http\Controllers\InventorysController::class, 'index']);
+Route::get('/tambah_inventory', [App\Http\Controllers\InventorysController::class, 'create']);
+>>>>>>> 3d66a408fd835e37c8ef12e6e6133a2661a5a092
