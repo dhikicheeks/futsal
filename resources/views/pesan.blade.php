@@ -2,11 +2,14 @@
 @section('title','Pesan Lapangan')
 @section('content')
 
+
+ {{-- DATATABLE --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 <div class="container">
-  
+
 
     <h1 class="text-center">Jadwal Futsal Hari ini</h1>
-      <!-- Button trigger modal -->
+    <!-- Button trigger modal -->
     <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
         Pesan Sekarang
     </button>
@@ -23,130 +26,80 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST" action="/inputpesanan">
+                        @csrf
+                        <div class="form-group">
+                            <label for="tang">Nama Pemesan</label>
+                            <input type="text" class="form-control"  placeholder="Nama Pemesan" name="pemesan">
+                        </div>
+                        <div class="form-group">
+                            <label for="tang">Nama Tim</label>
+                            <input type="text" class="form-control"  placeholder="Nama Tim" name="nama_tim">
+                        </div>
                         <div class="form-group">
                             <label for="tang">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" placeholder="Pilih tanggal">
+                            <input type="date" class="form-control"  placeholder="Pilih tanggal" name="tanggal">
                         </div>
                         <div class="form-group">
                             <label for="tang">Jam</label>
-                            <input type="time" class="form-control" id="jam" placeholder="Pilih jam">
+                            <input type="time" class="form-control" id="jam" placeholder="Pilih jam" name="jam">
                         </div>
                         <div class="form-group">
                             <label for="paket">Paket 1 Jam</label>
+                            @foreach ($paket_jam1 as $jam1)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paket" id="paket1" value="option1"
-                                    checked>
+                                <input class="form-check-input" type="radio" name="paket" id="paket1"
+                                    value="{{$jam1->id_paket}}" checked>
                                 <label class="form-check-label" for="paket1">
-                                    Paket 1 (1 jam)
+                                    {{$jam1->deskripsi}}
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paket" id="paket2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Paket 2 (1 jam + 2 Air Mineral 1,5L)
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paket" id="paket2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Paket 3 (1 jam + 2 Air Mineral 1,5L + Rompi)
-                                </label>
-                            </div>
+                            @endforeach
                             <div class="form-group">
                                 <label for="paket">Paket 2 Jam</label>
+                                @foreach ($paket_jam2 as $jam2)
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="paket" id="paket1"
-                                        value="option1" checked>
+                                        value="{{$jam2->id_paket}}" checked>
                                     <label class="form-check-label" for="paket1">
-                                        Paket 1 (2 jam)
+                                        {{$jam2->deskripsi}}
                                     </label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="paket" id="paket2"
-                                        value="option2">
-                                    <label class="form-check-label" for="exampleRadios2">
-                                        Paket 2 (2 jam + 2 Air Mineral 1,5L)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="paket" id="paket2"
-                                        value="option2">
-                                    <label class="form-check-label" for="exampleRadios2">
-                                        Paket 3 (2 jam + 2 Air Mineral 1,5L + Rompi)
-                                    </label>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary">Pesan</button>
+                    <button type="submit" class="btn btn-primary">Pesan</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col" class="text-center">Jam</th>
-                <th scope="col" class="text-center">Nama Tim</th>
+                <th scope="col" class="">No</th>
+                <th scope="col" class="">Nama Tim</th>
+                <th scope="col" class="">Tanggal</th>
+                <th scope="col" class="">Jam</th>
+                <th scope="col" class="">Peket</th>
+
+                @foreach($pesanan as $pesan)
+            <tr>
+                <th scope="row">{{$loop->iteration}}</th>
+                <td>{{$pesan->nama_tim}}</td>
+                <td>{{$pesan->tanggal_pesan}}</td>
+                <td>{{$pesan->jam_pesan}}</td>
+                <td>{{$pesan->paket}}</td>
 
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
+            @endforeach
 
 
-        </tbody>
+            </tbody>
     </table>
 </div>
 

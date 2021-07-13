@@ -13,6 +13,7 @@ Auth::user()->role_id == 90)
     <thead>
         <tr>
             <th scope="col">No</th>
+            <th scope="col">Pemesan</th>
             <th scope="col">Tanggal Pesan</th>
             <th scope="col">Jam Pesan</th>
             <th scope="col">Paket</th>
@@ -21,35 +22,35 @@ Auth::user()->role_id == 90)
         </tr>
     </thead>
     <tbody>
-
+        @foreach ($validasi_dp as $dp)
         <tr>
-            <th scope="row">1</th>
-            <td>1</td>
-            <td>4</td>
-            <td>4</td>
-            <td>4</td>
+            <th scope="row">{{$loop->iteration}}</th>
+            <td>{{$dp->nama_pemesan}}</td>
+            <td>{{$dp->tanggal_pesan}}</td>
+            <td>{{$dp->jam_pesan}}</td>
+            <td>{{$dp->paket}}</td>
+            <td>{{$dp->flag_status}}</td>
 
             <td class="text-center">
-                <a href="" class="badge bg-primary text-light" data-toggle="modal" data-target="#modalSaya">Detail</a>
-
+                <button onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-primary text-light">Detail</button>
                 <a href="" class="badge bg-danger text-light">Delete</a>
             </td>
         </tr>
-
+        @endforeach
         <!-- Contoh Modal -->
-        <div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel"
+        <div class="modal fade" id="detailDP" tabindex="-1" role="dialog" aria-labelledby="detailDPLabel"
             aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form method="POST" action="/inputinventory">
+                    <form method="POST" action="/">
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalSayaLabel">Detail Verifikasi DP</h5>
+                            <h5 class="modal-title" id="detailDPLabel">Detail Verifikasi DP</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" id="refresh">
 
                         </div>
                         <div class="modal-footer">
@@ -64,9 +65,28 @@ Auth::user()->role_id == 90)
     </tbody>
 </table>
 
+
 @endsection
 @endif
 
+<script>
+    function detail_validasi_dp(id_pesanan) {
+        var token = '{{ csrf_token() }}';
+        $.ajax({
+            method: 'post',
+            url: '{{url('detail_validasi_dp')}}',
+            data: {
+                '_token': '{{csrf_token()}}',
+                'id_pesanan': id_pesanan
+            },
+            success: function (resp) {
+                $('#detailDP').modal('show');
+                 $("#refresh").html(resp);
+            }
+        })
+    }
+
+</script>
 
 <!-- LOGIN OWNER -->
 @if(Auth::user()->role_id == 100 )
@@ -135,8 +155,6 @@ Auth::user()->role_id == 90)
         </div>
     </div>
 </div>
-
-
 <table class="table table-hover" id="search-inventory">
     <thead>
         <tr>
@@ -162,7 +180,7 @@ Auth::user()->role_id == 90)
 </table>
 
 
- {{-- Modal Edit --}}
+{{-- Modal Edit --}}
 <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="ModalEditLabel" aria-hidden="true"
     data-backdrop="false">
     <div class="modal-dialog" role="document">

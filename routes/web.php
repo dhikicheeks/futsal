@@ -23,8 +23,15 @@ Route::get('/resi_dp', [App\Http\Controllers\InputController::class, 'resi_dp'])
 Route::get('/upload_bukti_dp', [App\Http\Controllers\InputController::class, 'upload_bukti_dp'])->name('upload_bukti_dp');
 Route::get('/turnamen', [App\Http\Controllers\HomeController::class, 'turnamen'])->name('turnamen');
 
+// PESANAN
+Route::post('/inputpesanan', [App\Http\Controllers\PesananController::class, 'store_pesanan']);
+
 //HOME
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+
+// DETAIL
+Route::post('detail_validasi_dp', [App\Http\Controllers\HomeController::class, 'detail_validasi_dp']);
+
 Route::post('/inputinventory', [App\Http\Controllers\HomeController::class, 'store_inventory'])->name('store_inventory');
 Route::get('/inventory/delete/{id_inventory}', [App\Http\Controllers\HomeController::class, 'destroy_inventory'])->name('destroy_inventory');
 

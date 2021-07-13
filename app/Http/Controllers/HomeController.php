@@ -26,7 +26,8 @@ class HomeController extends Controller
     public function home()
     {
         $inventory = DB::table("inventory")->get();
-        return view('home.home',['inventory'=>$inventory]);
+        $validasi_dp = DB::table("pesanan")->get();
+         return view('home.home',compact('validasi_dp','inventory'));
     }
      
    public function store_inventory(Request $request)
@@ -49,4 +50,17 @@ class HomeController extends Controller
         DB::table('inventory')->where('id_inventory',$id_inventory)->delete();
          return redirect('/home')->with('status-delete', 'Snack Berhasil Di Hapus!');
     }
+
+public function detail_validasi_dp(Request $request)
+{
+        $id_pesanan = $request ->id_pesanan;
+        $pesanan = DB::table("pesanan")->SELECT('*')
+                    ->where('id_pesanan', $id_pesanan)
+                    ->get();
+         return view('home.validasi-dp-detail',compact('pesanan'));
+
+}
+    
+
+    
 }
