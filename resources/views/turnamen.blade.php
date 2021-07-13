@@ -4,7 +4,7 @@
 
 <div class="container">
     <center>
-        <h1>Halaman Turnamen</h1>
+        <h1> Turnamen</h1>
     </center>
 </div>
 
