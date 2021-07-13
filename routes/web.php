@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('dashboard');
 });
 Auth::routes();
-Route::get('/pesan', [App\Http\Controllers\InputController::class, 'pesan'])->name('pesan');
+Route::get('/pesan', [App\Http\Controllers\PesananController::class, 'index']);
 Route::get('/resi_dp', [App\Http\Controllers\InputController::class, 'resi_dp'])->name('resi_dp');
 Route::get('/upload_bukti_dp', [App\Http\Controllers\InputController::class, 'upload_bukti_dp'])->name('upload_bukti_dp');
 Route::get('/turnamen', [App\Http\Controllers\HomeController::class, 'turnamen'])->name('turnamen');

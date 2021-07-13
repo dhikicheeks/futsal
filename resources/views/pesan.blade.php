@@ -26,11 +26,11 @@
                     <form>
                         <div class="form-group">
                             <label for="tang">Tanggal</label>
-                            <input type="text" class="form-control" id="tanggal" placeholder="Pilih tanggal">
+                            <input type="date" class="form-control" id="tanggal" placeholder="Pilih tanggal">
                         </div>
                         <div class="form-group">
                             <label for="tang">Jam</label>
-                            <input type="text" class="form-control" id="jam" placeholder="Pilih jam">
+                            <input type="time" class="form-control" id="jam" placeholder="Pilih jam">
                         </div>
                         <div class="form-group">
                             <label for="paket">Paket 1 Jam</label>

@@ -1,17 +1,13 @@
 @extends('layouts.app')
-@section('title','Pesan Lapangan')
+@section('title','Upload Bukti Transaksi')
 @section('content')
 
-<div class="container">
-    <center>
-        <h1>Halaman Upload Bukti DP</h1>
 
-    </center>
-    <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Masukan no pesanan" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-    <table class="table table-hover">
+
+<div class="container">
+    <h1 class="text-center">Halaman Upload Transaksi</h1>
+   
+    <table class="table table-hover" id="search-upload">
         <thead>
             <tr>
                 <th scope="col">No</th>
@@ -26,7 +22,7 @@
                 <td>Mark</td>
                 <td>Otto</td>
                 <td class="text-center">
-                  <!-- Button trigger modal -->
+                    <!-- Button trigger modal -->
                     <a href="" class="badge bg-success" style="text-decoration:none" type="button"
                         class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload
                         Pembayaran</a>
