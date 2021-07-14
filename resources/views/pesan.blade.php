@@ -3,8 +3,8 @@
 @section('content')
 
 
- {{-- DATATABLE --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
+{{-- DATATABLE --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 <div class="container">
 
 
@@ -30,15 +30,15 @@
                         @csrf
                         <div class="form-group">
                             <label for="tang">Nama Pemesan</label>
-                            <input type="text" class="form-control"  placeholder="Nama Pemesan" name="pemesan">
+                            <input type="text" class="form-control" placeholder="Nama Pemesan" name="pemesan">
                         </div>
                         <div class="form-group">
                             <label for="tang">Nama Tim</label>
-                            <input type="text" class="form-control"  placeholder="Nama Tim" name="nama_tim">
+                            <input type="text" class="form-control" placeholder="Nama Tim" name="nama_tim">
                         </div>
                         <div class="form-group">
                             <label for="tang">Tanggal</label>
-                            <input type="date" class="form-control"  placeholder="Pilih tanggal" name="tanggal">
+                            <input type="date" class="form-control" placeholder="Pilih tanggal" name="tanggal">
                         </div>
                         <div class="form-group">
                             <label for="tang">Jam</label>
@@ -68,7 +68,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -82,24 +82,21 @@
         <thead>
             <tr>
                 <th scope="col" class="">No</th>
-                <th scope="col" class="">Nama Tim</th>
                 <th scope="col" class="">Tanggal</th>
                 <th scope="col" class="">Jam</th>
-                <th scope="col" class="">Peket</th>
-
-                @foreach($pesanan as $pesan)
+                <th scope="col" class="">Nama Tim</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($pesanan as $pesan)
             <tr>
                 <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$pesan->nama_tim}}</td>
                 <td>{{$pesan->tanggal_pesan}}</td>
                 <td>{{$pesan->jam_pesan}}</td>
-                <td>{{$pesan->paket}}</td>
-
+                <td class="text-uppercase">{{$pesan->nama_tim}}</td>
             </tr>
             @endforeach
-
-
-            </tbody>
+        </tbody>
     </table>
 </div>
 

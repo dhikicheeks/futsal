@@ -9,15 +9,14 @@ Auth::user()->role_id == 90)
 @section('section-header','Verifikasi Dp')
 @section('content')
 
-<table class="table table-hover" id="search-verifikasi-member">
+<table class="table table-hover text-center" id="search-verifikasi-member">
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Pemesan</th>
+            <th scope="col">No Pemesanan</th>
             <th scope="col">Tanggal Pesan</th>
             <th scope="col">Jam Pesan</th>
-            <th scope="col">Paket</th>
-            <th scope="col">Status</th>
+            <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">Action</th>
         </tr>
     </thead>
@@ -25,46 +24,42 @@ Auth::user()->role_id == 90)
         @foreach ($validasi_dp as $dp)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$dp->nama_pemesan}}</td>
-            <td>{{$dp->tanggal_pesan}}</td>
-            <td>{{$dp->jam_pesan}}</td>
-            <td>{{$dp->paket}}</td>
-            <td>{{$dp->flag_status}}</td>
-
-            <td class="text-center">
-                <button onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-primary text-light">Detail</button>
+            <td class="text-uppercase">{{$dp->nama_tim}}</td>
+            <td class="text-uppercase">{{$dp->tanggal_pesan}}</td>
+            <td class="text-uppercase">{{$dp->jam_pesan}}</td>
+            <td><h3 class="badge bg-info text-light font-weight-bold">{{$dp->deskripsi}}</h3></td>
+            <td>
+                <button onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success text-light">Verifikasi</button>
                 <a href="" class="badge bg-danger text-light">Delete</a>
             </td>
         </tr>
         @endforeach
-        <!-- Contoh Modal -->
-        <div class="modal fade" id="detailDP" tabindex="-1" role="dialog" aria-labelledby="detailDPLabel"
-            aria-hidden="true" data-backdrop="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form method="POST" action="/">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="detailDPLabel">Detail Verifikasi DP</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" id="refresh">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-success">Verifikasi</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </tbody>
 </table>
+ <!-- Detail DP Modal -->
+<div class="modal fade" id="detailDP" tabindex="-1" role="dialog" aria-labelledby="detailDPLabel"
+    aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailDPLabel">Detail Verifikasi DP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="refresh">
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Verifikasi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @endsection
 @endif
@@ -168,8 +163,8 @@ Auth::user()->role_id == 90)
         @foreach($inventory as $inve)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$inve->nama_barang}}</td>
-            <td>{{$inve->jumlah}}</td>
+            <td class="text-uppercase">{{$inve->nama_barang}}</td>
+            <td class="text-uppercase">{{$inve->jumlah}}</td>
             <td class="text-center">
                 <a href="" class="badge bg-warning text-dark" data-toggle="modal" data-target="#ModalEdit">Edit</a>
                 <a href="/inventory/delete/{{$inve->id_inventory}}" class="badge bg-danger text-light">Delete</a>

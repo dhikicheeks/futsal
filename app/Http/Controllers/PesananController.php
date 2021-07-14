@@ -10,7 +10,11 @@ class PesananController extends Controller
      public function index()
     {
          $pesanan = DB::table("pesanan")
-                    ->SELECT('*')
+                    ->leftjoin("paket", 'pesanan.paket', 'paket.id_paket')
+                    ->SELECT(
+                        'pesanan.*',
+                        'paket.deskripsi'
+                    )
                     ->get();
         $paket_jam1 = DB::table("paket")
                     ->SELECT('*')

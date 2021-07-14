@@ -24,9 +24,7 @@
             <td>4</td>
 
             <td class="text-center">
-                <a href="" class="badge bg-primary text-light" data-toggle="modal" data-target="#modalSaya">Detail</a>
-
-                <a href="" class="badge bg-danger text-light">Delete</a>
+                <button class="badge bg-primary text-light">Detail</button>
             </td>
         </tr>
 

@@ -15,13 +15,16 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('assets/img/slider/slider-1.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{asset('assets/img/slider/slider-1.jpg')}}" class="d-block w-100" style="max-height: 550px"
+                    alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('assets/img/slider/slider-2.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{asset('assets/img/slider/slider-2.jpg')}}" class="d-block w-100" style="max-height: 550px"
+                    alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('assets/img/slider/slider-3.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{asset('assets/img/slider/slider-3.jpg')}}" class="d-block w-100" style="max-height: 550px"
+                    alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -48,61 +51,21 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col" class="text-center">Jam</th>
-                <th scope="col" class="text-center">Nama Tim</th>
+                <th scope="col" class="">No</th>
+                <th scope="col" class="">Tanggal</th>
+                <th scope="col" class="">Jam</th>
+                <th scope="col" class="">Nama Tim</th>
             </tr>
         </thead>
         <tbody>
+            @foreach($jadwal as $pesan)
             <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
+                <th scope="row">{{$loop->iteration}}</th>
+                <td>{{$pesan->tanggal_pesan}}</td>
+                <td>{{$pesan->jam_pesan}}</td>
+                <td class="text-uppercase">{{$pesan->nama_tim}}</td>
             </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-            <tr>
-                <td class="text-center">08.00 - 10.00</td>
-                <td class="text-center">Rock FC</td>
-            </tr>
-
-
+            @endforeach
         </tbody>
     </table>
 </div>

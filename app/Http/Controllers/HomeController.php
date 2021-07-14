@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,10 +11,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -26,7 +25,13 @@ class HomeController extends Controller
     public function home()
     {
         $inventory = DB::table("inventory")->get();
-        $validasi_dp = DB::table("pesanan")->get();
+        $validasi_dp = DB::table("status_pesanan")
+                        ->LEFTJOIN("pesanan", 'status_pesanan.id_status_pesanan', 'pesanan.flag_status')
+                        ->SELECT(
+                        'pesanan.*',
+                        'status_pesanan.deskripsi'
+                    )
+                    ->get();
          return view('home.home',compact('validasi_dp','inventory'));
     }
      
@@ -45,21 +50,29 @@ class HomeController extends Controller
         return redirect('/home')->with('status', 'Inventory Ditambahkan!');
        
     }
+
      public function destroy_inventory($id_inventory)
+
     {
         DB::table('inventory')->where('id_inventory',$id_inventory)->delete();
          return redirect('/home')->with('status-delete', 'Snack Berhasil Di Hapus!');
     }
 
-public function detail_validasi_dp(Request $request)
-{
-        $id_pesanan = $request ->id_pesanan;
-        $pesanan = DB::table("pesanan")->SELECT('*')
-                    ->where('id_pesanan', $id_pesanan)
-                    ->get();
-         return view('home.validasi-dp-detail',compact('pesanan'));
+    public function detail_validasi_dp(Request $request)
+    {
+            $id_pesanan = $request ->id_pesanan;
+            $pesanan = DB::table("pesanan")->SELECT('*')
+                        ->where('id_pesanan', $id_pesanan)
+                        ->get();
+            return view('home.detail.validasi-dp-detail',compact('pesanan'));
 
-}
+    }
+    public function turnamen()
+    {
+           
+            return view('turnamen');
+
+    }
     
 
     

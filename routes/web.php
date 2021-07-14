@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 });
+Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
+
+
+
 Auth::routes();
 Route::get('/pesan', [App\Http\Controllers\PesananController::class, 'index']);
 Route::get('/resi_dp', [App\Http\Controllers\InputController::class, 'resi_dp'])->name('resi_dp');
@@ -26,12 +30,20 @@ Route::get('/turnamen', [App\Http\Controllers\HomeController::class, 'turnamen']
 // PESANAN
 Route::post('/inputpesanan', [App\Http\Controllers\PesananController::class, 'store_pesanan']);
 
-//HOME
+
+
+
+# MENU MEMBUTUHKAN AUTH
+Route::group( ['middleware' => ['auth']], function() {
+    //HOME ADMIN & OWNER & MEMBER
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 // DETAIL
 Route::post('detail_validasi_dp', [App\Http\Controllers\HomeController::class, 'detail_validasi_dp']);
+Route::post('detail_keuangan_futsal', [App\Http\Controllers\LaporanController::class, 'detail_keuangan_futsal']);
 
+
+// INVENTORY
 Route::post('/inputinventory', [App\Http\Controllers\HomeController::class, 'store_inventory'])->name('store_inventory');
 Route::get('/inventory/delete/{id_inventory}', [App\Http\Controllers\HomeController::class, 'destroy_inventory'])->name('destroy_inventory');
 
@@ -54,3 +66,5 @@ Route::get('/stock_snack', [App\Http\Controllers\SnackController::class, 'index'
 Route::post('/inputstock', [App\Http\Controllers\SnackController::class, 'store_snack'])->name('store_snack');
 Route::get('/snack/delete/{id_snack}', [App\Http\Controllers\SnackController::class, 'destroy_snack'])->name('destroy_snack');
 
+
+});

@@ -35,7 +35,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
+                    <div class="form-group">
+                        <label for="tang">Tanggal</label>
+                        <input type="date" class="form-control" placeholder="Pilih tanggal" name="tanggal">
+                    </div>
                     <div class="mb-3">
                         <label for="snack" class="form-label">Nama Snack</label>
                         <input type="text" class="form-control @error ('snack') is-invalid @enderror" id="snack"
@@ -95,9 +98,12 @@
             <td>{{$sn->stock}}</td>
 
             <td class="text-center">
-                <a href="/snack/edit/{{$sn->id_snack}}" class="badge bg-warning text-dark" data-toggle="modal"
-                    data-target="#modalEdit">Edit</a>
-                <a href="/snack/delete/{{$sn->id_snack}}" class="badge bg-danger text-light">Delete</a>
+                <a href="/snack/edit/{{$sn->id_snack}}" class="fa fa-plus-square fa-lg text-decoration-none"
+                    style="color:green" data-toggle="modal" data-target="#modalEdit"></a>
+                <a href="/snack/delete/{{$sn->id_snack}}" class="fa fa-minus-square fa-lg mx-2 text-decoration-none"
+                    style="color:orange"></a>
+                <a href="/snack/delete/{{$sn->id_snack}}" class="fa fa-trash fa-lg text-decoration-none"
+                    style="color:red"></a>
             </td>
         </tr>
         @endforeach

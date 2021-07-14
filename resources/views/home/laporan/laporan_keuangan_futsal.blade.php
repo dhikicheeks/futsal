@@ -11,45 +11,43 @@
             <th scope="col">Jam Pesan</th>
             <th scope="col">Paket</th>
             <th scope="col">Status</th>
+            <th scope="col">Status</th>
             <th scope="col" class="text-center">Action</th>
         </tr>
     </thead>
     <tbody>
-
+        @foreach ($laporan_keuangan_futsal as $dp)
         <tr>
-            <th scope="row">1</th>
-            <td>1</td>
-            <td>4</td>
-            <td>4</td>
-            <td>4</td>
-
+            <th scope="row">{{$loop->iteration}}</th>
+            <td>{{$dp->nama_pemesan}}</td>
+            <td>{{$dp->tanggal_pesan}}</td>
+            <td>{{$dp->jam_pesan}}</td>
+            <td>Paket {{$dp->paket}}</td>
+            <td>{{$dp->flag_status}}</td>
             <td class="text-center">
-                <a href="" class="badge bg-primary text-light" data-toggle="modal" data-target="#modalSaya">Detail</a>
-
-                <a href="" class="badge bg-danger text-light">Delete</a>
+                <button onclick="detail_keuangan_futsal({{$dp->id_pesanan}})"
+                    class="badge bg-primary text-light">Detail</button>
             </td>
         </tr>
-
-        <!-- Contoh Modal -->
-        <div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel"
-            aria-hidden="true" data-backdrop="false">
-            <div class="modal-dialog" role="document">
+        @endforeach
+        <!-- Detail Keuangan Futsal -->
+        <div class="modal fade" id="DetailKeuanganFutsal" tabindex="-1" role="dialog"
+            aria-labelledby="DetailKeuanganFutsalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form method="POST" action="/inputinventory">
+                    <form method="POST">
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalSayaLabel">Detail Verifikasi DP</h5>
+                            <h5 class="modal-title" id="DetailKeuanganFutsalLabel">Detail Laporan Futsal</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" id="refresh-keuangan-futsal">
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-success">Verifikasi</button>
-
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -58,4 +56,23 @@
     </tbody>
 </table>
 
+
+<script>
+    function detail_keuangan_futsal(id_pesanan) {
+        var token = '{{ csrf_token() }}';
+        $.ajax({
+            method: 'post',
+            url: '{{url('detail_keuangan_futsal')}}',
+            data: {
+                '_token': '{{csrf_token()}}',
+                'id_pesanan': id_pesanan
+            },
+            success: function (resp) {
+                $('#DetailKeuanganFutsal').modal('show');
+                $("#refresh-keuangan-futsal").html(resp);
+            }
+        })
+    }
+
+</script>
 @endsection

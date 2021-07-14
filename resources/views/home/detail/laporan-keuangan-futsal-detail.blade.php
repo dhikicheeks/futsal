@@ -1,3 +1,4 @@
+<div class="container">
 <table class="table table-striped">
         <thead>
             <tr>
@@ -18,3 +19,6 @@
             @endforeach
             </tbody>
     </table>
+
+
+</div>

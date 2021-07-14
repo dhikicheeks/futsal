@@ -42,6 +42,7 @@ class SnackController extends Controller
     {
         
          $request->validate([
+            'tanggal'=>'required',
             'snack'=>'required',
             'harga'=>'required | integer',
             'stock'=>'required | integer',
@@ -49,6 +50,7 @@ class SnackController extends Controller
         ]); 
 
         DB::table('snack')->insert([
+            'tanggal_masuk'=>$request->tanggal,
             'nama_snack'=>$request->snack,
             'harga'=>$request->harga,
             'stock'=>$request->stock,
