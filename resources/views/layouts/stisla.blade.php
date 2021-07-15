@@ -174,23 +174,17 @@
                     <!-- LOGIN MEMBER -->
                     @if(Auth::user()->role_id == 1)
                     <ul class="sidebar-menu">
-                        <li class="menu-header"></li>
+                        <li class="menu-header">PAKET ANDA</li>
                         <li class="nav-item dropdown
-                            @if(Route::currentRouteName() == 'home' ||
-                                Route::currentRouteName() == 'verifikasi_pelunasan' ||
-                                Route::currentRouteName() == 'verifikasi_member_baru')
+                            @if(Route::currentRouteName() == 'home' 
+                                )
                                 active
                             @endif">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-address-book"></i><span>Mau Diisi
-                                    Apa?</span></a>
+                            <a href="#" class="nav-link has-dropdown"><i class="far fa-address-card"></i><span>Lihat Paket</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
-                                        href="{{url('home')}}">Gua Gatau</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_pelunasan')?'nav-active':'' }}"
-                                        href="{{url('verifikasi_pelunasan')}}">Bingung</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_member_baru')?'nav-active':'' }}"
-                                        href="{{url('verifikasi_member_baru')}}">Gasuka Gelay :D</a>
-                                </li>
+                                        href="{{url('home')}}">Lihat Sisa Paket</a></li>
+
                             </ul>
                         </li>
                     </ul>
@@ -306,9 +300,10 @@
         $(document).ready(function () {
             $('#search-keuangan-member').DataTable();
         });
-        
-        
+
+
         // SEARCH view Keuangan Turnamen
+
     </script>
     <script>
         $(document).ready(function () {

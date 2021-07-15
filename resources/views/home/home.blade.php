@@ -30,7 +30,7 @@ Auth::user()->role_id == 90)
             <td><h3 class="badge bg-info text-light font-weight-bold">{{$dp->deskripsi}}</h3></td>
             <td>
                 <button onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success text-light">Verifikasi</button>
-                <a href="" class="badge bg-danger text-light">Delete</a>
+               
             </td>
         </tr>
         @endforeach
@@ -228,8 +228,8 @@ Auth::user()->role_id == 90)
 
 <!-- LOGIN Member -->
 @if(Auth::user()->role_id == 1)
-@section('title','Validasi DP')
-@section('section-header','Apa Hayo??')
+@section('title','Paket Anda')
+@section('section-header','Paket Anda')
 
 @section('content')
 
@@ -237,8 +237,8 @@ Auth::user()->role_id == 90)
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama Barang</th>
-            <th scope="col">Jumlah</th>
+            <th scope="col">Paket Anda</th>
+            <th scope="col">Sisa Paket / Exp Paket</th>
             <th scope="col" class="text-center">Action</th>
         </tr>
     </thead>
@@ -246,12 +246,12 @@ Auth::user()->role_id == 90)
 
         <tr>
             <th scope="row">1</th>
-            <td>1</td>
+            
             <td>4</td>
-
+            <td>4</td>
             <td class="text-center">
-                <a href="" class="badge bg-warning text-dark">Edit</a>
-                <a href="" class="badge bg-danger text-light">Delete</a>
+                
+                <button class="badge bg-primary text-light">Perpanjang</button>
             </td>
         </tr>
 

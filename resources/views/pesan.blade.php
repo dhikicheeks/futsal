@@ -68,7 +68,12 @@
                                 @endforeach
                             </div>
                         </div>
-
+                </div>
+                <div class="container">
+                    <div class="alert alert-warning">
+                        <strong>Perhatian !</strong> Diatas Jam 5 dikenai biaya tambahan <strong>Rp10.000</strong> untuk
+                        lampu
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

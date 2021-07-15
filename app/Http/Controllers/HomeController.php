@@ -25,8 +25,8 @@ class HomeController extends Controller
     public function home()
     {
         $inventory = DB::table("inventory")->get();
-        $validasi_dp = DB::table("status_pesanan")
-                        ->LEFTJOIN("pesanan", 'status_pesanan.id_status_pesanan', 'pesanan.flag_status')
+        $validasi_dp = DB::table("pesanan")
+                        ->LEFTJOIN("status_pesanan", 'pesanan.flag_status', 'status_pesanan.id_status_pesanan')
                         ->SELECT(
                         'pesanan.*',
                         'status_pesanan.deskripsi'
