@@ -27,12 +27,9 @@ class PesananController extends Controller
         return view('pesan',compact('pesanan', 'paket_jam1', 'paket_jam2'));
     }
 
-
-    
-
      public function store_pesanan(Request $request)
     {
-        
+        // dd($request);
          $request->validate([
             
             'pemesan'=>'required',

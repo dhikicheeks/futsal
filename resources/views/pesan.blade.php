@@ -42,14 +42,31 @@
                         </div>
                         <div class="form-group">
                             <label for="tang">Jam</label>
-                            <input type="time" class="form-control" id="jam" placeholder="Pilih jam" name="jam">
+                            <select name="jam" class="form-control">
+                                <option selected disabled value="">Pilih Jam Mulai</option>
+                                <option value="08:00">08:00</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                                <option value="19:00">19:00</option>
+                                <option value="20:00">20:00</option>
+                                <option value="21:00">21:00</option>
+                                <option value="22:00">22:00</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="paket">Paket 1 Jam</label>
                             @foreach ($paket_jam1 as $jam1)
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="paket" id="paket1"
-                                    value="{{$jam1->id_paket}}" checked>
+                                    value="{{$jam1->id_paket}}">
                                 <label class="form-check-label" for="paket1">
                                     {{$jam1->deskripsi}}
                                 </label>
@@ -60,7 +77,7 @@
                                 @foreach ($paket_jam2 as $jam2)
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="paket" id="paket1"
-                                        value="{{$jam2->id_paket}}" checked>
+                                        value="{{$jam2->id_paket}}">
                                     <label class="form-check-label" for="paket1">
                                         {{$jam2->deskripsi}}
                                     </label>

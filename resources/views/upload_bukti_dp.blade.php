@@ -2,12 +2,10 @@
 @section('title','Upload Bukti Transaksi')
 @section('content')
 
-
-
 <div class="container">
     <h1 class="text-center">Halaman Upload Transaksi</h1>
-   
-    <table class="table table-hover" id="search-upload">
+
+    <table class="table table-hover" id="search_upload">
         <thead>
             <tr>
                 <th scope="col">No</th>
