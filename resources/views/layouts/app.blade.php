@@ -88,7 +88,7 @@
             @yield('content')
         </main>
 
-        <footer class="bg-dark">
+        <footer class="bg-dark fixed-bottom" >
             <div class="text-center p-4 " , style="color: aliceblue">
                 © 2021 Copyright Damar Futsal Wonogiri
             </div>
