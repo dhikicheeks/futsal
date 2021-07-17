@@ -12,10 +12,11 @@ Auth::user()->role_id == 90)
 <table class="table table-hover text-center" id="search-verifikasi-member">
     <thead>
         <tr>
-            <th scope="col">No</th>
-            <th scope="col">No Pemesanan</th>
-            <th scope="col">Tanggal Pesan</th>
-            <th scope="col">Jam Pesan</th>
+            <th scope="col" class="text-center">No</th>
+            <th scope="col" class="text-center">No Pemesanan</th>
+            <th scope="col" class="text-center">Tanggal Pesan</th>
+            <th scope="col" class="text-center">Jam Pesan</th>
+            <th scope="col" class="text-center">Nama Pemesan</th>
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">Action</th>
         </tr>
@@ -24,9 +25,10 @@ Auth::user()->role_id == 90)
         @foreach ($validasi_dp as $dp)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td class="text-uppercase">{{$dp->nama_tim}}</td>
-            <td class="text-uppercase">{{$dp->tanggal_pesan}}</td>
-            <td class="text-uppercase">{{$dp->jam_pesan}}</td>
+            <td class="text-uppercase text-center">{{$dp->id_pesanan}}</td>
+            <td class="text-uppercase text-center">{{$dp->tanggal_pesan}}</td>
+            <td class="text-uppercase text-center">{{$dp->jam_pesan}}</td>
+            <td class="text-uppercase text-center">{{$dp->nama_pemesan}}</td>
             <td><h3 class="badge bg-info text-light font-weight-bold">{{$dp->deskripsi}}</h3></td>
             <td>
                 <button onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success text-light">Verifikasi</button>
@@ -41,7 +43,7 @@ Auth::user()->role_id == 90)
     aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form method="POST">
+            <form method="POST" action="/update_verifikasi_dp"> 
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="detailDPLabel">Detail Verifikasi DP</h5>
@@ -106,7 +108,7 @@ Auth::user()->role_id == 90)
 </button>
 
 
-<!-- Contoh Modal -->
+<!-- Tambah Inventory Modal -->
 <div class="modal fade" id="TambahInventory" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel"
     aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog" role="document">
@@ -144,7 +146,6 @@ Auth::user()->role_id == 90)
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-success">Simpan</button>
-
                 </div>
             </form>
         </div>
@@ -166,7 +167,7 @@ Auth::user()->role_id == 90)
             <td class="text-uppercase">{{$inve->nama_barang}}</td>
             <td class="text-uppercase">{{$inve->jumlah}}</td>
             <td class="text-center">
-                <a href="" class="badge bg-warning text-dark" data-toggle="modal" data-target="#ModalEdit">Edit</a>
+                <button  data-toggle="modal" data-target="#edit_inventory" onclick="edit_inventory({{$inve->id_inventory}})" class="badge bg-success text-light">Edit</button>
                 <a href="/inventory/delete/{{$inve->id_inventory}}" class="badge bg-danger text-light">Delete</a>
             </td>
         </tr>
@@ -176,49 +177,50 @@ Auth::user()->role_id == 90)
 
 
 {{-- Modal Edit --}}
-<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="ModalEditLabel" aria-hidden="true"
-    data-backdrop="false">
-    <div class="modal-dialog" role="document">
+=
+<div class="modal fade" id="edit_inventory" tabindex="-1" role="dialog" aria-labelledby="edit_inventoryLabel"
+    aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form method="POST" action="/ory">
+            <form method="post" action="/update-inventory">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalSayaLabel">Edit Inventory</h5>
+                    <h5 class="modal-title" id="edit_inventoryLabel">Edit Inventory</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="refresh-inventory">
 
-                    <div class="mb-3">
-                        <label for="barang" class="form-label">Nama Barang</label>
-                        <input type="text" class="form-control @error ('barang') is-invalid @enderror" id="barang"
-                            placeholder="Masukan barang barang" name="barang">
-                        @error('barang')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="jumlah" class="form-label">Jumlah Barang</label>
-                        <input type="text" class="form-control  @error ('jumlah') is-invalid @enderror" id="jumlah"
-                            placeholder="Masukan jumlah" name="jumlah"> @error('jumlah')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-warning">Ubah</button>
-
+                    <button type="submit" class="btn btn-success" >Simpan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    function edit_inventory(id_inventory) {
+        var token = '{{ csrf_token() }}';
+        $.ajax({
+            method: 'post',
+            url: '{{url('edit_inventory')}}',
+            data: {
+                '_token': '{{csrf_token()}}',
+                'id_inventory': id_inventory
+            },
+            success: function (resp) {
+                $('#edit_inven').modal('show');
+                 $("#refresh-inventory").html(resp);
+            }
+        })
+    }
+
+</script>
 
 
 @endsection

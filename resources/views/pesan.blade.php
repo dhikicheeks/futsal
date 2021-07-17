@@ -30,19 +30,39 @@
                         @csrf
                         <div class="form-group">
                             <label for="tang">Nama Pemesan</label>
-                            <input type="text" class="form-control" placeholder="Nama Pemesan" name="pemesan">
+                            <input type="text" class="form-control  @error ('pemesan') is-invalid @enderror" placeholder="Nama Pemesan" name="pemesan" value="{{old('pemesan')}}">
+                            @error('pemesan')
+                        <div class="invalid-feedback">
+                            {{$message}}
                         </div>
-                        <div class="form-group">
+                        @enderror
+                        </div>
+                        <div class="form-group ">
                             <label for="tang">Nama Tim</label>
-                            <input type="text" class="form-control" placeholder="Nama Tim" name="nama_tim">
+                            <input type="text" class="form-control @error ('nama_tim') is-invalid @enderror" placeholder="Nama Tim" name="nama_tim" value="{{old('nama_tim')}}">
+                            @error('nama_tim')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
                         </div>
                         <div class="form-group">
                             <label for="tang">Tanggal</label>
-                            <input type="date" class="form-control" placeholder="Pilih tanggal" name="tanggal">
+                            <input type="date" class="form-control @error ('tanggal') is-invalid @enderror" placeholder="Pilih tanggal" name="tanggal" value="value="{{old('tanggal')}}>
+                            @error('tanggal')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
                         </div>
                         <div class="form-group">
                             <label for="tang">Jam</label>
-                            <select name="jam" class="form-control">
+                            <select name="jam" class="form-control @error ('jam') is-invalid @enderror" value="{{old('jam')}}">
+                                @error('jam')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
                                 <option selected disabled value="">Pilih Jam Mulai</option>
                                 <option value="08:00">08:00</option>
                                 <option value="09:00">09:00</option>
@@ -88,7 +108,7 @@
                 </div>
                 <div class="container">
                     <div class="alert alert-warning">
-                        <strong>Perhatian !</strong> Diatas Jam 5 dikenai biaya tambahan <strong>Rp10.000</strong> untuk
+                        <strong>Perhatian !</strong> Diatas Jam <strong> 17.00 </strong> biaya tambahan <strong>Rp10.000</strong> untuk
                         lampu
                     </div>
                 </div>

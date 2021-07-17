@@ -26,17 +26,18 @@
 
 <body>
     <br>
+    @foreach ($ambil_data as $data)
     <div class="container mt-5">
         <div class="card h-100">
             <div class="card-body">
                 <div class="row pt-3">
                     <div class="col-6">
                         <p class="">Nama Pemesan :
-                            <br> <strong>Reza</strong>
+                            <br> <strong>{{$data->nama_pemesan}}</strong>
                         </p>
                     </div>
                     <div class="col-6">
-                        <h5 class="text-right mt-2">No Pesanan # 12345</h5>
+                        <h5 class="text-right mt-2">No Pesanan # {{$data->id_pesanan}}</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -51,26 +52,26 @@
                                     <table class="table table-condensed">
                                         <thead>
                                             <tr>
-                                                <td><strong>Paket</strong></td>
-                                                <td class="text-center"><strong>Durasi</strong></td>
-                                                <td class="text-center"><strong>Bonus</strong></td>
+                                                <td><strong>Detail Paket</strong></td>
+                                                {{-- <td class="text-center"><strong>Durasi</strong></td>
+                                                <td class="text-center"><strong>Bonus</strong></td> --}}
                                                 <td class="text-right"><strong>Harga</strong></td>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                             <tr>
-                                                <td>1</td>
-                                                <td class="text-center">2 Jam</td>
-                                                <td class="text-center">2 Air Mineral 1,5L & Rompi</td>
-                                                <td class="text-right">Rp.70.000</td>
+                                                <td>{{$data->deskripsi}}</td>
+                                                {{-- <td class="text-center">2 Jam</td>
+                                                <td class="text-center">2 Air Mineral 1,5L & Rompi</td> --}}
+                                                <td class="text-right">{{$total_harga}}</td>
                                             </tr>
 
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="alert alert-warning">
-                                    <strong>Perhatian !</strong> Kirim ke Rekening An.BBBBB 11231231
+                                    <strong>Perhatian !</strong> Kirim ke Rekening An.BBBBB 11231231 <strong>Pembayaran Max 1 Jam Setelah pembayaran</strong>
                                 </div>
                                 <div class="alert alert-danger">
                                     <strong>Perhatian !</strong> Screenshoot resi ini sebagai bukti pembayaran
@@ -89,6 +90,7 @@
             </div>
         </div>
     </div>
+    @endforeach
 
 
     <!-- Modal -->
@@ -96,17 +98,23 @@
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="UploadResiLabel">Upload Bukti Pembayaran Dp</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Upload</button>
-                </div>
+                <form action="resi_transaksi_upload" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="UploadResiLabel">Upload Bukti Pembayaran Dp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" name="foto_resi" id="foto_resi">
+                    </div>
+                    <div class="modal-footer">
+                        @foreach ($ambil_data as $item)
+                            <input hidden type="text" name="id_pesanan" value="{{$item->id_pesanan}}">
+                        @endforeach
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="input" class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

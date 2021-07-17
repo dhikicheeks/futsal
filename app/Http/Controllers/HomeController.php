@@ -39,7 +39,7 @@ class HomeController extends Controller
     {
 
         $request->validate([
-            'barang'=>'required',
+            'barang'=>'required | unique:inventory,nama_barang',
             'jumlah'=>'required | integer',
         ]); 
 
@@ -61,7 +61,11 @@ class HomeController extends Controller
     public function detail_validasi_dp(Request $request)
     {
             $id_pesanan = $request ->id_pesanan;
-            $pesanan = DB::table("pesanan")->SELECT('*')
+            $pesanan = DB::table("pesanan")
+            ->leftjoin("paket", 'pesanan.paket', 'paket.id_paket')
+                    ->SELECT(
+                        'pesanan.*',
+                        'paket.deskripsi','paket.harga')
                         ->where('id_pesanan', $id_pesanan)
                         ->get();
             return view('home.detail.validasi-dp-detail',compact('pesanan'));
@@ -74,6 +78,55 @@ class HomeController extends Controller
 
     }
     
+    public function edit_inventory(Request $request){
 
-    
+        $id_inventory = $request->id_inventory;
+        $edit = DB::table('inventory')
+              ->SELECT(
+                    'nama_barang' ,
+                    'jumlah',
+              )
+              ->where('id_inventory', $id_inventory)
+              ->first(); 
+          
+           return view('home.edit.inventory-edit',compact("edit", "id_inventory"));
+                                
+                    //   ->with('status', 'Inventory Ditambahkan!');
+
+
+    }   
+
+    public function update_inventory(Request $request){
+        
+        $id_inventory = $request->id_inventory;
+        // dd($id_inventory);
+        $update = DB::table('inventory')
+              ->where('id_inventory', '=', $id_inventory)
+                    ->UPDATE([
+                    'jumlah' =>$request->jumlah,
+                    ]);
+          
+           return redirect('/home')->with('status', 'Inventory Berhasil Diubah!');;                                
+    }
+
+
+
+
+     public function update_verifikasi_dp(Request $request)
+    {
+       $update_verifikasi_dp = $request->id_pesanan;
+
+       $update_status_verifikasi_dp = DB::table('pesanan')
+                                    ->WHERE(
+                                        'id_pesanan','=',$update_verifikasi_dp
+                                    )
+                                    ->UPDATE([
+                                        'flag_status' =>3
+                                    ]);
+ return redirect('/home');
+    }
+   
 }
+
+
+ 

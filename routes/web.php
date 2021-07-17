@@ -29,8 +29,7 @@ Route::get('/turnamen', [App\Http\Controllers\HomeController::class, 'turnamen']
 
 // PESANAN
 Route::post('/inputpesanan', [App\Http\Controllers\PesananController::class, 'store_pesanan']);
-
-
+Route::post('/resi_transaksi_upload', [App\Http\Controllers\PesananController::class, 'resi_transaksi_upload']);
 
 
 # MENU MEMBUTUHKAN AUTH
@@ -42,11 +41,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name(
 Route::post('detail_validasi_dp', [App\Http\Controllers\HomeController::class, 'detail_validasi_dp']);
 Route::post('detail_keuangan_futsal', [App\Http\Controllers\LaporanController::class, 'detail_keuangan_futsal']);
 
+Route::post('/update_verifikasi_dp', [App\Http\Controllers\HomeController::class, 'update_verifikasi_dp']);
+
 
 // INVENTORY
 Route::post('/inputinventory', [App\Http\Controllers\HomeController::class, 'store_inventory'])->name('store_inventory');
 Route::get('/inventory/delete/{id_inventory}', [App\Http\Controllers\HomeController::class, 'destroy_inventory'])->name('destroy_inventory');
 
+// EDIT
+Route::post('edit_inventory', [App\Http\Controllers\HomeController::class, 'edit_inventory']);
+
+// UPDATE
+Route::post('/update-inventory', [App\Http\Controllers\HomeController::class, 'update_inventory']);
 // VERIFIKASI
 Route::get('/verifikasi_pelunasan', [App\Http\Controllers\VerifikasiController::class, 'verifikasi_pelunasan'])->name('verifikasi_pelunasan');
 Route::get('/verifikasi_member_baru', [App\Http\Controllers\VerifikasiController::class, 'verifikasi_member_baru'])->name('verifikasi_member_baru');
