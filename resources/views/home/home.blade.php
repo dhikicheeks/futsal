@@ -14,8 +14,8 @@ Auth::user()->role_id == 90)
         <tr>
             <th scope="col" class="text-center">No</th>
             <th scope="col" class="text-center">No Pemesanan</th>
-            <th scope="col" class="text-center">Tanggal Pesan</th>
-            <th scope="col" class="text-center">Jam Pesan</th>
+            <th scope="col" class="text-center">Tanggal Kick-Off</th>
+            <th scope="col" class="text-center">Jam Kick-Off</th>
             <th scope="col" class="text-center">Nama Pemesan</th>
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">Action</th>
@@ -31,7 +31,9 @@ Auth::user()->role_id == 90)
             <td class="text-uppercase text-center">{{$dp->nama_pemesan}}</td>
             <td><h3 class="badge bg-info text-light font-weight-bold">{{$dp->deskripsi}}</h3></td>
             <td>
-                <button onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success text-light">Verifikasi</button>
+                <button @if ($dp->flag_status == 1)
+                    hidden
+                @endif onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success text-light">Verifikasi</button>
                
             </td>
         </tr>

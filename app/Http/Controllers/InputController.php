@@ -12,10 +12,10 @@ class InputController extends Controller
         return view('pesan');
     }
 
-    // public function resi_dp()
-    // {
-    //     return view('resi-dp');
-    // }
+    public function resi_dp()
+    {
+        return view('resi-dp');
+    }
 
     public function upload_bukti_dp()
     {

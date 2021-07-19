@@ -96,7 +96,7 @@
                         <li class="nav-item dropdown
                                 @if(Route::currentRouteName() == 'laporan_keuangan_futsal' ||
                                     Route::currentRouteName() == 'laporan_keuangan_snack' ||
-                                    Route::currentRouteName() == 'laporan_keuangan_turnamen' ||
+                                   
                                     Route::currentRouteName() == 'laporan_keuangan_member'
                                     ) 
                                     active
@@ -108,8 +108,7 @@
                                         href="{{url('laporan_keuangan_futsal')}}">Keuangan Futsal</a></li>
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_snack')?'nav-active':'' }}"
                                         href="{{url('laporan_keuangan_snack')}}">Keuangan Snack</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_turnamen')?'nav-active':'' }}"
-                                        href="{{url('laporan_keuangan_turnamen')}}">Keuangan Turnamen</a></li>
+
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_member')?'nav-active':'' }}"
                                         href="{{url('laporan_keuangan_member')}}">Keuangan Member</a></li>
                             </ul>
@@ -152,22 +151,6 @@
                                         href="{{url('stock_snack')}}">Stock Snack Minuman</a></li>
                             </ul>
                         </li>
-                        <li class="menu-header">TURNAMEN</li>
-                        <li class="nav-item dropdown
-                               @if(Route::currentRouteName() == 'validasi_turnamen' ||
-                                    Route::currentRouteName() == 'buat_jadwal_turnamens')
-                                    active
-                                @endif">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-trophy"></i>
-                                <span>Turnamen</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'validasi_turnamen')?'nav-active':'' }}"
-                                        href="{{url('validasi_turnamen')}}">Validasi Turnamen</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'buat_jadwal_turnamen')?'nav-active':'' }}"
-                                        href="{{url('buat_jadwal_turnamen')}}">Buat Jadwal Turnamen</a></li>
-                            </ul>
-                        </li>
                     </ul>
                     @endif
 
@@ -180,7 +163,8 @@
                                 )
                                 active
                             @endif">
-                            <a href="#" class="nav-link has-dropdown"><i class="far fa-address-card"></i><span>Lihat Paket</span></a>
+                            <a href="#" class="nav-link has-dropdown"><i class="far fa-address-card"></i><span>Lihat
+                                    Paket</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
                                         href="{{url('home')}}">Lihat Sisa Paket</a></li>
@@ -271,14 +255,6 @@
 
     </script>
 
-    {{-- SEARCH view Validasi Turnamen --}}
-    <script>
-        $(document).ready(function () {
-            $('#search-validasi-turnamen').DataTable();
-        });
-
-    </script>
-
     {{-- SEARCH view Keuangan Futsal --}}
     <script>
         $(document).ready(function () {
@@ -301,16 +277,8 @@
             $('#search-keuangan-member').DataTable();
         });
 
-
-        // SEARCH view Keuangan Turnamen
-
     </script>
-    <script>
-        $(document).ready(function () {
-            $('#search-keuangan-turnamen').DataTable();
-        });
 
-    </script>
 </body>
 
 </html>

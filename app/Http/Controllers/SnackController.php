@@ -43,7 +43,7 @@ class SnackController extends Controller
         
          $request->validate([
             'tanggal'=>'required',
-            'snack'=>'required',
+            'snack'=>'required | unique:snack,nama_snack',
             'harga'=>'required | integer',
             'stock'=>'required | integer',
             

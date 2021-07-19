@@ -6,9 +6,17 @@
 {{-- DATATABLE --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 <div class="container">
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @elseif (session('status-delete'))
+    <div class="alert alert-danger">
+        {{ session('status-delete') }}
+    </div>
 
-
-    <h1 class="text-center">Jadwal Futsal Hari ini</h1>
+    @endif
+    <h1 class="text-center">Pesan Lapangan</h1>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
         Pesan Sekarang
@@ -30,39 +38,43 @@
                         @csrf
                         <div class="form-group">
                             <label for="tang">Nama Pemesan</label>
-                            <input type="text" class="form-control  @error ('pemesan') is-invalid @enderror" placeholder="Nama Pemesan" name="pemesan" value="{{old('pemesan')}}">
+                            <input type="text" class="form-control  @error ('pemesan') is-invalid @enderror"
+                                placeholder="Nama Pemesan" name="pemesan" value="{{old('pemesan')}}">
                             @error('pemesan')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group ">
                             <label for="tang">Nama Tim</label>
-                            <input type="text" class="form-control @error ('nama_tim') is-invalid @enderror" placeholder="Nama Tim" name="nama_tim" value="{{old('nama_tim')}}">
+                            <input type="text" class="form-control @error ('nama_tim') is-invalid @enderror"
+                                placeholder="Nama Tim" name="nama_tim" value="{{old('nama_tim')}}">
                             @error('nama_tim')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="tang">Tanggal</label>
-                            <input type="date" class="form-control @error ('tanggal') is-invalid @enderror" placeholder="Pilih tanggal" name="tanggal" value="value="{{old('tanggal')}}>
+                            <input type="date" class="form-control @error ('tanggal') is-invalid @enderror"
+                                placeholder="Pilih tanggal" name="tanggal" value="value=" {{old('tanggal')}}>
                             @error('tanggal')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="tang">Jam</label>
-                            <select name="jam" class="form-control @error ('jam') is-invalid @enderror" value="{{old('jam')}}">
+                            <select name="jam" class="form-control @error ('jam') is-invalid @enderror"
+                                value="{{old('jam')}}">
                                 @error('jam')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                                 <option selected disabled value="">Pilih Jam Mulai</option>
                                 <option value="08:00">08:00</option>
                                 <option value="09:00">09:00</option>
@@ -89,6 +101,7 @@
                                     value="{{$jam1->id_paket}}">
                                 <label class="form-check-label" for="paket1">
                                     {{$jam1->deskripsi}}
+                                    <p>Harga : {{$jam1->harga}}</p>
                                 </label>
                             </div>
                             @endforeach
@@ -100,6 +113,7 @@
                                         value="{{$jam2->id_paket}}">
                                     <label class="form-check-label" for="paket1">
                                         {{$jam2->deskripsi}}
+                                        <p>Harga : {{$jam2->harga}}</p>
                                     </label>
                                 </div>
                                 @endforeach
@@ -108,7 +122,8 @@
                 </div>
                 <div class="container">
                     <div class="alert alert-warning">
-                        <strong>Perhatian !</strong> Diatas Jam <strong> 17.00 </strong> biaya tambahan <strong>Rp10.000</strong> untuk
+                        <strong>Perhatian !</strong> Diatas Jam <strong> 17.00 </strong> biaya tambahan
+                        <strong>Rp20.000</strong> untuk
                         lampu
                     </div>
                 </div>
@@ -120,13 +135,22 @@
             </div>
         </div>
     </div>
-    <table class="table table-striped">
+    <div class="alert alert-danger">
+        <strong>Perhatian !</strong> Jika Anda sudah upload bukti pembayaran dan status belum berubah.
+        <br>
+        <strong>Harap bersabar pemesanan sedang diproses</strong>
+        <br>
+        <strong>PESANAN AKAN TERHAPUS JIKA USER TIDAK TRANSFER DALAM WAKTU 1 JAM SETELAH PEMESANAN</strong>
+    </div>
+    <table class="table table-striped" id="cari_tanggal_pesan">
         <thead>
+
             <tr>
-                <th scope="col" class="">No</th>
-                <th scope="col" class="">Tanggal</th>
-                <th scope="col" class="">Jam</th>
-                <th scope="col" class="">Nama Tim</th>
+                <th scope="col">No</th>
+                <th scope="col">Tanggal Kick-Off</th>
+                <th scope="col">Jam Kick-Off</th>
+                <th scope="col">Nama Tim</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -136,6 +160,10 @@
                 <td>{{$pesan->tanggal_pesan}}</td>
                 <td>{{$pesan->jam_pesan}}</td>
                 <td class="text-uppercase">{{$pesan->nama_tim}}</td>
+               <td> <h3 @if ($pesan->flag_status==2)
+                   hidden
+                    @endif class="badge bg-danger text-light sm"
+                    >{{$pesan->status_deskripsi}}</h3></td>
             </tr>
             @endforeach
         </tbody>

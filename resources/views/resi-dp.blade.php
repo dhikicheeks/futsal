@@ -53,8 +53,6 @@
                                         <thead>
                                             <tr>
                                                 <td><strong>Detail Paket</strong></td>
-                                                {{-- <td class="text-center"><strong>Durasi</strong></td>
-                                                <td class="text-center"><strong>Bonus</strong></td> --}}
                                                 <td class="text-right"><strong>Harga</strong></td>
                                             </tr>
                                         </thead>
@@ -62,8 +60,6 @@
 
                                             <tr>
                                                 <td>{{$data->deskripsi}}</td>
-                                                {{-- <td class="text-center">2 Jam</td>
-                                                <td class="text-center">2 Air Mineral 1,5L & Rompi</td> --}}
                                                 <td class="text-right">{{$total_harga}}</td>
                                             </tr>
 

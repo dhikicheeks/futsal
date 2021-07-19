@@ -43,8 +43,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="{{url("/pesan")}}">Pesan Lapangan</a></li>
-                        <li><a class="nav-link" href="{{url("/upload_bukti_dp")}}">Upload Bukti Dp</a></li>
-                        <li><a class="nav-link" href="{{url("/turnamen")}}">Turnamen</a></li>
+                        <li><a class="nav-link" href="{{url("/upload_bukti_dp")}}">Upload Bukti Transaksi</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -86,7 +85,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-5">
             @yield('content')
         </main>
 
@@ -124,7 +123,12 @@
         $(document).ready(function () {
             $('#search_upload').DataTable();
         });
-
+    </script>
+    {{-- Cari Menu Pesana --}}
+    <script>
+        $(document).ready(function () {
+            $('#cari_tanggal_pesan').DataTable();
+        });
     </script>
 </body>
 

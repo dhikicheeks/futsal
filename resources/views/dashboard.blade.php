@@ -43,7 +43,7 @@
 
 <div class="container">
     <h1 class="mt-5 text-center">Jadwal Pertandingan</h1>
-    <h3 class="text-center">16 Juni 2021</h3>
+    <h3 class="text-center">{{\Carbon\Carbon::parse($date_now)->format('d/m/Y')}}</h3>
 </div>
 
 
@@ -51,19 +51,17 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col" class="">No</th>
-                <th scope="col" class="">Tanggal</th>
-                <th scope="col" class="">Jam</th>
-                <th scope="col" class="">Nama Tim</th>
+                <th scope="col" class="text-center">No</th>
+                <th scope="col" class="text-center">Kick Off</th>
+                <th scope="col" class="text-center">Nama Tim</th>
             </tr>
         </thead>
         <tbody>
             @foreach($jadwal as $pesan)
             <tr>
-                <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$pesan->tanggal_pesan}}</td>
-                <td>{{$pesan->jam_pesan}}</td>
-                <td class="text-uppercase">{{$pesan->nama_tim}}</td>
+                <th scope="row" class="text-center">{{$loop->iteration}}</th>
+                <td class="text-center">{{$pesan->jam_pesan}}</td>
+                <td class="text-center" class="text-uppercase">{{$pesan->nama_tim}}</td>
             </tr>
             @endforeach
         </tbody>

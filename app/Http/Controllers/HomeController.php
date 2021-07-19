@@ -31,6 +31,7 @@ class HomeController extends Controller
                         'pesanan.*',
                         'status_pesanan.deskripsi'
                     )
+                    ->where('pesanan.flag_status',2)
                     ->get();
          return view('home.home',compact('validasi_dp','inventory'));
     }

@@ -2,11 +2,10 @@
 <table class="table table-striped">
         <thead>
             <tr>
-                
                 <th scope="col" class=" text-center">Nama Tim</th>
                 <th scope="col" class=" text-center">Tanggal</th>
                 <th scope="col" class=" text-center">Jam</th>
-                <th scope="col" class=" text-center">Peket</th>
+                <th scope="col" class=" text-center">Paket</th>
                 <th scope="col" class=" text-center">Harga</th>
                 <th scope="col" class=" text-center">Bukti DP</th>
 
@@ -18,7 +17,7 @@
                 <td class="text-center">{{$pesan->jam_pesan}}</td>
                 <td class="text-center">{{$pesan->deskripsi}}</td>
                 <td class="text-center">{{$pesan->harga}}</td>
-                <td class="text-center">{{$pesan->bukti_tf}}</td>
+                <td class="text-center"><img src="{{ asset('/bukti_resi/'.$pesan->bukti_tf) }}" alt="" width="60%"></td>
             </tr>
             @endforeach
             </tbody>

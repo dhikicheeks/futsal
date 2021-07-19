@@ -12,25 +12,22 @@ class LaporanController extends Controller
         
        
  $laporan_keuangan_futsal = DB::table("pesanan")
-                    ->LEFTJOIN("paket", 'pesanan.paket', 'paket.id_paket')
-                    ->SELECT(
+                        ->LEFTJOIN("status_pesanan", 'pesanan.flag_status', 'status_pesanan.id_status_pesanan')
+                        ->LEFTJOIN("paket", 'pesanan.paket', 'paket.id_paket')
+                        ->SELECT(
                         'pesanan.*',
-                        'paket.deskripsi'
+                        'status_pesanan.deskripsi',
+                        'paket.harga',
+                        'paket.deskripsi AS deskripsi_paket'
                     )
+                    ->whereIN('pesanan.flag_status',[4,2])
                     ->get();
-        $paket_jam1 = DB::table("paket")
-                    ->SELECT('*')
-                    ->where('jenis_paket', 1)
-                    ->get();
-        $paket_jam2 = DB::table("paket")
-                    ->SELECT("*")
-                    ->where('jenis_paket', 2)
-                    ->get();
+         return view('home.laporan.laporan_keuangan_futsal',compact('laporan_keuangan_futsal'));
 
 
-         return view('home.laporan.laporan_keuangan_futsal',compact('laporan_keuangan_futsal', 'paket_jam1', 'paket_jam2'));
-        
-            
+
+
+              
     }
     
     public function laporan_keuangan_snack()

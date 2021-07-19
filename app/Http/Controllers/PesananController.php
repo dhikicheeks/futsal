@@ -12,10 +12,13 @@ class PesananController extends Controller
     {
          $pesanan = DB::table("pesanan")
                     ->leftjoin("paket", 'pesanan.paket', 'paket.id_paket')
+                    ->leftjoin("status_pesanan", 'pesanan.flag_status', 'status_pesanan.id_status_pesanan')
                     ->SELECT(
                         'pesanan.*',
-                        'paket.deskripsi'
+                        'paket.deskripsi',
+                        'status_pesanan.deskripsi AS status_deskripsi'
                     )
+                    ->WHEREIN('flag_status',[1,2])
                     ->get();
         $paket_jam1 = DB::table("paket")
                     ->SELECT('*')
@@ -116,6 +119,6 @@ class PesananController extends Controller
             ->where('id_pesanan', $id_pesanan)
             ->update($data);
 
-        return redirect('/pesan');
+        return redirect('/pesan')->with('status', 'Pesanan Anda Menunggu Verifikasi Admin');
     }
 }
