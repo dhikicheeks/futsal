@@ -50,7 +50,7 @@ class PesananController extends Controller
             $tambahan = 0;
         }
 
-        //INPUT KE TABEL
+        //TODO INPUT KE TABEL
         DB::table('pesanan')->insert([
             'tanggal_pesan'=>$request->tanggal,
             'jam_pesan'=>$request->jam,
@@ -62,7 +62,7 @@ class PesananController extends Controller
             'updated_at'=>$date_now,
         ]);
 
-        // AMBIL DATA UNTUK TAMPIL KE HALAMAN RESI_DP
+        //TODO AMBIL DATA UNTUK TAMPIL KE HALAMAN RESI_DP
         $ambil_data = DB::table("pesanan")
             ->leftjoin('paket', 'pesanan.paket', 'paket.id_paket')
             ->SELECT(

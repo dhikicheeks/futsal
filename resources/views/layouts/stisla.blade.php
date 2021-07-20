@@ -145,10 +145,10 @@
                                 @endif">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-coffee"></i>
-                                <span>Snack Minuman</span></a>
+                                <span>Food and Drink</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'stock_snack')?'nav-active':'' }}"
-                                        href="{{url('stock_snack')}}">Stock Snack Minuman</a></li>
+                                        href="{{url('stock_snack')}}">Stock Food and Drink</a></li>
                             </ul>
                         </li>
                     </ul>

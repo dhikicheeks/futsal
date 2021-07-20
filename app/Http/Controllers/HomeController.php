@@ -31,7 +31,7 @@ class HomeController extends Controller
                         'pesanan.*',
                         'status_pesanan.deskripsi'
                     )
-                    ->where('pesanan.flag_status',2)
+                    ->WHEREIN('pesanan.flag_status',[1,2])
                     ->get();
          return view('home.home',compact('validasi_dp','inventory'));
     }
@@ -107,7 +107,7 @@ class HomeController extends Controller
                     'jumlah' =>$request->jumlah,
                     ]);
           
-           return redirect('/home')->with('status', 'Inventory Berhasil Diubah!');;                                
+           return redirect('/home')->with('status', 'Inventory Berhasil Diubah!');                                
     }
 
 
@@ -124,7 +124,8 @@ class HomeController extends Controller
                                     ->UPDATE([
                                         'flag_status' =>3
                                     ]);
- return redirect('/home');
+
+        return redirect('/home');
     }
    
 }

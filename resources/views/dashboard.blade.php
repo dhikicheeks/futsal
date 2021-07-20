@@ -43,10 +43,8 @@
 
 <div class="container">
     <h1 class="mt-5 text-center">Jadwal Pertandingan</h1>
-    <h3 class="text-center">{{\Carbon\Carbon::parse($date_now)->format('d/m/Y')}}</h3>
+    <h3 class="text-center">{{\Carbon\Carbon::parse($date_now)->toFormattedDateString()}}</h3>
 </div>
-
-
 <div class="container">
     <table class="table table-striped">
         <thead>

@@ -29,23 +29,29 @@ Auth::user()->role_id == 90)
             <td class="text-uppercase text-center">{{$dp->tanggal_pesan}}</td>
             <td class="text-uppercase text-center">{{$dp->jam_pesan}}</td>
             <td class="text-uppercase text-center">{{$dp->nama_pemesan}}</td>
-            <td><h3 class="badge bg-info text-light font-weight-bold">{{$dp->deskripsi}}</h3></td>
+            <td>
+                <h3 @if ($dp->flag_status ==1)
+                    class="badge bg-warning text-light font-weight-bold"
+                    @endif
+                    class="badge bg-info text-light font-weight-bold" >{{$dp->deskripsi}}</h3>
+            </td>
             <td>
                 <button @if ($dp->flag_status == 1)
                     hidden
-                @endif onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success text-light">Verifikasi</button>
-               
+                    @endif onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success
+                    text-light">Verifikasi</button>
+
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
- <!-- Detail DP Modal -->
-<div class="modal fade" id="detailDP" tabindex="-1" role="dialog" aria-labelledby="detailDPLabel"
-    aria-hidden="true" data-backdrop="false">
+<!-- Detail DP Modal -->
+<div class="modal fade" id="detailDP" tabindex="-1" role="dialog" aria-labelledby="detailDPLabel" aria-hidden="true"
+    data-backdrop="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form method="POST" action="/update_verifikasi_dp"> 
+            <form method="POST" action="/update_verifikasi_dp">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="detailDPLabel">Detail Verifikasi DP</h5>
@@ -73,14 +79,15 @@ Auth::user()->role_id == 90)
         var token = '{{ csrf_token() }}';
         $.ajax({
             method: 'post',
-            url: '{{url('detail_validasi_dp')}}',
+            url: '{{url('
+            detail_validasi_dp ')}}',
             data: {
                 '_token': '{{csrf_token()}}',
                 'id_pesanan': id_pesanan
             },
             success: function (resp) {
                 $('#detailDP').modal('show');
-                 $("#refresh").html(resp);
+                $("#refresh").html(resp);
             }
         })
     }
@@ -169,7 +176,8 @@ Auth::user()->role_id == 90)
             <td class="text-uppercase">{{$inve->nama_barang}}</td>
             <td class="text-uppercase">{{$inve->jumlah}}</td>
             <td class="text-center">
-                <button  data-toggle="modal" data-target="#edit_inventory" onclick="edit_inventory({{$inve->id_inventory}})" class="badge bg-success text-light">Edit</button>
+                <button data-toggle="modal" data-target="#edit_inventory"
+                    onclick="edit_inventory({{$inve->id_inventory}})" class="badge bg-success text-light">Edit</button>
                 <a href="/inventory/delete/{{$inve->id_inventory}}" class="badge bg-danger text-light">Delete</a>
             </td>
         </tr>
@@ -197,7 +205,7 @@ Auth::user()->role_id == 90)
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success" >Simpan</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>
@@ -210,14 +218,15 @@ Auth::user()->role_id == 90)
         var token = '{{ csrf_token() }}';
         $.ajax({
             method: 'post',
-            url: '{{url('edit_inventory')}}',
+            url: '{{url('
+            edit_inventory ')}}',
             data: {
                 '_token': '{{csrf_token()}}',
                 'id_inventory': id_inventory
             },
             success: function (resp) {
                 $('#edit_inven').modal('show');
-                 $("#refresh-inventory").html(resp);
+                $("#refresh-inventory").html(resp);
             }
         })
     }
@@ -250,11 +259,11 @@ Auth::user()->role_id == 90)
 
         <tr>
             <th scope="row">1</th>
-            
+
             <td>4</td>
             <td>4</td>
             <td class="text-center">
-                
+
                 <button class="badge bg-primary text-light">Perpanjang</button>
             </td>
         </tr>

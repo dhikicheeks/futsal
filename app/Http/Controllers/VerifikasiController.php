@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class VerifikasiController extends Controller
 {
+
+    // INDEX
     public function verifikasi_pelunasan(){
 
  $pelunasan = DB::table("pesanan")
@@ -23,5 +26,38 @@ class VerifikasiController extends Controller
     
     public function verifikasi_member_baru(){
         return view('home.verifikasi.verifikasi_member_baru');
+    }    
+
+    public function detail_validasi_pelunasan(Request $request)
+    {
+            $id_pesanan = $request ->id_pesanan;
+            $pesanan = DB::table("pesanan")
+            ->leftjoin("paket", 'pesanan.paket', 'paket.id_paket')
+                    ->SELECT(
+                        'pesanan.*',
+                        'paket.deskripsi','paket.harga')
+                        ->where('id_pesanan', $id_pesanan)
+                        ->get();
+            return view('home.detail.validasi-dp-detail',compact('pesanan'));
+                    }
+
+    public function update_verifikasi_pelunasan(Request $request) {
+         $update_verifikasi_pelunasan= $request->id_pesanan;
+
+         $update_status_verifikasi_pelunasan= DB::table('pesanan')
+                                    ->WHERE(
+                                        'id_pesanan','=',$update_verifikasi_pelunasan
+                                    )
+                                    ->UPDATE([
+                                        'flag_status' =>4
+                                    ]);
+        //  $date_now = Carbon::now();
+        //  $laporan_keuangan = DB::table('laporan_keuangan')->INSERT('tanggal_pesanan selesai' ->$request->date_now);
+         return redirect()->back()->with('status', 'Pesanan Di Laporkan');
     }
+
+    
 }
+
+
+
