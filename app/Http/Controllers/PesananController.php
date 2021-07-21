@@ -41,7 +41,7 @@ class PesananController extends Controller
             'jam'=>'required', 
             'tanggal'=>'required',
         ]);
-        $date_now = Carbon::now();
+        $date_now = Carbon::now('Asia/Jakarta');
         $jam =  $request->jam;
 
         if ($jam >= '17:00') {
@@ -110,10 +110,11 @@ class PesananController extends Controller
 
         $direktoriUpload = public_path().'/bukti_resi';
         $foto_resi->move($direktoriUpload, $namaFileBaru);
-
+        $update_now = Carbon::now('Asia/Jakarta');
         $data=[
             'bukti_tf' => $namaFileBaru,
-            'flag_status' => 2
+            'flag_status' => 2,
+            'updated_at'=>$update_now
         ];
         DB::table('pesanan')
             ->where('id_pesanan', $id_pesanan)

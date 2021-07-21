@@ -43,21 +43,19 @@ class VerifikasiController extends Controller
 
     public function update_verifikasi_pelunasan(Request $request) {
          $update_verifikasi_pelunasan= $request->id_pesanan;
-
+         $update_now = Carbon::now('Asia/Jakarta');
          $update_status_verifikasi_pelunasan= DB::table('pesanan')
                                     ->WHERE(
                                         'id_pesanan','=',$update_verifikasi_pelunasan
                                     )
                                     ->UPDATE([
-                                        'flag_status' =>4
+                                        'flag_status' =>4,
+                                        'updated_at'=>$update_now
                                     ]);
         //  $date_now = Carbon::now();
-        //  $laporan_keuangan = DB::table('laporan_keuangan')->INSERT('tanggal_pesanan selesai' ->$request->date_now);
+        //  $laporan_keuangan = DB::table('laporan_keuangan_futsak')->INSERT('tanggal_pesanan selesai' ->$request->date_now);
          return redirect()->back()->with('status', 'Pesanan Di Laporkan');
     }
 
     
 }
-
-
-

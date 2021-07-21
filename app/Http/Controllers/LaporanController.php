@@ -9,9 +9,12 @@ class LaporanController extends Controller
 {
     public function laporan_keuangan_futsal()
     {
-        
+    //    $total_pendapatan = DB::tabel('pesanan')
+    //                     ->SELECTROW('SUM(harga)')
+    //                     ->GET();
+
        
- $laporan_keuangan_futsal = DB::table("pesanan")
+        $laporan_keuangan_futsal = DB::table("pesanan")
                         ->LEFTJOIN("status_pesanan", 'pesanan.flag_status', 'status_pesanan.id_status_pesanan')
                         ->LEFTJOIN("paket", 'pesanan.paket', 'paket.id_paket')
                         ->SELECT(
@@ -20,7 +23,7 @@ class LaporanController extends Controller
                         'paket.harga',
                         'paket.deskripsi AS deskripsi_paket'
                     )
-                    ->whereIN('pesanan.flag_status',[4,2])
+                    ->whereIN('pesanan.flag_status',[4,3])
                     ->get();
          return view('home.laporan.laporan_keuangan_futsal',compact('laporan_keuangan_futsal'));
 

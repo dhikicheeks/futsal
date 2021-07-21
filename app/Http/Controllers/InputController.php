@@ -26,13 +26,8 @@ class InputController extends Controller
                         'paket.deskripsi','paket.harga')
                        ->where('pesanan.flag_status',1)
                         ->get();
-
-                      
         return view('upload_bukti_dp',compact('upload_dp'));
     }
 
-    public function turnamen()
-    {
-        return view('turnamen');
-    }
+    
 }

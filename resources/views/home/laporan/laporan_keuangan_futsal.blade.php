@@ -3,12 +3,36 @@
 @section('title','Laporan Keuangan Futsal')
 @section('section-header','Laporan Keuangan Futsal')
 @section('content')
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="input-group mb-3">
+                <input type="date" class="form-control">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="input-group mb-3">
+                <input type="date" class="form-control">
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="">
+                <button class="badge bg-primary text-light">Filter</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
 <table class="table table-hover" id="search-keuangan-futsal">
     <thead>
         <tr>
             <th scope="col">No</th>
             <th scope="col">No Pesanan</th>
-            <th scope="col">Kick-Offs</th>
+            <th scope="col">Tanggal Validasi</th>
             <th scope="col">Harga</th>
             <th scope="col">Status</th>
             <th scope="col" class="text-center">Action</th>
@@ -19,10 +43,10 @@
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
             <td>{{$keuangan_futsal->id_pesanan}}</td>
-            <td>{{$keuangan_futsal->tanggal_pesan}}</td>
+           <td>{{ \Carbon\Carbon::parse($keuangan_futsal->updated_at)->format('d/m/Y H:i')}}</td>
             <td>{{$keuangan_futsal->harga}}</td>
             <td>
-                <h3 @if ($keuangan_futsal->flag_status==2)
+                <h3 @if ($keuangan_futsal->flag_status==3)
                     class="badge bg-danger text-light text-center"
                     @endif class="badge bg-success text-light sm"
                     >{{$keuangan_futsal->deskripsi}}</h3>
@@ -34,10 +58,18 @@
         </tr>
         @endforeach
     </tbody>
-    <tfoot class="bg-secondary">
+    <tfoot class="bg-light">
         <tr>
-            <td class="font-weight-bold" colspan="5">OMSET</td>
-            <td class="font-italic font-weight-bold">23172371</td>
+            <td class="font-weight-bold font-italic" colspan="5">PEMBAYARAN DP</td>
+            <td class="font-weight-bold">23172371</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold font-italic" colspan="5">SELESAI PESANAN</td>
+            <td class="font-weight-bold"></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold font-italic" colspan="5">TOTAL</td>
+            <td class="font-weight-bold">23172371</td>
         </tr>
     </tfoot>
 </table>

@@ -14,8 +14,9 @@ Auth::user()->role_id == 90)
         <tr>
             <th scope="col" class="text-center">No</th>
             <th scope="col" class="text-center">No Pemesanan</th>
+            <th scope="col" class="text-center">Tanggal Pesan</th>
             <th scope="col" class="text-center">Tanggal Kick-Off</th>
-            <th scope="col" class="text-center">Jam Kick-Off</th>
+            <th scope="col" class="text-center">Kick-Off</th>
             <th scope="col" class="text-center">Nama Pemesan</th>
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">Action</th>
@@ -26,8 +27,9 @@ Auth::user()->role_id == 90)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
             <td class="text-uppercase text-center">{{$dp->id_pesanan}}</td>
-            <td class="text-uppercase text-center">{{$dp->tanggal_pesan}}</td>
-            <td class="text-uppercase text-center">{{$dp->jam_pesan}}</td>
+            <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($dp->created_at)->format('d/m/Y H:i')}}</td>
+            <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($dp->tanggal_pesan)->format('d/m/Y')}}</td>
+            <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($dp->jam_pesan)->format('H:i')}}</td>
             <td class="text-uppercase text-center">{{$dp->nama_pemesan}}</td>
             <td>
                 <h3 @if ($dp->flag_status ==1)
@@ -79,8 +81,7 @@ Auth::user()->role_id == 90)
         var token = '{{ csrf_token() }}';
         $.ajax({
             method: 'post',
-            url: '{{url('
-            detail_validasi_dp ')}}',
+            url: '{{url('detail_validasi_dp')}}',
             data: {
                 '_token': '{{csrf_token()}}',
                 'id_pesanan': id_pesanan
@@ -166,6 +167,8 @@ Auth::user()->role_id == 90)
             <th scope="col">No</th>
             <th scope="col">Nama Barang</th>
             <th scope="col">Jumlah</th>
+            <th scope="col">Di Tambahkan</th>
+            <th scope="col">Perubahan Terakhir</th>
             <th scope="col" class="text-center">Action</th>
         </tr>
     </thead>
@@ -175,6 +178,8 @@ Auth::user()->role_id == 90)
             <th scope="row">{{$loop->iteration}}</th>
             <td class="text-uppercase">{{$inve->nama_barang}}</td>
             <td class="text-uppercase">{{$inve->jumlah}}</td>
+            <td><h3 class="badge bg-warning text-light font-weight-bold">{{ \Carbon\Carbon::parse($inve->created_at)->format('d/m/Y')}}</h3></td>
+            <td><h3 class="badge bg-info text-light font-weight-bold">{{ \Carbon\Carbon::parse($inve->updated_at)->format('d/m/Y H:i')}}</h3></td>
             <td class="text-center">
                 <button data-toggle="modal" data-target="#edit_inventory"
                     onclick="edit_inventory({{$inve->id_inventory}})" class="badge bg-success text-light">Edit</button>
@@ -187,7 +192,6 @@ Auth::user()->role_id == 90)
 
 
 {{-- Modal Edit --}}
-=
 <div class="modal fade" id="edit_inventory" tabindex="-1" role="dialog" aria-labelledby="edit_inventoryLabel"
     aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-lg" role="document">
@@ -218,8 +222,7 @@ Auth::user()->role_id == 90)
         var token = '{{ csrf_token() }}';
         $.ajax({
             method: 'post',
-            url: '{{url('
-            edit_inventory ')}}',
+            url: '{{url('edit_inventory')}}',
             data: {
                 '_token': '{{csrf_token()}}',
                 'id_inventory': id_inventory
@@ -263,7 +266,6 @@ Auth::user()->role_id == 90)
             <td>4</td>
             <td>4</td>
             <td class="text-center">
-
                 <button class="badge bg-primary text-light">Perpanjang</button>
             </td>
         </tr>

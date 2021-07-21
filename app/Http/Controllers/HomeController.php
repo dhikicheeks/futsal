@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-     
+    // TODO INDEX
     public function home()
     {
         $inventory = DB::table("inventory")->get();
@@ -35,10 +36,11 @@ class HomeController extends Controller
                     ->get();
          return view('home.home',compact('validasi_dp','inventory'));
     }
-     
+
+     // TODO SIMPAN INVENTORY
    public function store_inventory(Request $request)
     {
-
+        $date_now = Carbon::now('Asia/Jakarta');
         $request->validate([
             'barang'=>'required | unique:inventory,nama_barang',
             'jumlah'=>'required | integer',
@@ -47,11 +49,13 @@ class HomeController extends Controller
         DB::table('inventory')->insert([
             'nama_barang' => $request->barang,
             'jumlah' => $request->jumlah,
+            'created_at' => $date_now,
         ]);
         return redirect('/home')->with('status', 'Inventory Ditambahkan!');
        
     }
 
+    //TODO DELETE
      public function destroy_inventory($id_inventory)
 
     {
@@ -59,6 +63,7 @@ class HomeController extends Controller
          return redirect('/home')->with('status-delete', 'Snack Berhasil Di Hapus!');
     }
 
+    //TODO MODAL DETAIL VALIDASI DO
     public function detail_validasi_dp(Request $request)
     {
             $id_pesanan = $request ->id_pesanan;
@@ -72,13 +77,8 @@ class HomeController extends Controller
             return view('home.detail.validasi-dp-detail',compact('pesanan'));
 
     }
-    public function turnamen()
-    {
-           
-            return view('turnamen');
-
-    }
     
+    //TODO EDIT INVENTORY
     public function edit_inventory(Request $request){
 
         $id_inventory = $request->id_inventory;
@@ -91,40 +91,37 @@ class HomeController extends Controller
               ->first(); 
           
            return view('home.edit.inventory-edit',compact("edit", "id_inventory"));
-                                
-                    //   ->with('status', 'Inventory Ditambahkan!');
 
 
     }   
 
+    //TODO UPDATE INVENTORY
     public function update_inventory(Request $request){
-        
         $id_inventory = $request->id_inventory;
-        // dd($id_inventory);
+        $date_now = Carbon::now('Asia/Jakarta');
+       
         $update = DB::table('inventory')
               ->where('id_inventory', '=', $id_inventory)
                     ->UPDATE([
                     'jumlah' =>$request->jumlah,
+                    'updated_at'=>$date_now
                     ]);
-          
            return redirect('/home')->with('status', 'Inventory Berhasil Diubah!');                                
     }
 
-
-
-
+    //TODO UPDATE VERIFIKASI DP
      public function update_verifikasi_dp(Request $request)
     {
        $update_verifikasi_dp = $request->id_pesanan;
-
+        $update_now = Carbon::now('Asia/Jakarta');
        $update_status_verifikasi_dp = DB::table('pesanan')
                                     ->WHERE(
                                         'id_pesanan','=',$update_verifikasi_dp
                                     )
                                     ->UPDATE([
-                                        'flag_status' =>3
+                                        'flag_status' =>3,
+                                        'updated_at' => $update_now
                                     ]);
-
         return redirect('/home');
     }
    

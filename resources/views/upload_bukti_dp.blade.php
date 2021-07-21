@@ -12,9 +12,11 @@
         <thead>
             <tr>
                 <th scope="col" class="text-center">No</th>
-                <th scope="col" class="text-center">Tanggal Pesan</th>
                 <th scope="col" class="text-center">No Pesanan</th>
+                <th scope="col" class="text-center">Tanggal Pesan</th>
                 <th scope="col" class="text-center">Nama Pemesan</th>
+                <th scope="col" class="text-center">Tanggal Kick-Off</th>
+                <th scope="col" class="text-center">Kick-Off</th>
                 <th scope="col" class="text-center">Paket</th>
                 <th scope="col" class="text-center">Harga</th>
                 <th scope="col" class="text-center">Aksi</th>
@@ -24,14 +26,16 @@
             <tr>
                @foreach ($upload_dp as $upload)  
                <th scope="row" class="text-center">{{$loop->iteration}}</th>
-               <td class="text-center">{{$upload->tanggal_pesan}}</td>
                <td class="text-center">{{$upload->id_pesanan}}</td>
+               <td class="text-center">{{ \Carbon\Carbon::parse($upload->created_at)->format('d/m/Y H:i')}}</td>
                <td class="text-uppercase text-center">{{$upload->nama_pemesan}}</td>
+               <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($upload->tanggal_pesan)->format('d/m/Y')}}</td>
+               <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($upload->jam_pesan)->format('H:i')}}</td>
                <td class="text-uppercase text-center">{{$upload->deskripsi}}</td>
                <td class="text-uppercase text-center">{{$upload->harga}}</td>
                <td class="text-center">
                     <!-- Button trigger modal -->
-                    <a href="" class="badge bg-success" style="text-decoration:none"
+                    <a href="" class="badge  rounded-pill  bg-success" style="text-decoration:none"
                     class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload
                     Pembayaran</a>
                 </td>

@@ -147,6 +147,7 @@
 
             <tr>
                 <th scope="col">No</th>
+                <th scope="col">Tanggal Pemesanan</th>
                 <th scope="col">Tanggal Kick-Off</th>
                 <th scope="col">Jam Kick-Off</th>
                 <th scope="col">Nama Tim</th>
@@ -157,12 +158,13 @@
             @foreach($pesanan as $pesan)
             <tr>
                 <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$pesan->tanggal_pesan}}</td>
-                <td>{{$pesan->jam_pesan}}</td>
+                <td>{{ \Carbon\Carbon::parse($pesan->created_at)->format('d/m/Y H:i')}}</td>
+                <td>{{ \Carbon\Carbon::parse($pesan->tanggal_pesan)->format('d/m/Y')}}</td>
+                <td>{{ \Carbon\Carbon::parse($pesan->jam_pesan)->format('H:i')}}</td>
                 <td class="text-uppercase">{{$pesan->nama_tim}}</td>
                <td> <h3 @if ($pesan->flag_status==2)
-                   hidden
-                    @endif class="badge bg-danger text-light sm"
+                   class="badge  rounded-pill  bg-success text-light sm"
+                    @endif class="badge  rounded-pill  bg-danger text-light sm"
                     >{{$pesan->status_deskripsi}}</h3></td>
             </tr>
             @endforeach

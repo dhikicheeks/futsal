@@ -52,14 +52,19 @@
                 <th scope="col" class="text-center">No</th>
                 <th scope="col" class="text-center">Kick Off</th>
                 <th scope="col" class="text-center">Nama Tim</th>
+                <th scope="col" class="text-center">Status Pembayaran</th>
             </tr>
         </thead>
         <tbody>
             @foreach($jadwal as $pesan)
             <tr>
                 <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                <td class="text-center">{{$pesan->jam_pesan}}</td>
+                <td class="text-center">{{ \Carbon\Carbon::parse($pesan->jam_pesan)->format('H:i')}}</td>
                 <td class="text-center" class="text-uppercase">{{$pesan->nama_tim}}</td>
+                <td class="text-center" class="text-uppercase"><h3 @if ($pesan->flag_status==2)
+                   hidden
+                    @endif class="badge rounded-pill bg-danger text-light sm"
+                    >{{$pesan->deskripsi}}</h3></td>
             </tr>
             @endforeach
         </tbody>
