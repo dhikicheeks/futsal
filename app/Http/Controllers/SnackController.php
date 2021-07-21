@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class SnackController extends Controller
@@ -42,15 +43,15 @@ class SnackController extends Controller
     {
         
          $request->validate([
-            'tanggal'=>'required',
+            
             'snack'=>'required | unique:snack,nama_snack',
             'harga'=>'required | integer',
             'stock'=>'required | integer',
             
         ]); 
-
+        $date_now = Carbon::now('Asia/Jakarta');
         DB::table('snack')->insert([
-            'tanggal_masuk'=>$request->tanggal,
+            'tanggal_masuk'=>$date_now,
             'nama_snack'=>$request->snack,
             'harga'=>$request->harga,
             'stock'=>$request->stock,

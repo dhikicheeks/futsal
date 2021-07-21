@@ -5,7 +5,7 @@
 @section('content')
 
 
-<div class="container">
+
     <div class="row">
         <div class="col-3">
             <div class="input-group mb-3">
@@ -24,7 +24,7 @@
         </div>
         
     </div>
-</div>
+
 
 
 <table class="table table-hover" id="search-keuangan-futsal">

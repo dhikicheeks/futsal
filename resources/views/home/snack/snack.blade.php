@@ -35,10 +35,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="tang">Tanggal</label>
-                        <input type="date" class="form-control" placeholder="Pilih tanggal" name="tanggal">
-                    </div>
                     <div class="mb-3">
                         <label for="snack" class="form-label">Nama Snack</label>
                         <input type="text" class="form-control @error ('snack') is-invalid @enderror" id="snack"
@@ -93,7 +89,7 @@
         @foreach($snack as $sn)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$sn->nama_snack}}</td>
+            <td class="text-uppercase">{{$sn->nama_snack}}</td>
             <td>{{$sn->harga}}</td>
             <td>{{$sn->stock}}</td>
 
