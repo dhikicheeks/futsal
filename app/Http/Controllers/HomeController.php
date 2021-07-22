@@ -67,7 +67,6 @@ class HomeController extends Controller
     
     //TODO EDIT INVENTORY
     public function edit_inventory(Request $request){
-
         $id_inventory = $request->id_inventory;
         $edit = DB::table('inventory')
               ->SELECT(

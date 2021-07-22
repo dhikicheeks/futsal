@@ -9,9 +9,11 @@ class LaporanController extends Controller
 {
     public function laporan_keuangan_futsal()
     {
-    //    $total_pendapatan = DB::tabel('pesanan')
-    //                     ->SELECTROW('SUM(harga)')
-    //                     ->GET();
+       $total_pendapatan = DB::table('paket')
+       ->SELECT(DB:: raw('SUM(harga)'))->GET();
+       
+      
+                   
 
        
         $laporan_keuangan_futsal = DB::table("pesanan")
@@ -25,11 +27,7 @@ class LaporanController extends Controller
                     )
                     ->whereIN('pesanan.flag_status',[4,3])
                     ->get();
-         return view('home.laporan.laporan_keuangan_futsal',compact('laporan_keuangan_futsal'));
-
-
-
-
+         return view('home.laporan.laporan_keuangan_futsal',compact('laporan_keuangan_futsal','total_pendapatan'));
               
     }
     
@@ -39,15 +37,13 @@ class LaporanController extends Controller
         return view('home.laporan.laporan_keuangan_snack',compact('laporan_keuangan_snack'));
         
     }
-    public function laporan_keuangan_turnamen()
-    {
-        return view('home.laporan.laporan_keuangan_turnamen');
-    }
+   
     public function laporan_keuangan_member()
     {
         return view('home.laporan.laporan_keuangan_member');
     }
 
+    // TODO DETAIL MODAL
     public function detail_keuangan_futsal(Request $request)
     {
             $pesanan = DB::table("pesanan")

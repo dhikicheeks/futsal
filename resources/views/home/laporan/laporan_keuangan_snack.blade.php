@@ -12,23 +12,25 @@
             <th scope="col">No</th>
             <th scope="col">Nama Snack</th>
             <th scope="col">Harga</th>
-            <th scope="col">Harga</th>
-            <th scope="col">Jumlah</th>
-            <th scope="col" class="text-center">Action</th>
+            <th scope="col">Tanggal Masuk</th>
+            <th scope="col">Jumlah Masuk</th>
+            <th scope="col">Tanggal Keluar</th>
+            <th scope="col">Jumlah Keluar</th>
+            {{-- <th scope="col" class="text-center">Action</th> --}}
         </tr>
     </thead>
     <tbody>
         @foreach($laporan_keuangan_snack as $sn)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$sn->nama_snack}}</td>
+            <td class="text-uppercase">{{$sn->nama_snack}}</td>
             <td>{{$sn->harga}}</td>
             <td>{{$sn->stock}}</td>
             <td>{{$sn->stock}}</td>
 
-            <td class="text-center">
+            {{-- <td class="text-center">
                 <button class="badge bg-primary text-light">Detail</button>
-            </td>
+            </td> --}}
         </tr>
         @endforeach
     </tbody>

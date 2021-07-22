@@ -61,7 +61,7 @@
     <tfoot class="bg-light">
         <tr>
             <td class="font-weight-bold font-italic" colspan="5">PEMBAYARAN DP</td>
-            <td class="font-weight-bold">23172371</td>
+            <td class="font-weight-bold">{{$total_pendapatan}}</td>
         </tr>
         <tr>
             <td class="font-weight-bold font-italic" colspan="5">SELESAI PESANAN</td>

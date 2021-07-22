@@ -44,4 +44,6 @@ class DashboardController extends Controller
                         ->get();
         return view('upload_bukti_dp',compact('upload_dp'));
     }
+
+    
 }

@@ -78,12 +78,12 @@ class PesananController extends Controller
             ->where('pesanan.created_at', $date_now)
             ->get();
         
-        // Untuk Ambil Harga Paket Yg terinput
+        // TODO MENGAMBIL HARGA PAKET YANG DI INPUT
         foreach ($ambil_data as $value) {
             $ambil_data_tambahan = $value->harga;
         }
 
-        // jika tambahan = 1 maka harga paket(ambil_data_tambahan) + 20000
+        // TODO JIKA 1 MAKA HARGA PAKET (AMBIL_DATA_TAMBAHAN) + 20000
         if ($tambahan == 1) {
             $total_harga = $ambil_data_tambahan + '20000';
         }else{
@@ -98,9 +98,11 @@ class PesananController extends Controller
         // dd($ambil_data);
         return view('resi-dp', $data);
     }
-
+    
+    // TODO UPLOAD BUKTI DI RESI
     public function resi_transaksi_upload(Request $request)
     {
+        dd($request);
         $foto_resi = $request->file('foto_resi');
         $id_pesanan = $request->id_pesanan;
         // dd($id_pesanan);
