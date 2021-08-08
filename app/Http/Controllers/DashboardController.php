@@ -10,16 +10,30 @@ class DashboardController extends Controller
      public function index()
     {
         $date_now = Carbon::now('Asia/Jakarta')->format('Y-m-d');
-         $jadwal = DB::table("pesanan")
-        ->leftjoin("status_pesanan", 'pesanan.flag_status', 'status_pesanan.id_status_pesanan')
-          ->SELECT(
-                        'pesanan.*',
-                        'status_pesanan.deskripsi'
-                    )
-         ->WHERE('tanggal_pesan',$date_now)
-         ->ORDERBY ('jam_pesan')
-         ->get();
-        return view('dashboard',compact('jadwal','date_now'));
+
+
+            $jadwal = DB::table("jadwal_pertandingan")
+                        ->LEFTJOIN("non_member","jadwal_pertandingan.id_pertandingan","non_member.jadwal")
+                        ->LEFTJOIN("member","jadwal_pertandingan.id_pertandingan","member.jadwal")
+                        ->LEFTJOIN("paket","jadwal_pertandingan.paket","paket.id_paket")
+                        ->LEFTJOIN("status_pesanan","jadwal_pertandingan.flag_status","status_pesanan.id_status_pesanan")
+                        // ->LEFTJOIN("status_pesanan AS status_member","member.flag_status","status_member.id_status_pesanan")
+                        ->SELECT(
+                                    'non_member.*',
+                                    'member.*',
+                                    'jadwal_pertandingan.jam_pertandingan',
+                                    'jadwal_pertandingan.tanggal_pertandingan',
+                                    'jadwal_pertandingan.flag_status',                       
+                                    'jadwal_pertandingan.nama_tim',                       
+                                    'status_pesanan.deskripsi AS status_deskripsi',                                 
+                                    // 'status_member.deskripsi AS status_pesanan_member',    
+                                        'paket.jenis_paket'                             
+                                )
+                                    ->WHERE('tanggal_pertandingan',$date_now)
+                                    ->ORDERBY ('jam_pertandingan')
+                                    ->get();
+                                   
+        return view('dashboard',compact('date_now','jadwal'));
     }
 
 
@@ -35,13 +49,17 @@ class DashboardController extends Controller
 
     public function upload_bukti_dp()
     {
-        $upload_dp = DB::table("pesanan")
-            ->leftjoin("paket", 'pesanan.paket', 'paket.id_paket')
+        $upload_dp = DB::table("non_member")
+            ->leftjoin("jadwal_pertandingan",'non_member.jadwal', 'jadwal_pertandingan.id_pertandingan')
+            ->leftjoin("paket",'jadwal_pertandingan.paket', 'paket.id_paket')
                     ->SELECT(
-                        'pesanan.*',
-                        'paket.deskripsi','paket.harga')
-                       ->where('pesanan.flag_status',1)
+                        'non_member.*',
+                        'jadwal_pertandingan.*',
+                        'paket.*'
+                        )
+                       ->where('jadwal_pertandingan.flag_status',1)
                         ->get();
+                        // dd($upload_dp);
         return view('upload_bukti_dp',compact('upload_dp'));
     }
 

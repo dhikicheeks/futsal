@@ -11,15 +11,18 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
 
     {{-- DATATABLE --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 
-
+    
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    {{-- LIGHTBOX --}}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 </head>
 
 <body>
@@ -74,7 +77,7 @@
 
 
                     <!-- LOGIN OWNER -->
-                    @if(Auth::user()->role_id == 100
+                    @if(Auth::user()->role_id == 2
                     )
                     <ul class="sidebar-menu">
                         <li class="menu-header">INVENTORY</li>
@@ -95,9 +98,7 @@
                         <li class="menu-header">KEUANGAN</li>
                         <li class="nav-item dropdown
                                 @if(Route::currentRouteName() == 'laporan_keuangan_futsal' ||
-                                    Route::currentRouteName() == 'laporan_keuangan_snack' ||
-                                   
-                                    Route::currentRouteName() == 'laporan_keuangan_member'
+                                    Route::currentRouteName() == 'laporan_keuangan_snack'                                
                                     ) 
                                     active
                                 @endif">
@@ -107,10 +108,7 @@
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_futsal')?'nav-active':'' }}"
                                         href="{{url('laporan_keuangan_futsal')}}">Keuangan Futsal</a></li>
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_snack')?'nav-active':'' }}"
-                                        href="{{url('laporan_keuangan_snack')}}">Keuangan Snack</a></li>
-
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_member')?'nav-active':'' }}"
-                                        href="{{url('laporan_keuangan_member')}}">Keuangan Member</a></li>
+                                        href="{{url('laporan_keuangan_snack')}}">Keuangan Penjualan</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -118,7 +116,7 @@
 
                     <!-- LOGIN ADMIN -->
                     @if(
-                    Auth::user()->role_id == 90)
+                    Auth::user()->role_id == 1)
                     <ul class="sidebar-menu">
                         <li class="menu-header">Antrian Verifikasi</li>
                         <li class="nav-item dropdown
@@ -135,31 +133,32 @@
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_pelunasan')?'nav-active':'' }}"
                                         href="{{url('verifikasi_pelunasan')}}">Verifikasi Pelunasan</a></li>
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'verifikasi_member_baru')?'nav-active':'' }}"
-                                        href="{{url('verifikasi_member_baru')}}">Verifikasi Member Baru</a></li>
+                                        href="{{url('verifikasi_member_baru')}}">Verifikasi Member</a></li>
                             </ul>
                         </li>
-                        <li class="menu-header">SNACK</li>
+                        <li class="menu-header">PENJUALAN</li>
                         <li class="nav-item dropdown
                                 @if(Route::currentRouteName() == 'stock_snack')
                                     active
                                 @endif">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-coffee"></i>
-                                <span>Food and Drink</span></a>
+                                <span>Penjualan</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'stock_snack')?'nav-active':'' }}"
-                                        href="{{url('stock_snack')}}">Stock Food and Drink</a></li>
+                                        href="{{url('stock_snack')}}">Food and Drink</a></li>
                             </ul>
                         </li>
                     </ul>
                     @endif
 
                     <!-- LOGIN MEMBER -->
-                    @if(Auth::user()->role_id == 1)
+                    @if(Auth::user()->role_id == 3)
                     <ul class="sidebar-menu">
                         <li class="menu-header">PAKET ANDA</li>
                         <li class="nav-item dropdown
-                            @if(Route::currentRouteName() == 'home' 
+                            @if(Route::currentRouteName() == 'home'|| 
+                             Route::currentRouteName() == 'upload_bukti_tf_member'
                                 )
                                 active
                             @endif">
@@ -167,7 +166,10 @@
                                     Paket</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'home')?'nav-active':'' }}"
-                                        href="{{url('home')}}">Lihat Sisa Paket</a></li>
+                                        href="{{url('home')}}">Lihat Jadwal</a></li>
+                                        <li><a class="nav-link {{ (Route::currentRouteName() == 'upload_bukti_tf_member')?'nav-active':'' }}"
+                                        href="{{url('upload_bukti_tf_member')}}">Upload Bukti Pembayaran</a></li>
+                                        
 
                             </ul>
                         </li>

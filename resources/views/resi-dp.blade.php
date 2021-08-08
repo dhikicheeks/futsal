@@ -26,6 +26,9 @@
 
 <body>
     <br>
+    <?php 
+    $harga_total = 0 ;
+    ?>
     @foreach ($ambil_data as $data)
     <div class="container mt-5">
         <div class="card h-100">
@@ -37,7 +40,7 @@
                         </p>
                     </div>
                     <div class="col-6">
-                        <h5 class="text-right mt-2">No Pesanan # {{$data->id_pesanan}}</h5>
+                        <h5 class="text-right mt-2">No Pesanan # {{$data->id_pertandingan}}</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -53,32 +56,41 @@
                                         <thead>
                                             <tr>
                                                 <td><strong>Detail Paket</strong></td>
-                                                <td class="text-right"><strong>Harga</strong></td>
+                                                <td class=""><strong>Harga Paket</strong></td>
+                                                <td class=""><strong>Biaya Tambahan</strong></td>
+                                                <td class=""><strong>Total Harga</strong></td>
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             <tr>
-                                                <td>{{$data->deskripsi}}</td>
-                                                <td class="text-right">{{$total_harga}}</td>
+                                                <td>{{$data->paket_deskripsi}}</td>
+                                                <td>{{$data->harga}}</td>
+                                                <td>{{$data->biaya_tambahan}}</td>
+                                                <td class=""><strong>
+                                                        {{$data->harga+$data->biaya_tambahan}}
+                                                    </strong>
+                                                </td>
                                             </tr>
 
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="alert alert-warning">
-                                    <strong>Perhatian !</strong> Kirim ke Rekening An.BBBBB 11231231 <strong>Pembayaran Max 1 Jam Setelah pembayaran</strong>
+                                    <strong>Perhatian !</strong> Kirim ke Rekening An.BBBBB 11231231 dengan Nominal
+                                    Rp.20.000
                                 </div>
                                 <div class="alert alert-danger">
                                     <strong>Perhatian !</strong> Screenshoot resi ini sebagai bukti pembayaran
                                     dan
                                     untuk melakuan validasi admin
+                                    <br>
+                                    <strong>Pembayaran Max 1 Jam Setelah pembayaran</strong>
                                 </div>
                             </div>
                             <hr>
                             <div class="panel-footer float-right">
                                 <button class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#UploadResi">Upload</button>
+                                    data-bs-target="#UploadResi"><i class="fas fa-cloud-upload-alt"></i>Upload</button>
                             </div>
                         </div>
                     </div>
@@ -105,7 +117,7 @@
                     </div>
                     <div class="modal-footer">
                         @foreach ($ambil_data as $item)
-                            <input hidden type="text" name="id_pesanan" value="{{$item->id_pesanan}}">
+                            <input hidden type="text" name="id_non_member" value="{{$item->id_non_member}}">
                         @endforeach
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="input" class="btn btn-primary">Upload</button>

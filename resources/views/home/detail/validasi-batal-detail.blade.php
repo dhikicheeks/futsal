@@ -15,8 +15,8 @@
                 <td class="text-uppercase">{{$pesan->nama_tim}}</td>
                 <td class="">{{ \Carbon\Carbon::parse($pesan->tanggal_pertandingan)->format('d/m/Y')}}</td>
                 <td class="text-center">{{ \Carbon\Carbon::parse($pesan->updated_at)->format('d/m/Y H:i')}}</td>
-                <td class="text-center">{{$pesan->harga_deskripsi}}</td>
-                <td class="text-center">{{$pesan->harga + $pesan->biaya_tambahan}}</td>
+                {{-- <td class="text-center">{{$pesan->deskrip}}</td> --}}
+                {{-- <td class="text-center">{{$pesan->harga}}</td> --}}
                 <td class="text-center"><img src="{{ asset('/bukti_resi/'.$pesan->bukti_tf) }}" alt="" width="60%" class="fancybox" data-fancybox="detailimage"></td>
             </tr>
             @endforeach

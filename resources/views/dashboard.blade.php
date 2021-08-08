@@ -59,12 +59,11 @@
             @foreach($jadwal as $pesan)
             <tr>
                 <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                <td class="text-center">{{ \Carbon\Carbon::parse($pesan->jam_pesan)->format('H:i')}}</td>
+                <td class="text-center">{{ \Carbon\Carbon::parse($pesan->jam_pertandingan)->format('H:i')}}</td>
                 <td class="text-center" class="text-uppercase">{{$pesan->nama_tim}}</td>
-                <td class="text-center" class="text-uppercase"><h3 @if ($pesan->flag_status==2)
-                   hidden
-                    @endif class="badge rounded-pill bg-danger text-light sm"
-                    >{{$pesan->deskripsi}}</h3></td>
+                <td class="text-center" class="text-uppercase"><h3 @if ($pesan->flag_status==1)
+                   class="badge rounded-pill bg-danger text-light sm">{{$pesan->status_deskripsi}}
+                    @endif</h3></td>
             </tr>
             @endforeach
         </tbody>

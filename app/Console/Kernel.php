@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('hapuspesanan:delete')->everyMinute();
+        $schedule->command('AutoDeletePesanan:delete')->everyMinute();
 
     }
 

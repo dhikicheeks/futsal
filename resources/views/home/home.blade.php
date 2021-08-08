@@ -2,9 +2,9 @@
 
 
 
-<!--  ADMIN -->
+{{--========================================= ROLE ADMIN====================================== --}}
 @if(
-Auth::user()->role_id == 90)
+Auth::user()->role_id == 1)
 @section('title','Validasi DP')
 @section('section-header','Verifikasi Dp')
 @section('content')
@@ -19,31 +19,33 @@ Auth::user()->role_id == 90)
             <th scope="col" class="text-center">Kick-Off</th>
             <th scope="col" class="text-center">Nama Pemesan</th>
             <th scope="col" class="text-center">Status</th>
-            <th scope="col" class="text-center">Action</th>
+            <th scope="col" class="text-center">Verifikasi</th>
+            {{-- <th scope="col" class="text-center">Batal</th> --}}
         </tr>
     </thead>
     <tbody>
         @foreach ($validasi_dp as $dp)
         <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td class="text-uppercase text-center">{{$dp->id_pesanan}}</td>
+            <td class="text-uppercase text-center">{{$dp->jadwal}}</td>
             <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($dp->created_at)->format('d/m/Y H:i')}}</td>
-            <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($dp->tanggal_pesan)->format('d/m/Y')}}</td>
-            <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($dp->jam_pesan)->format('H:i')}}</td>
+            <td class="text-uppercase text-center">
+                {{ \Carbon\Carbon::parse($dp->tanggal_pertandingan)->format('d/m/Y')}}</td>
+            <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($dp->jam_pertandingan)->format('H:i')}}</td>
             <td class="text-uppercase text-center">{{$dp->nama_pemesan}}</td>
             <td>
                 <h3 @if ($dp->flag_status ==1)
                     class="badge bg-warning text-light font-weight-bold"
                     @endif
-                    class="badge bg-info text-light font-weight-bold" >{{$dp->deskripsi}}</h3>
+                    class="badge bg-success text-light font-weight-bold" >{{$dp->status_deskripsi}}</h3>
             </td>
             <td>
                 <button @if ($dp->flag_status == 1)
                     hidden
-                    @endif onclick="detail_validasi_dp({{$dp->id_pesanan}})" class="badge bg-success
-                    text-light">Verifikasi</button>
+                    @endif onclick="detail_validasi_dp({{$dp->id_non_member}})" class="badge bg-primary
+                    text-light"><i class="fas fa-info-circle mx-1"></i>VERIFIKASI</button>
+               
 
-            </td>
         </tr>
         @endforeach
     </tbody>
@@ -72,19 +74,18 @@ Auth::user()->role_id == 90)
         </div>
     </div>
 </div>
-
 @endsection
 @endif
 
 <script>
-    function detail_validasi_dp(id_pesanan) {
+    function detail_validasi_dp(id_non_member) {
         var token = '{{ csrf_token() }}';
         $.ajax({
             method: 'post',
-            url: '{{url('detail_validasi_dp')}}',
+            url: '{{url('detail_validasi_dp ')}}',
             data: {
                 '_token': '{{csrf_token()}}',
-                'id_pesanan': id_pesanan
+                'id_non_member': id_non_member
             },
             success: function (resp) {
                 $('#detailDP').modal('show');
@@ -95,8 +96,10 @@ Auth::user()->role_id == 90)
 
 </script>
 
-<!-- LOGIN OWNER -->
-@if(Auth::user()->role_id == 100 )
+
+{{--========================================= ROLE OWNER====================================== --}}
+
+@if(Auth::user()->role_id == 2 )
 @section('title','Inventory')
 @section('section-header','Inventory')
 @section('content')
@@ -114,7 +117,7 @@ Auth::user()->role_id == 90)
 
 
 <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#TambahInventory">
-    Tambah Inventory
+  <i class="fas fa-box-open mx-1"></i>Tambah Inventory
 </button>
 
 
@@ -178,8 +181,14 @@ Auth::user()->role_id == 90)
             <th scope="row">{{$loop->iteration}}</th>
             <td class="text-uppercase">{{$inve->nama_barang}}</td>
             <td class="text-uppercase">{{$inve->jumlah}}</td>
-            <td><h3 class="badge bg-warning text-light font-weight-bold">{{ \Carbon\Carbon::parse($inve->created_at)->format('d/m/Y')}}</h3></td>
-            <td><h3 class="badge bg-info text-light font-weight-bold">{{ \Carbon\Carbon::parse($inve->updated_at)->format('d/m/Y H:i')}}</h3></td>
+            <td>
+                <h3 class="badge bg-warning text-light font-weight-bold">
+                    {{ \Carbon\Carbon::parse($inve->created_at)->format('d/m/Y')}}</h3>
+            </td>
+            <td>
+                <h3 class="badge bg-info text-light font-weight-bold">
+                    {{ \Carbon\Carbon::parse($inve->updated_at)->format('d/m/Y H:i')}}</h3>
+            </td>
             <td class="text-center">
                 <button data-toggle="modal" data-target="#edit_inventory"
                     onclick="edit_inventory({{$inve->id_inventory}})" class="badge bg-success text-light">Edit</button>
@@ -191,7 +200,7 @@ Auth::user()->role_id == 90)
 </table>
 
 
-{{-- Modal Edit --}}
+{{-- Modal Edit iNVENTORY --}}
 <div class="modal fade" id="edit_inventory" tabindex="-1" role="dialog" aria-labelledby="edit_inventoryLabel"
     aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-lg" role="document">
@@ -215,14 +224,12 @@ Auth::user()->role_id == 90)
         </div>
     </div>
 </div>
-
-
 <script>
     function edit_inventory(id_inventory) {
         var token = '{{ csrf_token() }}';
         $.ajax({
             method: 'post',
-            url: '{{url('edit_inventory')}}',
+            url: '{{url('edit_inventory ')}}',
             data: {
                 '_token': '{{csrf_token()}}',
                 'id_inventory': id_inventory
@@ -235,43 +242,263 @@ Auth::user()->role_id == 90)
     }
 
 </script>
-
-
 @endsection
 @endif
 
 
 
-<!-- LOGIN Member -->
-@if(Auth::user()->role_id == 1)
+{{--========================================= ROLE MEMBER====================================== --}}
+
+@if(Auth::user()->role_id == 3)
 @section('title','Paket Anda')
 @section('section-header','Paket Anda')
 
 @section('content')
-
+    @if (session('status'))
+    <div class="alert alert-info">
+        {{ session('status') }}
+    </div>
+    @elseif (session('reschedule'))
+    <div class="alert alert-warning">
+        {{ session('reschedule') }}
+    </div>
+    @endif
+<button type="button" class="btn btn-primary mb-3" onclick="pesanMember()">
+    <i class="fas fa-user-plus mx-1"></i>Masukan Pertandingan
+</button>
+<br>
+<a href="{{url("/resi_member")}}" class="btn btn-success mb-3" 
+@foreach ($member as $item)
+    @if($item->flag_status != 1 && $item->flag_status != 2)
+    hidden
+    @endif
+@endforeach>
+    <i class="fas fa-shopping-cart"></i> Check Out
+</a>
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">No</th>
-            <th scope="col">Paket Anda</th>
-            <th scope="col">Sisa Paket / Exp Paket</th>
+            <th scope="col" class="text-center">No</th>
+            <th scope="col" class="text-center">Tanggal Pertandingan</th>
+            <th scope="col" class="text-center">Jadwal Pertandingan</th>
+            <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">Action</th>
         </tr>
     </thead>
     <tbody>
-
+        @foreach ($member as $raw)
         <tr>
-            <th scope="row">1</th>
-
-            <td>4</td>
-            <td>4</td>
+            <th scope="row" class="text-center">{{$loop->iteration}}</th>
+            <td class="text-center">{{ \Carbon\Carbon::parse($raw->tanggal_pertandingan)->format('d/m/Y')}}</td>
+            <td class="text-center">{{ \Carbon\Carbon::parse($raw->jam_pertandingan)->format('H:i')}}</td>
+            <td class="text-center"><h3 @if ($raw->flag_status == 1)
+                        class="badge bg-success text-light text-center"
+                        @endif class="badge bg-danger text-light sm"
+                        >{{$raw->status_deskripsi}}
+                    </h3></td>
             <td class="text-center">
-                <button class="badge bg-primary text-light">Perpanjang</button>
+                @if ($date_now_1 <= $raw->tanggal_pertandingan)
+                    <button class="badge bg-primary text-light text-center" data-toggle="modal" data-target="#exampleModal{{$raw->jadwal}}">Ganti Jadwal</button>
+                @else
+                    <h3 class="badge bg-info text-light text-center">JADWAL TIDAK DAPAT DIUBAH</h3>
+                @endif
+                
             </td>
         </tr>
-
+        @endforeach
     </tbody>
 </table>
+<div class="modal fade" tabindex="-1" id="modalPesanMember" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pesan Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="isi_pesan_member">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+@foreach ($member as $raw)
+    <div class="modal fade" id="exampleModal{{$raw->jadwal}}" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pesan Lapangan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST" action="/reschedule_pesanan">
+                        @csrf
+                        <div class="form-group">
+                            <label for="tang">Tanggal</label>
+                            <input type="date" class="form-control @error ('tanggal') is-invalid @enderror" id="tanggal"
+                                placeholder="Pilih tanggal" name="tanggal" value="{{$raw->tanggal_pertandingan}}" {{old('tanggal')}}>
+                            @error('tanggal')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="tang">Jam</label>
+                            <select name="jam" class="form-control @error ('jam') is-invalid @enderror" id="jam"
+                                value="{{old('jam')}}">
+                                @error('jam')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                                <option selected disabled value="">{{ $raw->jam_pertandingan }}</option>
+                                <option value="08:00">08:00</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                                <option value="19:00">19:00</option>
+                                <option value="20:00">20:00</option>
+                                <option value="21:00">21:00</option>
+                                <option value="22:00">22:00</option>
+                            </select>
+                        </div>
+                </div>
+                <input type="text" id="id_jadwal" name="id_jadwal" value="{{ $raw->jadwal }}" hidden>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button hidden type="submit" class="btn btn-primary" id="reschedule">Pesan</button>
+                    <button type="button" class="btn btn-primary" onclick="cekReschedule()">Pesan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+<input type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}" hidden>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function cekPesanan() {
+        var tanggal = $("#tanggal").val();
+        var jam = $("#jam").val();
+        var token = '{{ csrf_token() }}';
+
+        $.ajax({
+            method: "POST",
+            url: '{{url('check_pesanan')}}',
+            data: {
+                '_token': token,
+                'jam': jam,
+                'tanggal': tanggal
+            },
+            dataType: "json",
+            success: function (res) {
+                if (res.exists) {
+                    alert("Jam Sudah Di Pesan");
+                } else {
+                    return cekJumlah();
+                }
+            },
+            error: function (jqXHR, exception) {
+
+            }
+        });
+
+    }
+    function cekReschedule() {
+        var tanggal = $("#tanggal").val();
+        var jam = $("#jam").val();
+        var token = '{{ csrf_token() }}';
+
+        $.ajax({
+            method: "POST",
+            url: '{{url('check_pesanan')}}',
+            data: {
+                '_token': token,
+                'jam': jam,
+                'tanggal': tanggal
+            },
+            dataType: "json",
+            success: function (res) {
+                if (res.exists) {
+                    alert("Jam Sudah Di Pesan");
+                } else {
+                    document.getElementById("reschedule").click();
+                }
+            },
+            error: function (jqXHR, exception) {
+
+            }
+        });
+
+    }
+
+    function cekJumlah() {
+        var user_id = $("#user_id").val();
+        var jam = $("#jam").val();
+        var token = '{{ csrf_token() }}';
+        var my_url = "{{url('/cek_jumlah_pesanan')}}";
+        var formData = {
+                    '_token': token, 
+                    'user_id': user_id
+                  };
+
+        $.ajax({
+              method: 'POST',
+              url: my_url,
+              data: formData,
+              dataType: 'json',
+              success: function(data){
+                $.each(data, function(i,n){
+                    if(n["jml_pesanan"] >= 5){
+                        alert('Maaf jumlah pesanan anda sudah melebihi batas!');
+                        location.reload();
+                    }
+                    else {
+                        document.getElementById("submit_pesan").click();
+                  }
+                });
+              },
+                  error: function (resp){
+                        console.log(resp);
+                      }
+
+            });
+
+    }
+    
+    function pesanMember() {
+        var token = '{{ csrf_token() }}';
+        $.ajax({
+            method: 'post',
+            url: '{{url('detail_pesan_member ')}}',
+            data: {'_token': '{{csrf_token()}}'
+            },
+            success: function (resp) {
+                $('#modalPesanMember').modal('show');
+                $('.modal-backdrop').removeAttr('modal-backdrop');
+                $("#isi_pesan_member").html(resp);
+            },
+            error: function (resp) {
+                console.log(resp);
+            }
+        });
+    }
+
+</script>
 
 @endsection
 @endif

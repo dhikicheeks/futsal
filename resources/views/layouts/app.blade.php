@@ -11,7 +11,7 @@
     <title>@yield('title')</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,6 +24,9 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     {{-- DATATABLE --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
+
+    {{-- FONTAWESOME --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -43,7 +46,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="{{url("/pesan")}}">Pesan Lapangan</a></li>
-                        <li><a class="nav-link" href="{{url("/upload_bukti_dp")}}">Upload Bukti Transaksi</a></li>
+                        <li><a class="nav-link" href="{{url("/upload_bukti_dp")}}">Upload Bukti DP</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -95,6 +98,8 @@
         </footer>
     </div>
 
+{{-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
     <!-- General JS Scripts -->
 
@@ -112,19 +117,19 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     {{-- DATATABLE --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#search_upload').DataTable();
         });
+
     </script>
     {{-- Cari Menu Pesana --}}
     <script>
         $(document).ready(function () {
             $('#cari_tanggal_pesan').DataTable();
         });
+
     </script>
 </body>
 

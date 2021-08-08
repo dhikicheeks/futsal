@@ -10,15 +10,14 @@
 
                 @foreach($pesanan as $pesan)
             <tr>
+                <input type="text" hidden value="{{$pesan->id_non_member}}" name="id_non_member">
                 <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$pesan->nama_tim}}</td>
-                <td>{{$pesan->tanggal_pesan}}</td>
-                <td>{{$pesan->jam_pesan}}</td>
+                <td>{{$pesan->tanggal}}</td>
+                <td>{{$pesan->jam}}</td>
                 <td>{{$pesan->paket}}</td>
             </tr>
             @endforeach
             </tbody>
     </table>
-
-
 </div>

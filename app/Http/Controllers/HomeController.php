@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,16 +26,35 @@ class HomeController extends Controller
     //TODO INDEX
     public function home()
     {
+        $user_id = Auth::user()->id;
         $inventory = DB::table("inventory")->get();
-        $validasi_dp = DB::table("pesanan")
-                        ->LEFTJOIN("status_pesanan", 'pesanan.flag_status', 'status_pesanan.id_status_pesanan')
-                        ->SELECT(
-                        'pesanan.*',
-                        'status_pesanan.deskripsi'
-                    )
-                    ->WHEREIN('pesanan.flag_status',[1,2])
-                    ->get();
-         return view('home.home',compact('validasi_dp','inventory'));
+        $date_now_1 = date('Y-m-d', strtotime("+1 day", strtotime(date("Y-m-d"))));
+        $validasi_dp = DB::TABLE('non_member')
+                       ->LEFTJOIN("jadwal_pertandingan","non_member.jadwal","jadwal_pertandingan.id_pertandingan")
+                                ->LEFTJOIN("paket","jadwal_pertandingan.paket","paket.id_paket")
+                                ->LEFTJOIN("status_pesanan","jadwal_pertandingan.flag_status","status_pesanan.id_status_pesanan")
+                                ->SELECT(
+                                    'non_member.*',
+                                    'jadwal_pertandingan.jam_pertandingan',
+                                    'jadwal_pertandingan.flag_status',
+                                    'jadwal_pertandingan.tanggal_pertandingan',                
+                                    'status_pesanan.deskripsi AS status_deskripsi',                                 
+                                )
+                        ->WHEREIN('flag_status',[1,2])
+                        ->GET();
+        $member = DB::table('member')
+                                ->LEFTJOIN("jadwal_pertandingan","member.jadwal","jadwal_pertandingan.id_pertandingan")
+                                ->LEFTJOIN("paket","jadwal_pertandingan.paket","paket.id_paket")
+                                ->LEFTJOIN("status_pesanan","jadwal_pertandingan.flag_status","status_pesanan.id_status_pesanan")
+                                ->SELECT(
+                                    'member.*',
+                                    'jadwal_pertandingan.*',                
+                                    'status_pesanan.deskripsi AS status_deskripsi'                                 
+                                )  
+                                ->WHERE('member.id_user_member', '=', $user_id)
+                                ->GET();
+        // dd($member);
+         return view('home.home',compact('inventory','validasi_dp','member', 'date_now_1'));
     }
 
      //TODO SIMPAN INVENTORY
@@ -93,7 +113,8 @@ class HomeController extends Controller
                     'updated_at'=>$date_now
                     ]);
            return redirect('/home')->with('status', 'Inventory Berhasil Diubah!');                                
-    }   
+    }
+    
 }
 
 

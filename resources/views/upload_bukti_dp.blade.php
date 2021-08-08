@@ -26,18 +26,18 @@
             <tr>
                 @foreach ($upload_dp as $upload)
                 <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                <td class="text-center">{{$upload->id_pesanan}}</td>
+                <td class="text-center">{{$upload->id_non_member}}</td>
                 <td class="text-center">{{ \Carbon\Carbon::parse($upload->created_at)->format('d/m/Y H:i')}}</td>
                 <td class="text-uppercase text-center">{{$upload->nama_pemesan}}</td>
                 <td class="text-uppercase text-center">
-                    {{ \Carbon\Carbon::parse($upload->tanggal_pesan)->format('d/m/Y')}}</td>
-                <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($upload->jam_pesan)->format('H:i')}}
+                    {{ \Carbon\Carbon::parse($upload->tanggal_pertandingan)->format('d/m/Y')}}</td>
+                <td class="text-uppercase text-center">{{ \Carbon\Carbon::parse($upload->jam_pertandingan)->format('H:i')}}
                 </td>
                 <td class="text-uppercase text-center">{{$upload->deskripsi}}</td>
                 <td class="text-uppercase text-center">{{$upload->harga}}</td>
                 <td class="text-center">
                     <!-- Button trigger modal -->
-                    <a onclick="ambil_id_pesanan({{$upload->id_pesanan}})" href=""
+                    <a onclick="ambil_id_pesanan({{$upload->id_non_member}})" href=""
                         class="badge  rounded-pill  bg-success" style="text-decoration:none" class="btn btn-primary"
                         data-bs-toggle="modal" data-bs-target="#UploadResi">Upload
                         Pembayaran</a>
@@ -65,7 +65,7 @@
                     <input type="file" name="foto_resi" id="foto_resi">
                 </div>
                 <div class="modal-footer">
-                    <input hidden type="text" name="id_pesanan" id="id_pesanan">
+                    <input hidden type="text" name="id_non_member" id="id_non_member">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="input" class="btn btn-primary">Upload</button>
                 </div>
@@ -76,8 +76,8 @@
 
 
 <script>
-    ambil_id_pesanan(id_pesanan) {
-        $('#id_pesanan').value(id_pesanan);
+    function ambil_id_pesanan(id_non_member) {
+        $('#id_non_member').val(id_non_member);
     }
 
 </script>

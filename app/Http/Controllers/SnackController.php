@@ -10,101 +10,124 @@ use Carbon\Carbon;
 
 class SnackController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
 
     {
-         $snack = DB::table("snack")->get();
+         $snack = DB::table("snack")
+                    ->WHERE('status_snack',0)
+                    ->get();
         return view('home.snack.snack',['snack'=>$snack]);
       
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store_snack(Request $request)
     {
+       
         
          $request->validate([
             
-            'snack'=>'required | unique:snack,nama_snack',
-            'harga'=>'required | integer',
-            'stock'=>'required | integer',
+            'nama_snack'=>'required | unique:snack,nama_snack',
+            'harga_jual'=>'required | integer',
+            'harga_beli'=>'required | integer',
+            'jumlah_masuk'=>'required | integer',
             
         ]); 
         $date_now = Carbon::now('Asia/Jakarta');
         DB::table('snack')->insert([
-            'tanggal_masuk'=>$date_now,
-            'nama_snack'=>$request->snack,
-            'harga'=>$request->harga,
-            'stock'=>$request->stock,
+            'nama_snack'=>$request->nama_snack,
+            'harga_jual'=>$request->harga_jual,
+            'harga_beli'=>$request->harga_beli,
+            'jumlah_masuk'=>$request->jumlah_masuk,
+            'tanggal_ditambahkan'=>$date_now,
+
+            
 
         ]);
-        return redirect('stock_snack')->with('status', 'Snack Ditambahkan!');
-
         
+        return redirect('stock_snack')->with('status', 'Snack Ditambahkan!');
+        
+        
+       
     }
 
-    /**
-     * Display the specified resource.
-     *
-     
-     * @return \Illuminate\Http\Response
-     */
-    public function show($snack)
+    // TODO TAMBAH QUANTITY SNACK
+    public function tambah_quantity_snack(Request $request)
     {
-        //
+        $id_snack = $request->id_snack;
+        $data_snack = DB::table('snack')
+            ->select('*')
+            ->where('id_snack', $id_snack)
+            ->get();
+        
+            return view('home.snack.tambah_snack', compact('data_snack'));
     }
+    // TODO KURANG QUANTITY SNACK
+    public function kurang_quantity_snack(Request $request)
+    {
+        $id_snack = $request->id_snack;
+        
+        $data_snack = DB::table('snack')
+            ->select('*')
+            ->where('id_snack', $id_snack)
+            ->get();
+        
+            return view('home.snack.kurang_snack', compact('data_snack'));
+    }
+    public function save_tambah_quantity_snack(Request $request)
+    {
+        
+        $id_snack = $request->id_snack;
+        $jumlah_masuk = $request->jumlah_masuk;
+        $data_snack = DB::table('snack')
+            ->select('*')
+            ->where('id_snack', $id_snack)
+            ->get();
+        foreach ($data_snack as $key) {
+            $qty_jml = $key->jumlah_masuk;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
+        }
+        // TODO DATA LAMA
+        $qty_snack = $qty_jml+$jumlah_masuk;
+        $current = Carbon::now('Asia/Jakarta');
+        DB::table('snack')->WHERE('id_snack', $id_snack)
+            ->update(['jumlah_masuk' => $qty_snack,
+                       'tanggal_update'=>$current
+        ]);
+        return redirect()->back();
+    }
+    public function save_kurang_quantity_snack(Request $request)
+    {
+        
+        $id_snack = $request->id_snack;
+        $jumlah_keluar = $request->jumlah_keluar;
+        $data_snack = DB::table('snack')
+            ->select('*')
+            ->where('id_snack', $id_snack)
+            ->get();
+        foreach ($data_snack as $key) {
+            $qty_jml = $key->jumlah_masuk;
+            $qty_kl = $key->jumlah_keluar;
+
+        }
+        // TODO DATA LAMA
+        $qty_snack = $qty_jml-$jumlah_keluar;
+        $qty_out = $qty_kl+$jumlah_keluar;
+        $current = Carbon::now('Asia/Jakarta');
+        DB::table('snack')->WHERE('id_snack', $id_snack)
+            ->update(['jumlah_masuk' => $qty_snack,
+                       'tanggal_keluar'=>$current,
+                       'jumlah_keluar' => $qty_out
+        ]);
+        return redirect()->back();
+    }
     
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id_snack)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request,  $id_snack)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Snack  $snack
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy_snack($id_snack)
     {
-        DB::table('snack')->where('id_snack',$id_snack)->delete();
+        $date_now = Carbon::now('Asia/Jakarta');
+        DB::table('snack')->where('id_snack',$id_snack)
+            ->update(['status_snack' => 1, 'tanggal_dihapus'=>$date_now]);
          return redirect('stock_snack')->with('status-delete', 'Snack Berhasil Di Hapus!');
 
     }

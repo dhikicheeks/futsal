@@ -19,7 +19,7 @@
     <h1 class="text-center">Pesan Lapangan</h1>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
-        Pesan Sekarang
+        <i class="far fa-calendar-plus mx-1"></i>Pesan Sekarang
     </button>
 
     <!-- Modal -->
@@ -58,8 +58,8 @@
                         </div>
                         <div class="form-group">
                             <label for="tang">Tanggal</label>
-                            <input type="date" class="form-control @error ('tanggal') is-invalid @enderror"
-                                placeholder="Pilih tanggal" name="tanggal" value="value=" {{old('tanggal')}}>
+                            <input type="date" class="form-control @error ('tanggal') is-invalid @enderror" id="tanggal"
+                                placeholder="Pilih tanggal" name="tanggal" value="" {{old('tanggal')}}>
                             @error('tanggal')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tang">Jam</label>
-                            <select name="jam" class="form-control @error ('jam') is-invalid @enderror"
+                            <select name="jam" class="form-control @error ('jam') is-invalid @enderror" id="jam"
                                 value="{{old('jam')}}">
                                 @error('jam')
                                 <div class="invalid-feedback">
@@ -94,42 +94,30 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="paket">Paket 1 Jam</label>
-                            @foreach ($paket_jam1 as $jam1)
+                            <label for="paket">Paket</label>
+                            @foreach ($paket as $paketnon)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paket" id="paket1"
-                                    value="{{$jam1->id_paket}}">
+                                <input class="form-check-input" type="radio" name="paket" id="paket"
+                                    value="{{$paketnon->id_paket}}">
                                 <label class="form-check-label" for="paket1">
-                                    {{$jam1->deskripsi}}
-                                    <p>Harga : {{$jam1->harga}}</p>
+                                    {{$paketnon->deskripsi}}
+                                    <p>Harga : {{$paketnon->harga}}</p>
                                 </label>
                             </div>
                             @endforeach
-                            <div class="form-group">
-                                <label for="paket">Paket 2 Jam</label>
-                                @foreach ($paket_jam2 as $jam2)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="paket" id="paket1"
-                                        value="{{$jam2->id_paket}}">
-                                    <label class="form-check-label" for="paket1">
-                                        {{$jam2->deskripsi}}
-                                        <p>Harga : {{$jam2->harga}}</p>
-                                    </label>
-                                </div>
-                                @endforeach
-                            </div>
                         </div>
                 </div>
                 <div class="container">
                     <div class="alert alert-warning">
                         <strong>Perhatian !</strong> Diatas Jam <strong> 17.00 </strong> biaya tambahan
-                        <strong>Rp20.000</strong> untuk
+                        <strong>Rp10.000</strong> untuk
                         lampu
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Pesan</button>
+                    <button hidden type="submit" class="btn btn-primary" id="submit_pesan">Pesan</button>
+                    <button type="button" class="btn btn-primary" onclick="cekPesanan()">Pesan</button>
                 </div>
                 </form>
             </div>
@@ -155,25 +143,56 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($pesanan as $pesan)
+             @foreach($pesanan_non_member as $non_member)
             <tr>
                 <th scope="row">{{$loop->iteration}}</th>
-                <td>{{ \Carbon\Carbon::parse($pesan->created_at)->format('d/m/Y H:i')}}</td>
-                <td>{{ \Carbon\Carbon::parse($pesan->tanggal_pesan)->format('d/m/Y')}}</td>
-                <td>{{ \Carbon\Carbon::parse($pesan->jam_pesan)->format('H:i')}}</td>
-                <td class="text-uppercase">{{$pesan->nama_tim}}</td>
-               <td> <h3 @if ($pesan->flag_status==2)
-                   class="badge  rounded-pill  bg-success text-light sm"
-                    @endif class="badge  rounded-pill  bg-danger text-light sm"
-                    >{{$pesan->status_deskripsi}}</h3></td>
+                <td>{{ \Carbon\Carbon::parse($non_member->created_at)->format('d/m/Y H:i')}}</td>
+                <td>{{ \Carbon\Carbon::parse($non_member->tanggal_pertandingan)->format('d/m/Y')}}</td> 
+                <td>{{ \Carbon\Carbon::parse($non_member->jam_pertandingan)->format('H:i')}}</td>
+               <td class="text-uppercase">{{$non_member->nama_tim}}</td>
+                <td>
+                    <h3 @if ($non_member->flag_status==2)
+                        class="badge rounded-pill bg-success text-light sm"
+                        @endif class="badge rounded-pill bg-danger text-light sm"
+                        >{{$non_member->status_deskripsi}}</h3>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function cekPesanan() {
+        var tanggal = $("#tanggal").val();
+        var jam = $("#jam").val();
+        var token = '{{ csrf_token() }}';
 
+        $.ajax({
+            method: "POST",
+            url: '{{url('check_pesanan')}}',
+            data: {
+                '_token': token,
+                'jam': jam,
+                'tanggal': tanggal
+            },
+            dataType: "json",
+            success: function (res) {
+                if (res.exists) {
+                    alert("Jam Sudah Di Pesan");
+                } else {
+                    document.getElementById("submit_pesan").click();
+                }
+            },
+            error: function (jqXHR, exception) {
 
+            }
+        });
+
+    }
+
+</script>
 
 
 @endsection
