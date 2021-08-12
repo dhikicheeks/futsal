@@ -173,7 +173,7 @@ class LaporanController extends Controller
             $jml_batal_transaksi = $key->batal_transaksi;
             $jml_selesai_transaksi = $key->selesai_transaksi;
         }
-                        // dd($status_pesanan);
+                        // dd($pesanan);
          return view('home.detail.laporan-keuangan-futsal-detail',compact('pesanan', 'jml_batal_transaksi', 'jml_selesai_transaksi'));
 
     }

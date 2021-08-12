@@ -78,6 +78,9 @@
                                         </select>
                                     </div>
                                     <hr>
+                                     <div class="alert alert-info">
+                                    <strong>Perhatian !</strong> Jika memilih metode TF Kirim ke Rekening xxxxxx AN xxx
+                                </div>
                                     <div class="panel-footer float-right">
                                         <button class="btn btn-success btn-sm" onclick="selesaiPembayaran()">Submit</button>
                                     </div>

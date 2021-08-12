@@ -263,6 +263,8 @@ Auth::user()->role_id == 1)
         {{ session('reschedule') }}
     </div>
     @endif
+     {{-- <div class="alert alert-info">
+     <strong>Perhatian !</strong> Masukkan Jadwal Pertandingan Sesuka kamu</div> --}}
 <button type="button" class="btn btn-primary mb-3" onclick="pesanMember()">
     <i class="fas fa-user-plus mx-1"></i>Masukan Pertandingan
 </button>
@@ -464,7 +466,7 @@ Auth::user()->role_id == 1)
               success: function(data){
                 $.each(data, function(i,n){
                     if(n["jml_pesanan"] >= 5){
-                        alert('Maaf jumlah pesanan anda sudah melebihi batas!');
+                        alert('Maaf jumlah pesanan anda sudah melebihi batas!,Silahkan Checkout');
                         location.reload();
                     }
                     else {

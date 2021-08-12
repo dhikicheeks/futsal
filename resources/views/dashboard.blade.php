@@ -15,15 +15,15 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('assets/img/slider/slider-1.jpg')}}" class="d-block w-100" style="max-height: 550px"
+                <img src="{{asset('assets/img/slider/slider-1.jpg')}}" class="d-block w-100" style="max-height: 650px"
                     alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('assets/img/slider/slider-2.jpg')}}" class="d-block w-100" style="max-height: 550px"
+                <img src="{{asset('assets/img/slider/slider-2.jpg')}}" class="d-block w-100" style="max-height: 650px"
                     alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('assets/img/slider/slider-3.jpg')}}" class="d-block w-100" style="max-height: 550px"
+                <img src="{{asset('assets/img/slider/slider-3.jpg')}}" class="d-block w-100" style="max-height: 650px"
                     alt="...">
             </div>
         </div>

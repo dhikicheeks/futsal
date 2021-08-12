@@ -38,10 +38,9 @@ class AutoDeletePesanan extends Command
      */
     public function handle()
     {
-       $hour_now = Carbon::now('Asia/Jakarta')->format('H');
+       
         DB::table('jadwal_pertandingan')
                 ->WHERE('flag_status', 1)
-                ->WHERE('created_at','>=',$hour_now)
                 ->delete();
     }
 }
