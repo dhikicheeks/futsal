@@ -263,8 +263,9 @@ Auth::user()->role_id == 1)
         {{ session('reschedule') }}
     </div>
     @endif
-     {{-- <div class="alert alert-info">
-     <strong>Perhatian !</strong> Masukkan Jadwal Pertandingan Sesuka kamu</div> --}}
+    <div class="alert alert-danger text-uppercase">
+           <strong>Perhatian ! Reschedule H-1 booking</strong>
+</div>
 <button type="button" class="btn btn-primary mb-3" onclick="pesanMember()">
     <i class="fas fa-user-plus mx-1"></i>Masukan Pertandingan
 </button>
@@ -273,10 +274,13 @@ Auth::user()->role_id == 1)
 @foreach ($member as $item)
     @if($item->flag_status != 1 && $item->flag_status != 2)
     hidden
+    @elseif ($cek_jumlah_pesanan->jml_pesanan < 5)
+    hidden
     @endif
 @endforeach>
     <i class="fas fa-shopping-cart"></i> Check Out
 </a>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -294,8 +298,8 @@ Auth::user()->role_id == 1)
             <td class="text-center">{{ \Carbon\Carbon::parse($raw->tanggal_pertandingan)->format('d/m/Y')}}</td>
             <td class="text-center">{{ \Carbon\Carbon::parse($raw->jam_pertandingan)->format('H:i')}}</td>
             <td class="text-center"><h3 @if ($raw->flag_status == 1)
-                        class="badge bg-success text-light text-center"
-                        @endif class="badge bg-danger text-light sm"
+                        class="badge bg-warning text-light text-center"
+                        @endif class="badge bg-success text-light sm"
                         >{{$raw->status_deskripsi}}
                     </h3></td>
             <td class="text-center">

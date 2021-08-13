@@ -9,9 +9,9 @@
                 <th scope="col">Jumlah Masuk</th>
                 <th scope="col">Tanggal Keluar</th>
                 <th scope="col">Jumlah Keluar</th>
+                <th scope="col">Terakhir Diupdate</th>
                 <th scope="col">Tanggal Hapus</th>
                 <th scope="col">Pendapatan</th>
-            
             </tr>
         </thead>
         <tbody>
@@ -26,10 +26,10 @@
                 <td>{{$sn->harga_beli}}</td>
                 <td>{{$sn->harga_jual}}</td>
                 <td>{{$sn->jumlah_masuk}}</td>
-                <td>{{$sn->tanggal_keluar}}</td>
+                <td>{{ \Carbon\Carbon::parse($sn->tanggal_keluar)->format('d-M-y')}}</td>
                 <td>{{$sn->jumlah_keluar}}</td>
-                <td>{{$sn->tanggal_dihapus}}</td>
-               
+                <td>{{ \Carbon\Carbon::parse($sn->tanggal_update)->format('d-M-y H:i')}}</td>
+                <td>{{ \Carbon\Carbon::parse($sn->tanggal_dihapus)->format('d-M-y')}}</td>
                 <td>{{$sn->jumlah_keluar*$sn->harga_jual}}</td>
                 <?php 
                     $omset += $sn->jumlah_keluar*$sn->harga_jual;

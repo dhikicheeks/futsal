@@ -76,15 +76,15 @@
                     
                 ?>
                 <th scope="row">{{$loop->iteration}}</th>
-                <td>
+                <td class="text-uppercase">
                     @if ($row->paket == 0)
                         {{ $row->nama_member }}
                     @else
                         {{ $row->nama_non_member }}
                     @endif
                 </td>
-                <td>{{$row->tanggal}}</td>
-                <td>{{$row->jam}}</td>
+                <td>{{ \Carbon\Carbon::parse($row->tanggal)->format('d-M-y')}}</td>
+                <td>{{ \Carbon\Carbon::parse($row->jam)->format('H:i')}}</td>
                 <td>{{ \Carbon\Carbon::parse($row->updated_at)->format('d/m/Y H:i')}}</td>
                 <td>
                     <h3 @if ($row->flag_status==4)

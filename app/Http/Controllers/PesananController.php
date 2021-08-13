@@ -249,7 +249,7 @@ class PesananController extends Controller
                             'flag_status'=> 3
             ]);
         }
-        return redirect('home');
+        return redirect('/home');
     }
 
     // TODO UPDATE GANTI JADWAL MEMBER

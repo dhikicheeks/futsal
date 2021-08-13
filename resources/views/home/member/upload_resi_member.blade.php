@@ -38,7 +38,12 @@ class="btn btn-primary btn btn-success mb-3"  data-toggle="modal" data-target="#
             <td class="text-center">{{ \Carbon\Carbon::parse($member_upload->tanggal_pertandingan)->format('d-M-y')}}</td>
             <td class="text-center">{{ \Carbon\Carbon::parse($member_upload->jam_pertandingan)->format('H:i')}}</td>
             <td class="text-center">{{$member_upload->nama_tim}}</td>
-            <td class="text-center"><h3 class="badge bg-success text-light text-center">{{$member_upload->status_deskripsi}}</h3></td>
+            <td class="text-center">
+                    <h3 @if ($member_upload->flag_status==4)
+                        class="badge bg-success text-light text-center"
+                        @endif class="badge bg-danger text-light sm"
+                        >{{$member_upload->status_deskripsi}}</h3>
+                </td>
         </tr>
            @endforeach
     </tbody>

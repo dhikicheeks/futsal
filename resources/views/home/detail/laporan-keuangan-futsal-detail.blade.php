@@ -14,8 +14,8 @@
             <tr>
                 <input type="text" hidden value="{{$pesan->id_non_member}}" name="id_non_member">
                 <td>{{$pesan->nama_tim}}</td>
-                <td>{{$pesan->tanggal}}</td>
-                <td>{{$pesan->jam}}</td>
+                 <td>{{ \Carbon\Carbon::parse($pesan->tanggal)->format('d-M-y')}}</td>
+                <td>{{ \Carbon\Carbon::parse($pesan->jam)->format('H:i')}}</td>
                 <td>{{$pesan->nama_paket}}</td>
                 <td>{{$pesan->harga}}</td>
                 <td>{{$pesan->biaya_tambahan}}</td>  

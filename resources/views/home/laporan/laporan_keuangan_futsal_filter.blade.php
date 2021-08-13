@@ -45,8 +45,8 @@
                         {{ $row->nama_non_member }}
                     @endif
                 </td>
-                <td>{{$row->tanggal}}</td>
-                <td>{{$row->jam}}</td>
+                <td>{{ \Carbon\Carbon::parse($row->tanggal)->format('d-M-y')}}</td>
+                <td>{{ \Carbon\Carbon::parse($row->jam)->format('H:i')}}</td>
                 <td>{{ \Carbon\Carbon::parse($row->updated_at)->format('d/m/Y H:i')}}</td>
                 <td>
                     <h3 @if ($row->flag_status==4)
@@ -77,15 +77,15 @@
         
         <tfoot class="bg-light">
             <tr>
-                <td class="font-weight-bold font-italic" colspan="7">BATAL TRANSAKSI</td>
+                <td class="font-weight-bold font-italic" colspan="8">BATAL TRANSAKSI</td>
                 <td>{{ $batal_transaksi }}</td>
             </tr>
             <tr>
-                <td class="font-weight-bold font-italic" colspan="7">SELESAI PESANAN</td>
+                <td class="font-weight-bold font-italic" colspan="8">SELESAI PESANAN</td>
                 <td>{{ $selesai_transaksi }}</td>
             </tr>
             <tr>
-                <td class="font-weight-bold font-italic" colspan="7">TOTAL</td>
+                <td class="font-weight-bold font-italic" colspan="8">TOTAL</td>
                 <td>{{ $total_pesanan }}</td>
             </tr>
         </tfoot>

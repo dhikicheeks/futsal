@@ -49,12 +49,19 @@ class HomeController extends Controller
                                 ->SELECT(
                                     'member.*',
                                     'jadwal_pertandingan.*',                
-                                    'status_pesanan.deskripsi AS status_deskripsi'                                 
+                                    'status_pesanan.deskripsi AS status_deskripsi'                               
                                 )  
                                 ->WHERE('member.id_user_member', '=', $user_id)
                                 ->GET();
+        $cek_jumlah_pesanan = DB::table('member')
+                                    ->select(
+                                        
+                                    DB::raw('count(id_user_member) as jml_pesanan')  
+                                    )
+                                    ->where('id_user_member', $user_id)
+                                    ->first();
         // dd($member);
-         return view('home.home',compact('inventory','validasi_dp','member', 'date_now_1'));
+         return view('home.home',compact('inventory','validasi_dp','member', 'date_now_1', 'cek_jumlah_pesanan'));
     }
 
      //TODO SIMPAN INVENTORY
