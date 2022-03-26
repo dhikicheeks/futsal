@@ -30,8 +30,9 @@
             <button onclick="filterSnack()" class="badge bg-primary text-light"><i class="fas fa-filter mx-1"></i>Filter</button>
         </div>
     </div>
-
+    
 </div>
+<button onclick="window.print()" class="btn btn-primary mb-3"><i class="fas fa-print mx-1"></i>Cetak Laporan</button>
 <div id="refresh">
     <table class="table table-hover" id="search-keuangan-snack">
         <thead>
@@ -56,7 +57,7 @@
                 ?>
             @foreach($laporan_keuangan_snack as $sn)
             <tr>
-                <th scope="row">{{$loop->iteration}}</th>
+                <td scope="row">{{$loop->iteration}}</td>
                 <td>{{$sn->nama_snack}}</td>
                 <td>{{ \Carbon\Carbon::parse($sn->tanggal_ditambahkan)->format('d-M-y')}}</td>
                 <td>{{$sn->harga_beli}}</td>
@@ -65,7 +66,7 @@
                 <td>{{ \Carbon\Carbon::parse($sn->tanggal_keluar)->format('d-M-y')}}</td>
                 <td>{{$sn->jumlah_keluar}}</td>
                 <td>{{ \Carbon\Carbon::parse($sn->tanggal_update)->format('d-M-y H:i')}}</td>
-                <td>{{ \Carbon\Carbon::parse($sn->tanggal_dihapus)->format('d-M-y')}}</td>
+                <td>{{$sn->tanggal_dihapus ? \Carbon\Carbon::parse($sn->tanggal_dihapus)->format('d-M-y'):null}}</td>
                 <td>{{$sn->jumlah_keluar*$sn->harga_jual}}</td>
                 <?php 
                     $omset += $sn->jumlah_keluar*$sn->harga_jual;

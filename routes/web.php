@@ -25,6 +25,10 @@ Route::post('check_pesanan', [App\Http\Controllers\PesananController::class, 'ch
 Auth::routes();
 Route::get('/pesan', [App\Http\Controllers\PesananController::class, 'index']);
 Route::get('/resi_dp', [App\Http\Controllers\DashboardController::class, 'resi_dp'])->name('resi_dp');
+// TODO RESI AKHIR NON MEMBER
+Route::get('/resi_total', [App\Http\Controllers\PesananController::class, 'resi_total']);
+
+
 Route::get('/upload_bukti_dp', [App\Http\Controllers\DashboardController::class, 'upload_bukti_dp'])->name('upload_bukti_dp');
 
 //TODO MENYIMPAN PESANAN & RESI 
@@ -94,6 +98,8 @@ Route::post('filtertanggalmaen', [App\Http\Controllers\LaporanController::class,
 Route::post('filter_snack', [App\Http\Controllers\LaporanController::class, 'filter_snack']);
 Route::post('cek_jumlah_pesanan', [App\Http\Controllers\PesananController::class, 'cek_jumlah_pesanan']);
 
+// TODO RESI AKHIR NON MEMBER
+Route::post('/resi_total', [App\Http\Controllers\PesananController::class, 'resi_total']);
 
 
 });

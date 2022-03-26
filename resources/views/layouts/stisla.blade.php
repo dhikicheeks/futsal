@@ -107,8 +107,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_futsal')?'nav-active':'' }}"
                                         href="{{url('laporan_keuangan_futsal')}}">Keuangan Futsal</a></li>
-                                <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_snack')?'nav-active':'' }}"
-                                        href="{{url('laporan_keuangan_snack')}}">Keuangan Penjualan</a></li>
+                                {{-- <li><a class="nav-link {{ (Route::currentRouteName() == 'laporan_keuangan_snack')?'nav-active':'' }}"
+                                        href="{{url('laporan_keuangan_snack')}}">Keuangan Penjualan</a></li> --}}
                             </ul>
                         </li>
                     </ul>

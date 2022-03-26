@@ -40,6 +40,7 @@ class SnackController extends Controller
             'harga_beli'=>$request->harga_beli,
             'jumlah_masuk'=>$request->jumlah_masuk,
             'tanggal_ditambahkan'=>$date_now,
+            'tanggal_update'=>$date_now,
         ]);
         
         return redirect('stock_snack')->with('status', 'Snack Ditambahkan!');
@@ -114,7 +115,8 @@ class SnackController extends Controller
         DB::table('snack')->WHERE('id_snack', $id_snack)
             ->update(['jumlah_masuk' => $qty_snack,
                        'tanggal_keluar'=>$current,
-                       'jumlah_keluar' => $qty_out
+                       'jumlah_keluar' => $qty_out,
+                       'tanggal_update'=>$current
         ]);
         return redirect()->back();
     }

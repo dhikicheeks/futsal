@@ -1,4 +1,4 @@
-  <table class="table table-hover" id="search-keuangan-snack">
+  <table class="table table-hover table-responsive" id="search-keuangan-snack">
         <thead>
             <tr>
                 <th scope="col">No</th>
@@ -40,7 +40,7 @@
         </tbody>
         <tfoot class="bg-light">
             <tr>
-                <td class="font-weight-bold font-italic" colspan="9">OMSET</td>
+                <td class="font-weight-bold font-italic" colspan="10">OMSET</td>
                 <td class="font-weight-bold">{{ $omset }}</td>
             </tr>
           

@@ -119,6 +119,7 @@ Auth::user()->role_id == 1)
 <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#TambahInventory">
   <i class="fas fa-box-open mx-1"></i>Tambah Inventory
 </button>
+            <button onclick="window.print()" class="btn btn-info mb-2"><i class="fas fa-print mx-1"></i>Cetak Laporan</button>
 
 
 <!-- Tambah Inventory Modal -->
@@ -164,6 +165,7 @@ Auth::user()->role_id == 1)
         </div>
     </div>
 </div>
+
 <table class="table table-hover" id="search-inventory">
     <thead>
         <tr>
@@ -265,20 +267,26 @@ Auth::user()->role_id == 1)
     @endif
     <div class="alert alert-danger text-uppercase">
            <strong>Perhatian ! Reschedule H-1 booking</strong>
-</div>
+    </div>
+    <div class="alert alert-info ">
+           <strong class="text-uppercase">Harga Member Rp.350.000</strong>
+           <p >5 Kali pertandingan bonus air mineral & rompi ganti jadwal sepuasnya</p>
+    </div>
 <button type="button" class="btn btn-primary mb-3" onclick="pesanMember()">
-    <i class="fas fa-user-plus mx-1"></i>Masukan Pertandingan
+    <i class="fas fa-user-plus mx-1"></i>Masukan Pemesanan
 </button>
 <br>
 <a href="{{url("/resi_member")}}" class="btn btn-success mb-3" 
 @foreach ($member as $item)
-    @if($item->flag_status != 1 && $item->flag_status != 2)
+    @if($item->flag_status > 2)
     hidden
-    @elseif ($cek_jumlah_pesanan->jml_pesanan < 5)
+    @elseif ($cek_jumlah_pesanan->jml_pesanan >= 5)
+    
+    @else
     hidden
     @endif
 @endforeach>
-    <i class="fas fa-shopping-cart"></i> Check Out
+    <i class="fas fa-shopping-cart"></i> Lanjut Pembayaran
 </a>
 
 <table class="table table-hover">

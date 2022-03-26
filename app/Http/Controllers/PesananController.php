@@ -246,7 +246,7 @@ class PesananController extends Controller
                             ->where('id_pertandingan', $jadwal)
                             ->update([
                             'metode_pembayaran' => $metode_pembayaran,
-                            'flag_status'=> 3
+                            'flag_status'=> 6
             ]);
         }
         return redirect('/home');
@@ -310,7 +310,7 @@ class PesananController extends Controller
             'updated_at'=>$update_now
         ];
         $data2=[
-            'flag_status' => 6,
+            'flag_status' => 7,
         ];
         DB::table('member')
             ->where('id_user_member', $id_member)
@@ -322,5 +322,10 @@ class PesananController extends Controller
             ->update($data2);
         }
         return redirect()->back();
+    }
+
+
+    public function resi_total(){
+        return view('resi_total');
     }
 }

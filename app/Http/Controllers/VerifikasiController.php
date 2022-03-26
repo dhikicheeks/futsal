@@ -146,7 +146,7 @@ class VerifikasiController extends Controller
      //TODO VERIFIKASI PELUNASAN MODAL
     public function detail_validasi_pelunasan(Request $request)
     {
-            $pesanan = $id_non_member = $request ->id_non_member;
+            $id_non_member = $request ->id_non_member;
             $pesanan = DB::TABLE('non_member')
                        ->LEFTJOIN("jadwal_pertandingan","non_member.jadwal","jadwal_pertandingan.id_pertandingan")
                                 ->LEFTJOIN("paket","jadwal_pertandingan.paket","paket.id_paket")
@@ -164,11 +164,12 @@ class VerifikasiController extends Controller
                             
                         ->GET();
                         // dd($pesanan);
-            return view('home.detail.validasi-pelunasan-detail',compact('pesanan'));
+            return view('home.detail.validasi-pelunasan-detail',compact('pesanan', 'id_non_member'));
     }
     
     //TODO UPDATE STATUS PELUNASAN
      public function update_verifikasi_pelunasan(Request $request) {
+        
          $harga_rompi = $request->rompi;
          $update_verifikasi_pelunasan= $request->id_non_member;
          $update_now = Carbon::now('Asia/Jakarta');
@@ -196,7 +197,24 @@ class VerifikasiController extends Controller
                                     ->UPDATE([
                                           'flag_status' =>4,
                                     ]);          
-         return redirect()->back()->with('status', 'Pesanan Di Laporkan');
+        $resi = DB::table('jadwal_pertandingan as a')
+                        ->LEFTJOIN('non_member as b', 'a.id_pertandingan', 'b.jadwal')
+                        ->LEFTJOIN('paket as c', 'a.paket', 'c.id_paket')
+                        ->select(
+                            'a.tanggal_pertandingan',
+                            'a.jam_pertandingan',
+                            'a.nama_tim',
+                            'b.nama_pemesan',
+                            'b.tambahan_rompi',
+                            'b.biaya_tambahan',
+                            'c.deskripsi as nama_paket',
+                            'c.harga'
+                        )
+                        ->where('b.id_non_member', $update_verifikasi_pelunasan)
+                        ->get();
+            // dd($resi);
+        //  return redirect()->back()->with('status', 'Pesanan Di Laporkan');
+        return view('resi_total', compact('resi'))->with('status', 'Pesanan Di Laporkan');
     }
 
 
@@ -222,7 +240,7 @@ class VerifikasiController extends Controller
                                     'jenis_pembayaran.diskripsi AS metode_pembayaran'
                                 )
                                 ->where('jadwal_pertandingan.metode_pembayaran', '!=', 1)  
-                                ->WHERE('jadwal_pertandingan.flag_status', 6)
+                                ->WHERE('jadwal_pertandingan.flag_status', 7)
                                 ->orWhere('jadwal_pertandingan.metode_pembayaran', '!=', 1) 
                                 ->WHERE('jadwal_pertandingan.flag_status', 3)
                                 ->groupBy('member.id_user_member')

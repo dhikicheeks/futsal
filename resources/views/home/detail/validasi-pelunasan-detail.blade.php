@@ -9,7 +9,7 @@
                 <th scope="col" class=" text-center">Total</th>
                 @foreach($pesanan as $pesan)
             <tr>
-                <input type="text" hidden value="{{$pesan->id_non_member}}" name="id_non_member">
+                <input type="text" hidden value="{{$pesan->id_non_member}}" id="id_non_member" name="id_non_member">
                 <td class="text-uppercase">{{$pesan->nama_tim}}</td>
                 <td class="">{{ \Carbon\Carbon::parse($pesan->updated_at)->format('d/m/Y H:i')}}</td>
                 <td class="text-center">{{$pesan->deskripsi}}</td>

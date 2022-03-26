@@ -16,7 +16,7 @@
 
 <button
 @foreach ($member as $item)
-    @if ($item->flag_status != 3 || $item->metode_pembayaran == 3)
+    @if ($item->flag_status != 3 && $item->flag_status != 6 || $item->metode_pembayaran == 3)
         hidden
     @endif
 @endforeach

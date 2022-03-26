@@ -33,10 +33,10 @@
         </div>
     </div>
 </div>
+            <button onclick="window.print()" class="btn btn-primary mb-3"><i class="fas fa-print mx-1"></i>Cetak Laporan</button>
 
-
-<div class="div" id="refresh">
-    <table class="table table-hover" id="search-keuangan-futsal">
+<div class="row" id="refresh">
+    <table class="table table-hover table-responsive" id="search-keuangan-futsal">
         <thead>
             <tr>
                 <th scope="col">No</th>

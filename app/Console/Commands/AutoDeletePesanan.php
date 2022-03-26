@@ -40,7 +40,7 @@ class AutoDeletePesanan extends Command
     {
        
         DB::table('jadwal_pertandingan')
-                ->WHERE('flag_status', 1)
+                ->WHEREIN('flag_status', [1,6])
                 ->delete();
     }
 }
